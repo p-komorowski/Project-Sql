@@ -1,6 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany} from "typeorm";
 import { basketBooks } from "./basket-books";
-import { User } from "./User";
+import { User } from "./user";
 
 @Entity()
 export class shoppingBasket {

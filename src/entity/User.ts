@@ -1,4 +1,3 @@
-import { userInfo } from "os";
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from "typeorm";
 import { contactDetails } from "./contact-details";
 import { Token } from "./token";
