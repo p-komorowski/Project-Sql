@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from "typeorm";
-import { contactDetails } from "./contact-details";
-import { Token } from "./token";
+import { contactDetails } from "./contact-details.entity";
+import { Token } from "../../auth/auth_entity/token.entity";
 
 @Entity()
 export class User {

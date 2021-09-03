@@ -7,15 +7,15 @@ export class Token {
     id: number;
 
     @Column()
-    user_id: number;
+    userId: number;
 
     @Column()
     token: string;
 
     @Column()
-    exp_time: string;
+    expTime: string;
 
     @Column()
-    last_login: string;
+    lastLogin: string;
 
 }

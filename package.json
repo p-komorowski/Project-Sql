@@ -8,9 +8,21 @@
       "typescript": "3.3.3333"
    },
    "dependencies": {
-      "typeorm": "0.2.37",
+      "@nestjs/common": "^8.0.6",
+      "@nestjs/jwt": "^8.0.0",
+      "@nestjs/mongoose": "^8.0.1",
+      "@nestjs/passport": "^8.0.1",
+      "@nestjs/typeorm": "^8.0.2",
+      "bcrypt": "^5.0.1",
+      "class-transformer": "^0.4.0",
+      "class-validator": "^0.13.1",
+      "mongoose": "^6.0.4",
+      "mysql2": "^2.3.0",
+      "passport-jwt": "^4.0.0",
+      "passport-local": "^1.0.0",
+      "pg": "^8.4.0",
       "reflect-metadata": "^0.1.10",
-      "pg": "^8.4.0"
+      "typeorm": "^0.2.37"
    },
    "scripts": {
       "start": "ts-node src/index.ts"

@@ -1,22 +1,23 @@
 import "reflect-metadata";
-import {createConnection} from "typeorm";
-import {User} from "./entity/user";
+import { createConnection } from "typeorm";
+import { Token } from "./modules/auth/auth_entity/token.entity";
+import { shoppingBasket } from "./modules/basket/basket_entity/shopping_basket.entity";
+import { Books } from "./modules/books/books_entity/books.entity";
+import { contactDetails } from "./modules/user/user_entity/contact-details.entity";
+import { User } from "./modules/user/user_entity/user.entity";
 
-createConnection().then(async connection => {
-
-    console.log("Inserting a new user into the database...");
-    const user = new User();
-    user.id = 1;
-    user.email = "email@mail.com";
-    user.name = 'testName1';
-    user.password = 'testPassword';
-    await connection.manager.save(user);
-    console.log("Saved a new user with id: " + user.id);
-
-    console.log("Loading users from the database...");
-    const users = await connection.manager.find(User);
-    console.log("Loaded users: ", users);
-
-    console.log("Here you can setup and run express/koa/any other framework.");
-
-}).catch(error => console.log(error));
+createConnection({
+  type: "postgres",
+  host: "localhost",
+  port: 5432,
+  username: "test",
+  password: "test",
+  database: "project2",
+  entities: [User, contactDetails, Books, shoppingBasket, Token],
+  synchronize: true,
+  logging: false,
+})
+  .then((connection) => {
+    
+  })
+  .catch((error) => console.log(error));
