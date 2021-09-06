@@ -13,9 +13,6 @@ export class UsersService {
     private repository: Repository<User>,
   ) {}
 
-  findAll(): Promise<User[]> {
-    return this.repository.find();
-  }
   async create(newUser: RegisterDto): Promise<User> {
     const userReg = await this.repository.findOne(newUser.email);
     if (!userReg) {
