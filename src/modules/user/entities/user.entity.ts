@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from "typ
 import { ContactDetails } from "./contact-details.entity";
 import { Token } from "../../auth/entity/token.entity";
 
-@Entity()
+@Entity('user')
 export class User {
   @PrimaryGeneratedColumn()
   id: number;

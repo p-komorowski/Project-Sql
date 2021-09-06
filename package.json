@@ -24,6 +24,8 @@
       "typeorm": "^0.2.37"
    },
    "scripts": {
-      "start": "ts-node src/index.ts"
+      "start": "ts-node src/index.ts",
+      "migration-create": "typeorm migration:create -n"
    }
 }
+

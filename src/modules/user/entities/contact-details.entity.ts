@@ -1,10 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
 import { User } from "./user.entity";
 
-@Entity()
+@Entity('contact_details')
 export class ContactDetails {
   @PrimaryGeneratedColumn()
-  user_id: number;
+  userId: number;
 
   @Column()
   adress: string;
@@ -12,8 +12,8 @@ export class ContactDetails {
   @Column()
   zipcode: string;
 
-  @Column()
-  phone_number: number;
+  @Column({name: 'phone_number'}) // mapowanie na nazwe kolumny w postgresie
+  phoneNumber: number;
 
   @OneToOne(() => User, (user) => user.id)
   user: User[];
