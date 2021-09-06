@@ -4,7 +4,7 @@ import {
   Column,
   OneToMany,
 } from "typeorm";
-import { User } from "../../user/user_entity/user.entity";
+import { User } from "../../user/entities/user.entity";
 
 @Entity()
 export class shoppingBasket {

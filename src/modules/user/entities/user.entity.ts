@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from "typeorm";
-import { contactDetails } from "./contact-details.entity";
-import { Token } from "../../auth/auth_entity/token.entity";
+import { ContactDetails } from "./contact-details.entity";
+import { Token } from "../../auth/entity/token.entity";
 
 @Entity()
 export class User {
@@ -19,6 +19,6 @@ export class User {
   @OneToMany(() => Token, (token) => token.id)
   token: Token[];
 
-  @OneToOne(()=> contactDetails, (contactDetails) => contactDetails.user_id)
-  contactDetails: contactDetails[];
+  @OneToOne(()=> ContactDetails, (contactDetails) => contactDetails.user_id)
+  contactDetails: ContactDetails[];
 }
