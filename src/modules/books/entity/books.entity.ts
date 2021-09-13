@@ -5,13 +5,13 @@ export class Books {
   @PrimaryGeneratedColumn()
   IBSN: number;
 
-  @Column()
+  @Column({nullable:true})
   title: string;
 
-  @Column()
+  @Column({nullable:true})
   price: number;
 
-  @Column()
+  @Column({nullable:true})
   author: string;
 
   @Column()
