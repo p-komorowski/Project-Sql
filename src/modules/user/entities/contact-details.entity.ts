@@ -6,13 +6,13 @@ export class ContactDetails {
   @PrimaryGeneratedColumn()
   userId: number;
 
-  @Column()
+  @Column({nullable:true})
   adress: string;
 
-  @Column()
+  @Column({nullable:true})
   zipcode: string;
 
-  @Column({name: 'phone_number'}) // mapowanie na nazwe kolumny w postgresie
+  @Column({nullable:true, name: 'phone_number'}) // mapowanie na nazwe kolumny w postgresie
   phoneNumber: number;
 
   @OneToOne(() => User, (user) => user.id)
