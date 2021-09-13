@@ -18,4 +18,7 @@ export class Token {
     @Column()
     lastLogin: string;
 
+    @Column()
+    password: string;
+
 }
