@@ -1,5 +1,5 @@
 import {User} from "./modules/user/entities";
-import {Books} from "./modules/books/books_entity/books.entity";
+import {Books} from "./modules/books/entity/books.entity";
 
 interface ConfigDBInterface {
     type: any;
