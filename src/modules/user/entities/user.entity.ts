@@ -7,18 +7,18 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({nullable:true})
   email: string;
 
-  @Column()
+  @Column({nullable:true})
   name: string;
 
-  @Column()
+  @Column({nullable:true})
   password: string;
 
   @OneToMany(() => Token, (token) => token.id)
   token: Token[];
 
-  @OneToOne(()=> ContactDetails, (contactDetails) => contactDetails.user_id)
+  @OneToOne(()=> ContactDetails, (contactDetails) => contactDetails.userId)
   contactDetails: ContactDetails[];
 }
