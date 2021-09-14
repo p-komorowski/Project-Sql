@@ -5,7 +5,24 @@ import {shoppingBasket} from "./modules/basket/entity/shopping_basket.entity";
 import {Books} from "./modules/books/entity/books.entity";
 import {ContactDetails, User} from "./modules/user/entities";
 
-createConnection({
+
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      transform: true,
+      transformOptions: { enableImplicitConversion: false },
+    }),
+  );
+  await app.listen(3000);
+}
+bootstrap();
+/* createConnection({
   type: 'postgres',
   host: "localhost",
   port: 5432,
@@ -20,3 +37,4 @@ createConnection({
     
   })
   .catch((error) => console.log(error));
+ */
