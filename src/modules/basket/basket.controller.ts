@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { JwtAuthGuard } from "../auth/strategy/jwt-auth.guard";
 import { BasketService } from "./basket.service";
-import { shoppingBasket } from "./entity/shopping_basket.entity";
+import { shoppingBasket } from "./entity/basket.entity";
 
 @Controller("basket")
 export class BasketController {
