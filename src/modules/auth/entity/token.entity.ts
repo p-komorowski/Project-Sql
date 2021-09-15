@@ -6,16 +6,16 @@ export class Token {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({name: 'user_id'})
     userId: number;
 
     @Column()
     token: string;
 
-    @Column()
+    @Column({name: 'exp_time'})
     expTime: string;
 
-    @Column()
+    @Column({name: 'last_login'})
     lastLogin: string;
 
     @Column()
