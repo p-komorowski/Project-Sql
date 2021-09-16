@@ -11,7 +11,6 @@ import { BooksController } from "./books.controller";
   imports: [
     TypeOrmModule.forFeature(entities),
     UserModule,
-    BooksModule,
   ],
   controllers: [BooksController],
   providers: [BooksService, BooksRepository],
