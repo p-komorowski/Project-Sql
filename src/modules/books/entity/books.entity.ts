@@ -14,6 +14,6 @@ export class Books {
   @Column({nullable:true})
   author: string;
 
-  @Column()
+  @Column({nullable:true})
   count: number;
 }
