@@ -1,20 +1,26 @@
 import { Injectable } from "@nestjs/common";
 import { BooksRepository } from "./repository/books.repository";
 import { Books } from "./entity/books.entity";
-import {InjectRepository} from "@nestjs/typeorm";
+
+import { Connection } from "typeorm";
 
 @Injectable()
 export class BooksService {
-  constructor(@InjectRepository(Books)
-              private readonly repository: BooksRepository) {}
+  private booksRepository: BooksRepository;
+  constructor(
+      private readonly connection: Connection
+  ) {
+      this.booksRepository = this.connection.getCustomRepository(BooksRepository);
+  }
+
 
   async insertProduct(newProduct: Books): Promise<Books> {
-    return this.repository.save(newProduct);
+    return this.booksRepository.save(newProduct);
   }
 
   public async getProducts(): Promise<Books[]> {
     const id: string = '56757456';
-    return this.repository.find({
+    return this.booksRepository.find({
       where: {
         IBSN: id
       }
@@ -22,6 +28,6 @@ export class BooksService {
   }
 
   async deleteProduct(IBSN: string): Promise<void> {
-    await this.repository.delete(IBSN);
+    await this.booksRepository.delete(IBSN);
   }
 }
