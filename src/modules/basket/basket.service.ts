@@ -1,14 +1,16 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { BasketDto } from "./dto/basket.dto";
+import { shoppingBasket } from "./entity/basket.entity";
 import { BasketRepository } from "./repository/basket.repository";
-import { shoppingBasket } from "./entity/shopping_basket.entity";
+
 
 @Injectable()
 export class BasketService {
   constructor(@InjectRepository(shoppingBasket)
               private readonly repository: BasketRepository) {}
 
-  async insertProduct(newBasket: shoppingBasket): Promise<any> {
+  async insertProduct(newBasket: BasketDto): Promise<any> {
     return this.repository.save(newBasket);
   }
 
