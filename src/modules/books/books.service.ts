@@ -13,7 +13,6 @@ export class BooksService {
       this.booksRepository = this.connection.getCustomRepository(BooksRepository);
   }
 
-
   async insertProduct(newProduct: BookDto): Promise<Books> {
     return this.booksRepository.save(newProduct);
   }
