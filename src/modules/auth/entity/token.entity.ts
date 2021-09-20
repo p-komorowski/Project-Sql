@@ -1,21 +1,21 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, Column, PrimaryColumn} from "typeorm";
 
 @Entity()
 export class Token {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     id: number;
 
-    @Column({name: 'user_id'})
+    @Column()
     userId: number;
 
     @Column()
     token: string;
 
-    @Column({name: 'exp_time'})
+    @Column()
     expTime: string;
 
-    @Column({name: 'last_login'})
+    @Column()
     lastLogin: string;
 
     @Column()
