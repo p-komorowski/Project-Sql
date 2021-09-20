@@ -4,11 +4,12 @@ import { BasketDto } from "./dto/basket.dto";
 import { shoppingBasket } from "./entity/basket.entity";
 import { BasketRepository } from "./repository/basket.repository";
 
-
 @Injectable()
 export class BasketService {
-  constructor(@InjectRepository(shoppingBasket)
-              private readonly repository: BasketRepository) {}
+  constructor(
+    @InjectRepository(shoppingBasket)
+    private readonly repository: BasketRepository
+  ) {}
 
   async insertProduct(newBasket: BasketDto): Promise<any> {
     return this.repository.save(newBasket);
