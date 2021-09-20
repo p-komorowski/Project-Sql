@@ -1,8 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
+import { Entity, Column,PrimaryColumn } from "typeorm";
 
 @Entity()
 export class Books {
-  @PrimaryGeneratedColumn()
+  @PrimaryColumn()
   IBSN: number;
 
   @Column({nullable:true})
