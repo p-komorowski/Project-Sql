@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { JwtAuthGuard } from "../auth/strategy/jwt-auth.guard";
 import { BasketService } from "./basket.service";
+import { BasketDto } from "./dto/basket.dto";
 import { shoppingBasket } from "./entity/basket.entity";
 
 @Controller("basket")
@@ -15,7 +16,7 @@ export class BasketController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  async addProduct(@Body() productData: shoppingBasket): Promise<string> {
+  async addProduct(@Body() productData: BasketDto): Promise<string> {
     return this.basketService.insertProduct(productData);
   }
 
