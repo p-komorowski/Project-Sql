@@ -14,4 +14,8 @@ export class RegisterDto {
   @Expose()
   @IsString()
   username: string
+
+  @Expose()
+  @IsString()
+  id:string
 }
