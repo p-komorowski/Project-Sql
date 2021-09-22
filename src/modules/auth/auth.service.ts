@@ -17,25 +17,41 @@ export class AuthService {
   }
 
   async validateUser(email: string, pass: string): Promise<any> {
-    const user = await this.authRepository.findOne(email);
+    const user = await this.authRepository.findOne(email)
+    console.log(user)
+    console.log(email, pass)
     if (user && (await bcrypt.compare(pass, user.password))) {
-      const { password, ...result } = user;
+      const {password, ...result} = user;
       return result;
+    }
+    else {
+      throw new NotFoundException('validateUser')
     }
   }
 
   async register(userData: RegisterDto): Promise<any> {
-    return this.authRepository.create(userData);
+    const userReg = await this.authRepository.findOne(userData.email)
+    console.log(userReg)
+    if (!userReg){
+    const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(userData.password, salt);
+      userData.password = hashedPassword
+    return this.authRepository.save(userData)
   }
+    else {
+      throw new NotFoundException ('email already in database')
+    }
+  }
+
   async login(user: LoginDto): Promise<any> {
     const payload = { sub: user.email, pass: user.password };
-    const valUser = await this.validateUser(user.email, user.password);
-    if (valUser) {
+    const valUser = await this.validateUser(user.email, user.password); 
+     if (valUser) {
       return {
         access_token: this.jwtService.sign(payload),
       };
-    } else {
-      throw new NotFoundException("cannot validate");
+    }  else {
+      throw new NotFoundException('cannot validate');
     }
-  }
+  } 
 }
