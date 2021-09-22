@@ -5,14 +5,15 @@ import {
   PrimaryColumn,
 } from "typeorm";
 import { User } from "../../user/entities/user.entity";
+import { v4 as uuid } from 'uuid';
 
 @Entity()
 export class shoppingBasket {
   @PrimaryColumn({name: 'basket_id'})
-  basketId: number;
+  basketId: string = uuid();
 
-  @Column({name: 'user_id',nullable:true})
-  userId: number;
+  @Column({name: 'user_id',nullable:false})
+  userId: string = uuid();
 
   @OneToMany(() => User, (user) => user.id)
   user: User[];
