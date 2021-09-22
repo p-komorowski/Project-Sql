@@ -1,13 +1,14 @@
 import {Entity, Column, PrimaryColumn} from "typeorm";
+import { v4 as uuid } from 'uuid';
 
 @Entity()
 export class Token {
 
     @PrimaryColumn()
-    id: number;
+    id: string = uuid();
 
     @Column()
-    userId: number;
+    userId: string = uuid();
 
     @Column()
     token: string;
