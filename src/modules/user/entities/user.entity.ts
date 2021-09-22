@@ -1,19 +1,20 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from "typeorm";
 import { ContactDetails } from "./contact-details.entity";
 import { Token } from "../../auth/entity/token.entity";
+import { v4 as uuid } from 'uuid';
 
 @Entity('user')
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string = uuid();
 
-  @Column({nullable:false})
+  @Column()
   email: string;
 
-  @Column({nullable:false})
-  name: string;
+  @Column()
+  username: string;
 
-  @Column({nullable:false})
+  @Column()
   password: string;
 
   @OneToMany(() => Token, (token) => token.id)
