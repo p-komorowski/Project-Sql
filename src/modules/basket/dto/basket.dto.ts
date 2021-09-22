@@ -1,14 +1,13 @@
 import { Exclude, Expose } from "class-transformer";
 import { IsNumber,} from "class-validator";
+import { v4 as uuid } from 'uuid';
 
 @Exclude()
 export class BasketDto {
 
 @Expose()
-@IsNumber()
- basketId:number;
+ basketId: string = uuid()
 
  @Expose()
- @IsNumber()
- userId:number;
+ userId: string = uuid()
 }
