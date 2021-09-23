@@ -15,7 +15,7 @@ export class AuthStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(data: any): Promise<any> {
-    return true;
+  async validate(payload: any) {
+    return { userEmail: payload.sub, username: payload.username };
   }
 }
