@@ -8,14 +8,11 @@ export class RegisterDto {
   email: string;
 
   @Expose()
-  @Matches(/^[a-z]+[!@#$%^&*()=_{}:;"'<,.>?€]$/g)
+  @IsString()
+  /* @Matches(/^[a-z]+[!@#$%^&*()=_{}:;"'<,.>?€]$/g,{message: "test"}) */
   password: string;
   
   @Expose()
   @IsString()
-  username: string
-
-  @Expose()
-  @IsString()
-  id:string
+  name: string
 }
