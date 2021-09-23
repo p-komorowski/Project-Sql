@@ -1,8 +1,8 @@
-import { Controller, Post, Body, Res, UseGuards } from "@nestjs/common";
+import { Controller, Post, Body, UseGuards, Res } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { LoginDto } from "./dto/login.dto";
 import { RegisterDto } from "./dto/register.dto";
-import { Response } from 'express';
+import { Response } from "express";
 import { AuthGuard } from "@nestjs/passport";
 
 @Controller()
@@ -15,22 +15,21 @@ export class AuthController {
   }
 
   @Post("auth/login")
-  async login(@Body() loginDto: LoginDto,response: Response) {
-   const cookie = this.authService.login(loginDto)
-   response
-      .cookie('access_token', cookie, {
+  async login(@Body() @Res() loginDto: LoginDto, response: Response) {
+    const token = await this.authService.login(loginDto);
+    console.log(token);
+    response
+      .cookie("access_token", token, {
         httpOnly: true,
-        domain: 'localhost:3000', 
-        expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+        domain: "localhost:3000",
+        expires: new Date(Date.now() + 60000 * 10),
       })
-      .send({ success: true })
-      
+      .send({ success: true });
   }
 
-  @Post('hello')
-  @UseGuards(AuthGuard('jwt'))
+  @Post("hello")
+  @UseGuards(AuthGuard("jwt"))
   devices(): string {
-    return 'Hello ';
+    return "Hello ";
   }
-
 }
