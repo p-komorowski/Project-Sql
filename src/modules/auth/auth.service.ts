@@ -1,7 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
-import { now } from "mongoose";
 import { Connection } from "typeorm";
 import { User } from "../user/entities";
 import { UsersService } from "../user/users.service";
