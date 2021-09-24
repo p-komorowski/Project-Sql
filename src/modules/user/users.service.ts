@@ -1,19 +1,15 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { Connection, Repository } from "typeorm";
+import { Injectable } from "@nestjs/common";
+import { Connection } from "typeorm";
 import { User } from "./entities";
-import * as bcrypt from "bcrypt";
 import { RegisterDto } from "../auth/dto/register.dto";
 import { userRepository } from "./repository/user.repository";
 
 @Injectable()
 export class UsersService {
-  private repository:userRepository
-  constructor(
-    private readonly connection: Connection
-    ) {
-        this.repository = this.connection.getCustomRepository(userRepository);
-    }
-  
+  private repository: userRepository;
+  constructor(private readonly connection: Connection) {
+    this.repository = this.connection.getCustomRepository(userRepository);
+  }
 
   findAll(): Promise<User[]> {
     return this.repository.find();
@@ -29,6 +25,6 @@ export class UsersService {
 
   async create(newUser: RegisterDto): Promise<User> {
     const userEntity = new User(newUser);
-    return this.repository.save(userEntity)
+    return this.repository.save(userEntity);
   }
 }
