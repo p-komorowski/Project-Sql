@@ -22,7 +22,13 @@ import { AuthStrategy } from "./strategy/auth.strategy";
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, JwtStrategy, AuthRepository,AuthStrategy],
+  providers: [
+    AuthService,
+    LocalStrategy,
+    JwtStrategy,
+    AuthRepository,
+    AuthStrategy,
+  ],
   exports: [AuthService, JwtStrategy],
 })
 export class AuthModule {}

@@ -8,8 +8,10 @@ import { JwtService } from "@nestjs/jwt";
 
 @Controller()
 export class AuthController {
-  constructor(private authService: AuthService,
-    private jwtService: JwtService) {}
+  constructor(
+    private authService: AuthService,
+    private jwtService: JwtService
+  ) {}
 
   @Post("auth/register")
   async register(@Body() reqisterDto: RegisterDto) {
@@ -23,31 +25,30 @@ export class AuthController {
     response
       .cookie("access_token", token, {
         httpOnly: true,
-        domain: 'localhost',
+        domain: "localhost",
         expires: new Date(Date.now() + 60000 * 10),
       })
       .send({ success: true });
   }
 
-
-  @Post('login')
+  @Post("login")
   login1(@Res() response: Response) {
-    const userId = 'userId'
+    const userId = "userId";
     const payload = { userId: userId };
     const token = this.jwtService.sign(payload);
 
     response
-      .cookie('access_token', token, {
+      .cookie("access_token", token, {
         httpOnly: true,
-        domain: 'localhost', 
+        domain: "localhost",
         expires: new Date(Date.now() + 60000 * 10),
       })
       .send({ success: true });
   }
 
-  @Post('hello')
-  @UseGuards(AuthGuard('jwt'))
+  @Post("hello")
+  @UseGuards(AuthGuard("jwt"))
   devices(): string {
-    return 'test cookie';
+    return "test cookie";
   }
 }

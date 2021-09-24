@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException} from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
 import { Connection } from "typeorm";
@@ -15,59 +15,57 @@ export class AuthService {
   constructor(
     private userService: UsersService,
     private jwtService: JwtService,
-      private readonly connection: Connection
+    private readonly connection: Connection
   ) {
-      this.authRepository = this.connection.getCustomRepository(AuthRepository);
+    this.authRepository = this.connection.getCustomRepository(AuthRepository);
   }
 
-  async validateUser(user:User, pass:string): Promise<any> {
+  async validateUser(user: User, pass: string): Promise<any> {
     if (user && (await bcrypt.compare(pass, user.password))) {
-      const {password, ...result} = user;
+      const { password, ...result } = user;
       return result;
-    }
-    else {
-      throw new NotFoundException('Incorrect password or email')
+    } else {
+      throw new NotFoundException("Incorrect password or email");
     }
   }
 
   async register(userData: RegisterDto): Promise<any> {
-    const userReg = await this.userService.findByEmail(userData.email)
-    if (!userReg){
-    const salt = await bcrypt.genSalt(10);
+    const userReg = await this.userService.findByEmail(userData.email);
+    if (!userReg) {
+      const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(userData.password, salt);
-      userData.password = hashedPassword
+      userData.password = hashedPassword;
       const newUser = this.userService.create(userData);
-  }
-    else {
-      throw new BadRequestException ('email already in database')
+    } else {
+      throw new BadRequestException("email already in database");
     }
   }
 
   async login(user: LoginDto): Promise<any> {
     const payload = { sub: user.email, pass: user.password };
-    const userEntity = await this.userService.findByEmail(user.email)
-    const valUser = await this.validateUser(userEntity, user.password); 
-    const token = await this.jwtService.sign(payload)
-    const newToken = await this.addNewToken(userEntity,token)
-     if (valUser) {
+    const userEntity = await this.userService.findByEmail(user.email);
+    const valUser = await this.validateUser(userEntity, user.password);
+    const token = await this.jwtService.sign(payload);
+    const newToken = await this.addNewToken(userEntity, token);
+    if (valUser) {
       return {
-        token
+        token,
       };
-    }  else {
-      throw new NotFoundException('cannot validate');
+    } else {
+      throw new NotFoundException("cannot validate");
     }
-  } 
+  }
 
-  async addNewToken(user: User, jwt: string): Promise <any>{
+  async addNewToken(user: User, jwt: string): Promise<any> {
     const newTime = new Date();
-    const time = new Date (newTime.getTime() + 60000*10);
+    const time = new Date(newTime.getTime() + 60000 * 10);
     const addedToken = new Token({
       token: jwt,
       expTime: time,
       lastLogin: newTime,
-      user: user
+      user: user,
     });
-    this.authRepository.create(addedToken)
-    return this.authRepository.save(addedToken)
+    this.authRepository.create(addedToken);
+    return this.authRepository.save(addedToken);
   }
 }
