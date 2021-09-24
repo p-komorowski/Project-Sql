@@ -1,7 +1,8 @@
 import "reflect-metadata";
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+import { ValidationPipe } from "@nestjs/common";
+import * as cookieParser from "cookie-parser";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -10,24 +11,9 @@ async function bootstrap() {
       whitelist: true,
       transform: true,
       transformOptions: { enableImplicitConversion: false },
-    }),
+    })
   );
+  app.use(cookieParser());
   await app.listen(3000);
 }
 bootstrap();
-/* createConnection({
-  type: 'postgres',
-  host: "localhost",
-  port: 5432,
-  username: "postgres",
-  password: "Haslo!234",
-  database: "Project2",
-  entities: [User, ContactDetails, Books, shoppingBasket, Token],
-  synchronize: true,
-  logging: false,
-})
-  .then((connection) => {
-    
-  })
-  .catch((error) => console.log(error));
- */

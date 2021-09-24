@@ -1,7 +1,7 @@
-import {Module} from "@nestjs/common";
-import {TypeOrmModule} from "@nestjs/typeorm";
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
 import { AppController } from "./app.controller";
-import {config} from "./config";
+import { config } from "./config";
 import { AuthModule } from "./modules/auth/auth.module";
 import { AuthRepository } from "./modules/auth/repository/auth.repository";
 import { BasketModule } from "./modules/basket/basket.module";
@@ -17,6 +17,6 @@ import { UserModule } from "./modules/user/user.module";
     BasketModule, // import samego configu zamiast pisania calej konfiguracji
   ],
   controllers: [AppController],
-  providers:[AuthRepository]
+  providers: [AuthRepository],
 })
 export class AppModule {}
