@@ -1,18 +1,18 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
 import { User } from "./user.entity";
 
-@Entity('contact_details')
+@Entity("contact_details")
 export class ContactDetails {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: "user_id" })
   userId: number;
 
-  @Column({nullable:true})
+  @Column({ nullable: true })
   adress: string;
 
-  @Column({nullable:true})
+  @Column({ nullable: true })
   zipcode: string;
 
-  @Column({nullable:true, name: 'phone_number'}) // mapowanie na nazwe kolumny w postgresie
+  @Column({ nullable: true, name: "phone_number" })
   phoneNumber: number;
 
   @OneToOne(() => User, (user) => user.id)
