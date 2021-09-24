@@ -1,5 +1,5 @@
-import { Exclude, Expose } from 'class-transformer';
-import { IsEmail, IsString, Matches } from 'class-validator';
+import { Exclude, Expose } from "class-transformer";
+import { IsEmail, IsString, Matches } from "class-validator";
 
 @Exclude()
 export class RegisterDto {
@@ -11,7 +11,7 @@ export class RegisterDto {
   @IsString()
   /* @Matches(/^[a-z]+[!@#$%^&*()=_{}:;"'<,.>?€]$/g,{message: "test"}) */
   password: string;
-  
+
   @Expose()
   @IsString()
   name: string
