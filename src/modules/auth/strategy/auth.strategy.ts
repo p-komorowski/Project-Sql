@@ -1,6 +1,6 @@
-import { Strategy } from 'passport-jwt';
-import { PassportStrategy } from '@nestjs/passport';
-import { Injectable } from '@nestjs/common';
+import { Strategy } from "passport-jwt";
+import { PassportStrategy } from "@nestjs/passport";
+import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class AuthStrategy extends PassportStrategy(Strategy) {
@@ -8,7 +8,7 @@ export class AuthStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: (req) => {
         if (!req || !req.cookies) return null;
-        return req.cookies['access_token'];
+        return req.cookies["access_token"];
       },
       ignoreExpiration: false,
       secretOrKey: process.env.JWT_SECRET,
