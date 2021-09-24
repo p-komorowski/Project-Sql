@@ -7,7 +7,7 @@ import { shoppingBasket } from "./entity/basket.entity";
 @Controller("basket")
 export class BasketController {
   constructor(private basketService: BasketService) {}
-  
+
   @UseGuards(JwtAuthGuard)
   @Get()
   async getAllProducts(): Promise<shoppingBasket[]> {

@@ -7,7 +7,7 @@ import { BasketRepository } from "./repository/basket.repository";
 
 @Module({
   imports: [TypeOrmModule.forFeature([shoppingBasket])],
-  providers: [BasketService,BasketRepository],
-  controllers:[BasketController]
+  providers: [BasketService, BasketRepository],
+  controllers: [BasketController],
 })
 export class BasketModule {}
