@@ -1,27 +1,27 @@
 import { User } from "../../user/entities";
 import {Entity, Column, PrimaryColumn, ManyToOne, JoinColumn, DeepPartial} from "typeorm";
-import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from "uuid";
 import { TokenInterface } from "../interface/token.interface";
 
 @Entity()
 export class Token {
-    constructor(token: DeepPartial<TokenInterface>) {
-        Object.assign(this, token);
-      }
+  constructor(token: DeepPartial<TokenInterface>) {
+    Object.assign(this, token);
+  }
 
-    @PrimaryColumn()
-    id: string = uuid();
-   
-    @ManyToOne(() => User, (user) => user.id)
-    @JoinColumn({name: 'userId'})
-    user:User  
-   
-    @Column()
-    token: string;
+  @PrimaryColumn()
+  id: string = uuid();
 
-    @Column()
-    expTime: Date;
+  @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn({ name: "user_id" })
+  user: User;
 
-    @Column()
-    lastLogin: Date;
+  @Column()
+  token: string;
+
+  @Column({ name: "exp_time" })
+  expTime: Date;
+
+  @Column({ name: "last_login" })
+  lastLogin: Date;
 }
