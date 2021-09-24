@@ -7,10 +7,8 @@ import { BookDto } from "./dto/books.dto";
 @Injectable()
 export class BooksService {
   private booksRepository: BooksRepository;
-  constructor(
-      private readonly connection: Connection
-  ) {
-      this.booksRepository = this.connection.getCustomRepository(BooksRepository);
+  constructor(private readonly connection: Connection) {
+    this.booksRepository = this.connection.getCustomRepository(BooksRepository);
   }
 
   async insertProduct(newProduct: BookDto): Promise<Books> {

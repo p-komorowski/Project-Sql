@@ -4,7 +4,7 @@ import { BooksService } from "./books.service";
 import { JwtAuthGuard } from "../auth/strategy/jwt-auth.guard";
 import { BookDto } from "./dto/books.dto";
 
-@Controller('books')
+@Controller("books")
 export class BooksController {
   constructor(private booksService: BooksService) {}
 
@@ -17,15 +17,13 @@ export class BooksController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async addProduct(@Body() productData: BookDto): Promise<Books> {
-    console.log(productData)
+    console.log(productData);
     return this.booksService.insertProduct(productData);
   }
 
   @UseGuards(JwtAuthGuard)
   @Delete("/:IBSN")
-  async removeProduct(
-      @Param("IBSN") IBSN: string
-  ): Promise<void> {
+  async removeProduct(@Param("IBSN") IBSN: string): Promise<void> {
     await this.booksService.deleteProduct(IBSN);
   }
 }
