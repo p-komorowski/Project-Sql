@@ -47,11 +47,9 @@ export class AuthService {
     const valUser = await this.validateUser(userEntity, user.password);
     const token = await this.jwtService.sign(payload);
     const newToken = await this.addNewToken(userEntity, token);
-    if (valUser) {
-      return {
-        token,
-      };
-    } else {
+    if (valUser) 
+      return token;
+    else {
       throw new NotFoundException("cannot validate");
     }
   }
