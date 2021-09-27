@@ -3,8 +3,8 @@ import { AuthService } from "./auth.service";
 import { LoginDto } from "./dto/login.dto";
 import { RegisterDto } from "./dto/register.dto";
 import { Response } from "express";
-import { AuthGuard } from "@nestjs/passport";
 import { JwtService } from "@nestjs/jwt";
+import { JwtAuthGuard } from "./strategy/jwt-auth.guard";
 
 @Controller()
 export class AuthController {
@@ -21,13 +21,15 @@ export class AuthController {
   }
 
   @Post("auth/login")
-  async login(@Body() @Res() loginDto: LoginDto, response: Response) {
+  async login(@Body() loginDto: LoginDto,@Res() response: Response) {
     const token = await this.authService.login(loginDto);
+    const newTime = new Date();
+    const time = new Date(newTime.getTime() + 60000 * 10 * 10 +1800000 );
     response
       .cookie("access_token", token, {
         httpOnly: true,
         domain: "localhost",
-        expires: new Date(Date.now() + 60000 * 10),
+        expires: time,
       })
       .send({ success: true });
       
@@ -42,13 +44,13 @@ export class AuthController {
       .cookie("access_token", token, {
         httpOnly: true,
         domain: "localhost",
-        expires: new Date(Date.now() + 60000 * 10),
+        expires: new Date(Date.now() + 60000 * 10*50),
       })
       .send({ success: true });
   }
 
   @Post("hello")
-  @UseGuards(AuthGuard("jwt"))
+  @UseGuards(JwtAuthGuard)
   devices(): string {
     this.logger.log('logger test')
     return "test cookie";
