@@ -6,7 +6,7 @@ export class createTableToken implements MigrationInterface {
     await queryRunner.query(`
             CREATE TABLE IF NOT EXISTS token ( 
                 id PRIMARY KEY,
-                user_id VARCHAR NOT NULL,
+                user_id VARCHAR NOT NULL KEY REFERENCES user(id),
                 last_login TIMESTAMP,
                 exp_time TIMESTAMP,
                 token VARCHAR
