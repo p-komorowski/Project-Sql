@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 
 @Entity()
 export class Review {
-  @PrimaryColumn()
+  @PrimaryColumn({type: uuid})
   id: string = uuid();
 
   @Column()
