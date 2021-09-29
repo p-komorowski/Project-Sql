@@ -19,7 +19,7 @@ export class Order {
   quantity: number;
 
   @ManyToOne(() => OrderBooks, (orderBooks) => orderBooks.id)
-  orderBooks: OrderBooks[];
+  orderBooks: OrderBooks;
 
   @ManyToOne(() => User, (user) => user.id)
   user: User[];
