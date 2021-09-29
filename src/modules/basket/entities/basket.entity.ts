@@ -1,7 +1,8 @@
-import { Entity, Column, OneToMany, PrimaryColumn, ManyToOne } from "typeorm";
+import { Entity, Column, OneToMany, PrimaryColumn, ManyToOne, ManyToMany } from "typeorm";
 import { User } from "../../user/entities/user.entity";
 import { v4 as uuid } from "uuid";
 import { BasketBooks } from "./basket_books.entity";
+import { Books } from "src/modules/books/entity/books.entity";
 
 @Entity()
 export class Basket {
@@ -14,6 +15,6 @@ export class Basket {
   @ManyToOne(() => User, (user) => user.id)
   user: User[];
 
-  @ManyToOne(() => BasketBooks, (basket) => basket.id)
-  basket: BasketBooks[];
+  @ManyToMany(() => Books, (books) => books.IBSN)
+  books: Books[];
 }
