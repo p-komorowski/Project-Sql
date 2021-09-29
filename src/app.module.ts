@@ -1,7 +1,8 @@
-import { Module } from "@nestjs/common";
+import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AppController } from "./app.controller";
 import { config } from "./config";
+import { RequestContextMiddleware, RequestContextProvider } from "./middleware/request-context";
 import { AuthModule } from "./modules/auth/auth.module";
 import { AuthRepository } from "./modules/auth/repository/auth.repository";
 import { BasketModule } from "./modules/basket/basket.module";
@@ -17,6 +18,12 @@ import { UserModule } from "./modules/user/user.module";
     BasketModule, // import samego configu zamiast pisania calej konfiguracji
   ],
   controllers: [AppController],
-  providers: [AuthRepository],
+  providers: [AuthRepository, RequestContextProvider],
 })
-export class AppModule {}
+export class AppModule  implements NestModule{
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+        .apply(RequestContextMiddleware)
+        .forRoutes('*');
+}
+}
