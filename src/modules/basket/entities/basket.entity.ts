@@ -5,7 +5,7 @@ import { BasketBooks } from "./basket_books.entity";
 
 @Entity()
 export class Basket {
-  @PrimaryColumn({ name: "basket_id" })
+  @PrimaryColumn({ name: "basket_id", type: uuid})
   basketId: string = uuid();
 
   @Column({ name: "user_id" })
