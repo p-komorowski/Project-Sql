@@ -5,8 +5,10 @@ export class createTableBasketBooks implements MigrationInterface {
     // sukces
     await queryRunner.query(`
             CREATE TABLE IF NOT EXISTS basket_books ( 
-                basket_id UUID,
+                id UUID PRIMARY KEY,
+                basket_id UUID FOREIGN KEY REFERENCES basket(id),
                 IBSN VARCHAR NOT NULL,
+                quantity NUMBER,
                 )
         `); // <- kod SQLowy
   }
