@@ -1,7 +1,12 @@
 import { ContactDetails, User } from "./modules/user/entities";
 import { Books } from "./modules/books/entity/books.entity";
 import { Token } from "./modules/auth/entity/token.entity";
-import { shoppingBasket } from "./modules/basket/entity/basket.entity";
+import { BasketBooks } from "./modules/basket/entities/basket_books.entity";
+import { Review } from "./modules/review/dto/review.dto";
+import { OrderBooks } from "./modules/order/dto/order_books.dto";
+import { Order } from "./modules/order/entity/order.entity";
+import { Basket } from "./modules/basket/entities/basket.entity";
+
 
 interface ConfigDBInterface {
   type: any;
@@ -36,4 +41,4 @@ export const config: ConfigInterface = {
 /*
  * config: miejsce w ktorym odczytujesz zmienne srodowsikowe z .env i stale property uzywane w projekcie
  * autoLoadEntity pozwala na automatyczny odczyt encji w danym module */
-export const entities = [User, Books, Token, ContactDetails, shoppingBasket];
+export const entities = [User, Books, Token, ContactDetails, BasketBooks,Review,OrderBooks,Order,Basket];
