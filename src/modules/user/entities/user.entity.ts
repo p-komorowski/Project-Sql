@@ -37,4 +37,5 @@ export class User {
   @OneToOne(() => ContactDetails)
   @JoinColumn()
   contactDetails: ContactDetails[];
+  
 }
