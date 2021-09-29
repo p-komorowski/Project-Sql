@@ -14,7 +14,4 @@ export class ContactDetails {
 
   @Column({ nullable: true, name: "phone_number" })
   phoneNumber: number;
-
-  @OneToOne(() => User, (user) => user.id)
-  user: User[];
 }
