@@ -7,7 +7,7 @@ import { Order } from "./order.entity";
 
 @Entity()
 export class BasketBooks {
-  @PrimaryColumn()
+  @PrimaryColumn({type: uuid})
   id: string = uuid();
 
   @Column({ name: "basket_id" })

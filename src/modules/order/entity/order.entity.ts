@@ -6,7 +6,7 @@ import { OrderBooks } from "../dto/order_books.dto";
 
 @Entity()
 export class Order {
-  @PrimaryColumn()
+  @PrimaryColumn({type: uuid})
   id: string = uuid();
 
   @Column({ name: "basket_id" })
