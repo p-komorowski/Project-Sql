@@ -2,7 +2,7 @@ import { Exclude, Expose } from "class-transformer";
 import { v4 as uuid } from "uuid";
 
 @Exclude()
-export class BasketBookDto {
+export class BasketBooskDto {
   @Expose()
   id: string = uuid();
 
