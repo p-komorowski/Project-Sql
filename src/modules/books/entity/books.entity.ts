@@ -1,7 +1,8 @@
+import { Basket } from "src/modules/basket/entities/basket.entity";
 import { BasketBooks } from "src/modules/basket/entities/basket_books.entity";
 import { OrderBooks } from "src/modules/order/dto/order_books.dto";
 import { Review } from "src/modules/review/dto/review.dto";
-import { Entity, Column, PrimaryColumn, ManyToOne, OneToMany } from "typeorm";
+import { Entity, Column, PrimaryColumn, ManyToOne, OneToMany, ManyToMany } from "typeorm";
 
 @Entity()
 export class Books {
@@ -20,8 +21,8 @@ export class Books {
   @Column({ nullable: true })
   count: number;
 
-  @ManyToOne(() => BasketBooks, (basket) => basket.id)
-  basket: BasketBooks[];
+  @ManyToMany(() => Basket, (basket) => basket.basketId)
+  basket: Basket[];
 
   @ManyToOne(() => OrderBooks, (orderBooks) => orderBooks.id)
   orderBooks: OrderBooks[];
