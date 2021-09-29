@@ -6,12 +6,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AuthRepository = void 0;
 const typeorm_1 = require("typeorm");
 const token_entity_1 = require("../entity/token.entity");
 let AuthRepository = class AuthRepository extends typeorm_1.Repository {
 };
 AuthRepository = __decorate([
-    typeorm_1.EntityRepository(token_entity_1.Token)
+    (0, typeorm_1.EntityRepository)(token_entity_1.Token)
 ], AuthRepository);
 exports.AuthRepository = AuthRepository;
 //# sourceMappingURL=auth.repository.js.map

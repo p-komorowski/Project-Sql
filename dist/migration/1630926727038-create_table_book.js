@@ -1,11 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createTableBook1630926727038 = void 0;
 class createTableBook1630926727038 {
     async up(queryRunner) {
         await queryRunner.query(`
             CREATE TABLE IF NOT EXISTS book ( 
                 IBSN serial PRIMARY KEY,
-                title VACHAR NOT NULL,
+                title VARCHAR NOT NULL,
                 price FLOAT CHECK price > 0,
                 ...
                 )

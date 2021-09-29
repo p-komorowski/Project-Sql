@@ -1,9 +1,10 @@
+import { BasketDto } from "./dto/basket.dto";
+import { shoppingBasket } from "./entity/basket.entity";
 import { BasketRepository } from "./repository/basket.repository";
-import { shoppingBasket } from "./entity/shopping_basket.entity";
 export declare class BasketService {
     private readonly repository;
     constructor(repository: BasketRepository);
-    insertProduct(newBasket: shoppingBasket): Promise<any>;
+    insertProduct(newBasket: BasketDto): Promise<any>;
     getProducts(): Promise<shoppingBasket[]>;
     deleteProduct(basket_id: string): Promise<void>;
 }

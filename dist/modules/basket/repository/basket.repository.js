@@ -6,12 +6,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BasketRepository = void 0;
 const typeorm_1 = require("typeorm");
-const shopping_basket_entity_1 = require("../entity/shopping_basket.entity");
+const basket_entity_1 = require("../entity/basket.entity");
 let BasketRepository = class BasketRepository extends typeorm_1.Repository {
 };
 BasketRepository = __decorate([
-    typeorm_1.EntityRepository(shopping_basket_entity_1.shoppingBasket)
+    (0, typeorm_1.EntityRepository)(basket_entity_1.shoppingBasket)
 ], BasketRepository);
 exports.BasketRepository = BasketRepository;
 //# sourceMappingURL=basket.repository.js.map

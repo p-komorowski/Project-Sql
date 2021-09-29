@@ -1,9 +1,10 @@
 import { BasketService } from "./basket.service";
-import { shoppingBasket } from "./entity/shopping_basket.entity";
+import { BasketDto } from "./dto/basket.dto";
+import { shoppingBasket } from "./entity/basket.entity";
 export declare class BasketController {
     private basketService;
     constructor(basketService: BasketService);
     getAllProducts(): Promise<shoppingBasket[]>;
-    addProduct(productData: shoppingBasket): Promise<string>;
+    addProduct(productData: BasketDto): Promise<string>;
     removeProduct(basket_id: string): Promise<void>;
 }

@@ -9,32 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ContactDetails = void 0;
 const typeorm_1 = require("typeorm");
 const user_entity_1 = require("./user.entity");
 let ContactDetails = class ContactDetails {
 };
 __decorate([
-    typeorm_1.PrimaryGeneratedColumn(),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ name: "user_id" }),
     __metadata("design:type", Number)
 ], ContactDetails.prototype, "userId", void 0);
 __decorate([
-    typeorm_1.Column({ nullable: true }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], ContactDetails.prototype, "adress", void 0);
 __decorate([
-    typeorm_1.Column({ nullable: true }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], ContactDetails.prototype, "zipcode", void 0);
 __decorate([
-    typeorm_1.Column({ nullable: true, name: 'phone_number' }),
+    (0, typeorm_1.Column)({ nullable: true, name: "phone_number" }),
     __metadata("design:type", Number)
 ], ContactDetails.prototype, "phoneNumber", void 0);
 __decorate([
-    typeorm_1.OneToOne(() => user_entity_1.User, (user) => user.id),
+    (0, typeorm_1.OneToOne)(() => user_entity_1.User, (user) => user.id),
     __metadata("design:type", Array)
 ], ContactDetails.prototype, "user", void 0);
 ContactDetails = __decorate([
-    typeorm_1.Entity('contact_details')
+    (0, typeorm_1.Entity)("contact_details")
 ], ContactDetails);
 exports.ContactDetails = ContactDetails;
 //# sourceMappingURL=contact-details.entity.js.map

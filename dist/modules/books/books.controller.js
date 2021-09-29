@@ -12,9 +12,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BooksController = void 0;
 const common_1 = require("@nestjs/common");
-const books_entity_1 = require("./entity/books.entity");
 const books_service_1 = require("./books.service");
+const jwt_auth_guard_1 = require("../auth/strategy/jwt-auth.guard");
+const books_dto_1 = require("./dto/books.dto");
 let BooksController = class BooksController {
     constructor(booksService) {
         this.booksService = booksService;
@@ -23,6 +25,7 @@ let BooksController = class BooksController {
         return await this.booksService.getProducts();
     }
     async addProduct(productData) {
+        console.log(productData);
         return this.booksService.insertProduct(productData);
     }
     async removeProduct(IBSN) {
@@ -30,27 +33,30 @@ let BooksController = class BooksController {
     }
 };
 __decorate([
-    common_1.Get(),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], BooksController.prototype, "getAllProducts", null);
 __decorate([
-    common_1.Post(),
-    __param(0, common_1.Body()),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [books_entity_1.Books]),
+    __metadata("design:paramtypes", [books_dto_1.BookDto]),
     __metadata("design:returntype", Promise)
 ], BooksController.prototype, "addProduct", null);
 __decorate([
-    common_1.Delete("/:IBSN"),
-    __param(0, common_1.Param("IBSN")),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Delete)("/:IBSN"),
+    __param(0, (0, common_1.Param)("IBSN")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], BooksController.prototype, "removeProduct", null);
 BooksController = __decorate([
-    common_1.Controller("books"),
+    (0, common_1.Controller)("books"),
     __metadata("design:paramtypes", [books_service_1.BooksService])
 ], BooksController);
 exports.BooksController = BooksController;

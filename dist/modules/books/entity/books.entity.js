@@ -9,31 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Books = void 0;
 const typeorm_1 = require("typeorm");
 let Books = class Books {
 };
 __decorate([
-    typeorm_1.PrimaryGeneratedColumn(),
+    (0, typeorm_1.PrimaryColumn)(),
     __metadata("design:type", Number)
 ], Books.prototype, "IBSN", void 0);
 __decorate([
-    typeorm_1.Column({ nullable: true }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], Books.prototype, "title", void 0);
 __decorate([
-    typeorm_1.Column({ nullable: true }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", Number)
 ], Books.prototype, "price", void 0);
 __decorate([
-    typeorm_1.Column({ nullable: true }),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], Books.prototype, "author", void 0);
 __decorate([
-    typeorm_1.Column(),
+    (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", Number)
 ], Books.prototype, "count", void 0);
 Books = __decorate([
-    typeorm_1.Entity()
+    (0, typeorm_1.Entity)()
 ], Books);
 exports.Books = Books;
 //# sourceMappingURL=books.entity.js.map

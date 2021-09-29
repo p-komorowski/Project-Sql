@@ -6,16 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BooksModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const books_service_1 = require("./books.service");
 const config_1 = require("../../config");
 const books_repository_1 = require("./repository/books.repository");
+const user_module_1 = require("../user/user.module");
+const books_controller_1 = require("./books.controller");
 let BooksModule = class BooksModule {
 };
 BooksModule = __decorate([
-    common_1.Module({
-        imports: [typeorm_1.TypeOrmModule.forFeature(config_1.entities)],
+    (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature(config_1.entities), user_module_1.UserModule],
+        controllers: [books_controller_1.BooksController],
         providers: [books_service_1.BooksService, books_repository_1.BooksRepository],
     })
 ], BooksModule);

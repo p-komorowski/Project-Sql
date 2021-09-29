@@ -6,16 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BasketModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const books_entity_1 = require("../books/entity/books.entity");
+const basket_controller_1 = require("./basket.controller");
 const basket_service_1 = require("./basket.service");
+const basket_entity_1 = require("./entity/basket.entity");
+const basket_repository_1 = require("./repository/basket.repository");
 let BasketModule = class BasketModule {
 };
 BasketModule = __decorate([
-    common_1.Module({
-        imports: [typeorm_1.TypeOrmModule.forFeature([books_entity_1.Books])],
-        providers: [basket_service_1.BasketService],
+    (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([basket_entity_1.shoppingBasket])],
+        providers: [basket_service_1.BasketService, basket_repository_1.BasketRepository],
+        controllers: [basket_controller_1.BasketController],
     })
 ], BasketModule);
 exports.BasketModule = BasketModule;

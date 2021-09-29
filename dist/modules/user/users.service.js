@@ -8,39 +8,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
-const typeorm_2 = require("typeorm");
+const typeorm_1 = require("typeorm");
 const entities_1 = require("./entities");
-const bcrypt = require("bcrypt");
+const user_repository_1 = require("./repository/user.repository");
 let UsersService = class UsersService {
-    constructor(repository) {
-        this.repository = repository;
+    constructor(connection) {
+        this.connection = connection;
+        this.repository = this.connection.getCustomRepository(user_repository_1.userRepository);
     }
     findAll() {
         return this.repository.find();
     }
+    async findByEmail(email) {
+        return this.repository.findOne({
+            where: {
+                email: email,
+            },
+        });
+    }
     async create(newUser) {
-        const userReg = await this.repository.findOne(newUser.email);
-        if (!userReg) {
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(newUser.password, salt);
-            const addedUser = await this.repository.save(Object.assign({}, newUser, { password: hashedPassword }));
-            return addedUser;
-        }
-        else {
-            throw new common_1.NotFoundException('email already in database');
-        }
+        const userEntity = new entities_1.User(newUser);
+        return this.repository.save(userEntity);
     }
 };
 UsersService = __decorate([
-    common_1.Injectable(),
-    __param(0, typeorm_1.InjectRepository(entities_1.User)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [typeorm_1.Connection])
 ], UsersService);
 exports.UsersService = UsersService;
 //# sourceMappingURL=users.service.js.map
