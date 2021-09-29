@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, DeepPartial} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, DeepPartial, JoinColumn} from "typeorm";
 import { ContactDetails } from "./contact-details.entity";
 import { Token } from "../../auth/entity/token.entity";
 import { v4 as uuid } from "uuid";
@@ -34,6 +34,7 @@ export class User {
   @OneToMany(() => Order, (order) => order.id)
   order: Order[];
 
-  @OneToOne(() => ContactDetails, (contactDetails) => contactDetails.userId)
+  @OneToOne(() => ContactDetails)
+  @JoinColumn()
   contactDetails: ContactDetails[];
 }
