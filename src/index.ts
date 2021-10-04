@@ -3,8 +3,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
-import { entities } from "./config";
-import {createConnection} from "typeorm";
+import { createConnection } from "typeorm";
+import { config, entities } from "./config";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,19 +16,19 @@ async function bootstrap() {
       transformOptions: { enableImplicitConversion: false },
     }),
   );
-  await app.listen(3000);
   createConnection({
+    name: 'new',
     type: "postgres",
-    host: "localhost",
+    host: config.database.host,
     port: 5432,
-    username: "postgres",
-    password: "Haslo!234",
-    database: "Project2",
+    username: config.database.username,
+    password: config.database.password,
+    database: config.database.database,
     entities: entities,
     synchronize: true,
-}).then(connection => {
+    }).then(connection => {
     connection.runMigrations();
-
-}).catch(error => console.log(error));
+    }).catch(error => console.log(error));
+    await app.listen(3000);
 }
 bootstrap();
