@@ -66,6 +66,7 @@
    },
    "scripts": {
       "start": "ts-node -r dotenv-safe/config src/index.ts",
-      "migration-create": "typeorm migration:create -n"
+      "migration-create": "typeorm migration:create -n",
+      "build": "rimraf dist && tsc -p tsconfig.build.json"
    }
 }
