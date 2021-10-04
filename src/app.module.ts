@@ -20,10 +20,11 @@ import { UserModule } from "./modules/user/user.module";
   controllers: [AppController],
   providers: [AuthRepository, RequestContextProvider],
 })
-export class AppModule  implements NestModule{
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-        .apply(RequestContextMiddleware)
-        .forRoutes('*');
-}
+export class AppModule{
+// export class AppModule  implements NestModule{
+//   configure(consumer: MiddlewareConsumer) {
+//     consumer
+//         .apply(RequestContextMiddleware)
+//         .forRoutes('*');
+// }
 }
