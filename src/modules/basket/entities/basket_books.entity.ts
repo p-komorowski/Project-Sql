@@ -1,4 +1,4 @@
-import { Books } from "src/modules/books/entity/books.entity";
+import { Books } from "../../books/entity/books.entity";
 import { Entity, Column, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Basket } from "./basket.entity";
@@ -6,7 +6,7 @@ import { Basket } from "./basket.entity";
 
 @Entity()
 export class BasketBooks {
-  @PrimaryColumn({type: uuid})
+  @PrimaryColumn()
   id: string = uuid();
 
   @Column({ name: "basket_id" })
