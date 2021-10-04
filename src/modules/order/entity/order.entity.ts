@@ -1,12 +1,11 @@
-import { Books } from "src/modules/books/entity/books.entity";
-import { User } from "src/modules/user/entities";
+import { User } from "../../user/entities";
 import { Entity, Column, OneToMany, PrimaryColumn, ManyToOne } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { OrderBooks } from "../dto/order_books.dto";
 
 @Entity()
 export class Order {
-  @PrimaryColumn({type: uuid})
+  @PrimaryColumn()
   id: string = uuid();
 
   @Column({ name: "basket_id" })
