@@ -3,9 +3,9 @@ import { ContactDetails } from "./contact-details.entity";
 import { Token } from "../../auth/entity/token.entity";
 import { v4 as uuid } from "uuid";
 import { UserInterface } from "../interface/user.interface";
-import { Books } from "src/modules/books/entity/books.entity";
-import { Basket } from "src/modules/basket/entities/basket.entity";
-import { Order } from "src/modules/order/entity/order.entity";
+import { Books } from "../..//books/entity/books.entity";
+import { Basket } from "../..//basket/entities/basket.entity";
+import { Order } from "../..//order/entity/order.entity";
 
 @Entity("user")
 export class User {
