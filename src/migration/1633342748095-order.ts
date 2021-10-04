@@ -1,15 +1,12 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class createTableBooks1630926727038 implements MigrationInterface {
+export class createTableOrder1633342748095 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     // sukces
     await queryRunner.query(`
-            CREATE TABLE IF NOT EXISTS books ( 
-                IBSN serial PRIMARY KEY,
-                title VARCHAR NOT NULL,
-                price FLOAT CHECK price > 0,
-                author VARCHAR NOT NULL,
-                count INTEGER,
+            CREATE TABLE IF NOT EXISTS "order" ( 
+                order_id UUID,
+                user_id UUID
                 )
         `); // <- kod SQLowy
   }
