@@ -21,10 +21,12 @@ interface ConfigDBInterface {
 interface ConfigInterface {
   jwtKey: string;
   database: ConfigDBInterface;
+  name:string;
 }
 
 export const config: ConfigInterface = {
   jwtKey: process.env.JWT_SECRET,
+  name:"test2",
   database: {
     type: "postgres",
     host: "localhost",
@@ -35,6 +37,7 @@ export const config: ConfigInterface = {
     autoLoadEntities: true,
     synchronize: false,
   },
+  
 };
 
 /*
