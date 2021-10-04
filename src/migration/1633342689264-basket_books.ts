@@ -6,7 +6,7 @@ export class createTableBasketBooks1633342689264 implements MigrationInterface {
     await queryRunner.query(`
             CREATE TABLE IF NOT EXISTS basket_books ( 
                 id UUID PRIMARY KEY,
-                basket_id UUID,
+                basket_id UUID FOREIGN KEY REFERENCES basket(id),
                 IBSN VARCHAR NOT NULL,
                 quantity INTEGER
                 )

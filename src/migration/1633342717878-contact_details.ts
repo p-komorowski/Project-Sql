@@ -5,7 +5,7 @@ export class createTableContactDetails1633342717878 implements MigrationInterfac
     // sukces
     await queryRunner.query(`
             CREATE TABLE IF NOT EXISTS contact_details ( 
-                user_id UUID,
+                user_id PRIMARY KEY,
                 adress VARCHAR NOT NULL,
                 zipcode VARCHAR NOT NULL,
                 phone_number INTEGER

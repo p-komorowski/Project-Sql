@@ -6,7 +6,7 @@ export class createTableOrderBooks1633342737336 implements MigrationInterface {
     await queryRunner.query(`
             CREATE TABLE IF NOT EXISTS order_books ( 
                 id UUID PRIMARY KEY,
-                order_id UUID,
+                order_id UUID FOREIGN KEY REFERENCES order(order_id),
                 IBSN VARCHAR NOT NULL,
                 quantity INTEGER
                 )
