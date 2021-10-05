@@ -17,7 +17,6 @@ export class BooksController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async addProduct(@Body() productData: BookDto): Promise<Books> {
-    console.log(productData);
     return this.booksService.insertProduct(productData);
   }
 
