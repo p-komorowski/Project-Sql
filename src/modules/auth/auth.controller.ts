@@ -5,7 +5,7 @@ import { RegisterDto } from "./dto/register.dto";
 import { Response } from "express";
 import { JwtService } from "@nestjs/jwt";
 import { JwtAuthGuard } from "./strategy/jwt-auth.guard";
-import { RequestContextProvider } from "src/middleware/request-context";
+import { RequestContextProvider } from "../../middleware/request-context";
 
 @Controller()
 export class AuthController {

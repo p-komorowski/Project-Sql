@@ -9,6 +9,7 @@ import { AuthController } from "./auth.controller";
 import { AuthRepository } from "./repository/auth.repository";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AuthStrategy } from "./strategy/auth.strategy";
+import { RequestContextProvider } from "../../middleware/request-context";
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { AuthStrategy } from "./strategy/auth.strategy";
     AuthModule,
     UserModule,
     PassportModule,
+    RequestContextProvider,
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: "600s" },
@@ -28,6 +30,7 @@ import { AuthStrategy } from "./strategy/auth.strategy";
     JwtStrategy,
     AuthRepository,
     AuthStrategy,
+    RequestContextProvider
   ],
   exports: [AuthService, JwtStrategy],
 })
