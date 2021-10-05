@@ -11,7 +11,7 @@ export class AuthController {
   logger:Logger;
   constructor(
     private authService: AuthService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
   ) {this.logger = new Logger(AuthController.name);}
 
   @Post("auth/register")
