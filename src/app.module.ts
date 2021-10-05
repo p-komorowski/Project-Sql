@@ -15,16 +15,17 @@ import { UserModule } from "./modules/user/user.module";
     AuthModule,
     UserModule,
     BooksModule,
-    BasketModule, // import samego configu zamiast pisania calej konfiguracji
+    BasketModule,
+
   ],
   controllers: [AppController],
   providers: [AuthRepository, RequestContextProvider],
 })
-export class AppModule{
-// export class AppModule  implements NestModule{
-//   configure(consumer: MiddlewareConsumer) {
-//     consumer
-//         .apply(RequestContextMiddleware)
-//         .forRoutes('*');
-// }
+
+export class AppModule  implements NestModule{
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+        .apply(RequestContextMiddleware)
+        .forRoutes('*');
+}
 }
