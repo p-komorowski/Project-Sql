@@ -3,6 +3,7 @@ import { BooksRepository } from "./repository/books.repository";
 import { Books } from "./entity/books.entity";
 import { Connection } from "typeorm";
 import { BookDto } from "./dto/books.dto";
+import { RequestContextProvider } from "../../middleware/request-context.middleware";
 
 @Injectable()
 export class BooksService {
@@ -16,6 +17,7 @@ export class BooksService {
   }
 
   public async getProducts(): Promise<Books[]> {
+    const currentUser = RequestContextProvider.currentUser();
     return this.booksRepository.find();
   }
 
