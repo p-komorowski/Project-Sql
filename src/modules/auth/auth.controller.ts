@@ -5,7 +5,7 @@ import { RegisterDto } from "./dto/register.dto";
 import { Response } from "express";
 import { JwtService } from "@nestjs/jwt";
 import { JwtAuthGuard } from "./strategy/jwt-auth.guard";
-import { RequestContextProvider } from "../../middleware/request-context";
+import { RequestContextProvider } from "../../middleware/request-context.middleware";
 
 @Controller()
 export class AuthController {
@@ -27,7 +27,6 @@ export class AuthController {
     const token = await this.authService.login(loginDto);
     const newTime = new Date();
     const time = new Date(newTime.getTime() + 60000 * 10 * 10 +1800000 );
-    const user = this.requestContextProvider.get(token)
     response
       .cookie("access_token", token, {
         httpOnly: true,
@@ -35,7 +34,7 @@ export class AuthController {
         expires: time,
       })
       .send({ success: true });
-      return user
+      
   }
 
   @Post("login")
