@@ -5,6 +5,7 @@ import { User } from "src/modules/user/entities";
 import { getManager } from "typeorm";
 import { getNamespace, createNamespace } from "cls-hooked";
 import { v4 as uuid } from "uuid";
+import { Alias } from "typeorm/query-builder/Alias";
 
 export class RequestContextProvider {
   constructor(req:Request, res:Response) {
@@ -42,8 +43,17 @@ export class RequestContextMiddleware implements NestMiddleware {
     if (req.headers["authorization"]) {
       tokenHeader = req.headers["authorization"].replace("Bearer ", "");
     }
-    const token = await getManager().findOne(Token, {});
-    req["user"] = token.user;
+    const token = await getManager().findOne(Token, {
+      join:{
+        alias:"token",
+        leftJoinAndSelect:{
+          user: "token.user",
+          }
+      },
+      where:{token:tokenHeader}
+    });
+
+    req['User'] = token.user;
     const requestContext = new RequestContextProvider(req,res);
     const session =
       getNamespace(RequestContextProvider.uuid) ||
