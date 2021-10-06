@@ -1,7 +1,8 @@
 import { BadRequestException, Injectable, NotFoundException} from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
-import { Connection } from "typeorm";
+import { RequestContextProvider } from "../../middleware/request-context.middleware";
+import { Connection} from "typeorm";
 import { User } from "../user/entities";
 import { UsersService } from "../user/users.service";
 import { LoginDto } from "./dto/login.dto";
@@ -15,7 +16,8 @@ export class AuthService {
   constructor(
     private userService: UsersService,
     private jwtService: JwtService,
-    private readonly connection: Connection
+    private readonly connection: Connection,
+    private requestContextProvider:RequestContextProvider
   ) {
     this.authRepository = this.connection.getCustomRepository(AuthRepository);
   }
@@ -45,8 +47,9 @@ export class AuthService {
     const payload = { sub: user.email, pass: user.password };
     const userEntity = await this.userService.findByEmail(user.email);
     const valUser = await this.validateUser(userEntity, user.password);
-    const token = await this.jwtService.sign(payload);
+    const token = await this.jwtService.sign(payload);    
     const newToken = await this.addNewToken(userEntity, token);
+    const currentUser = RequestContextProvider.currentUser();
     if (valUser) 
       return token;
     else {
