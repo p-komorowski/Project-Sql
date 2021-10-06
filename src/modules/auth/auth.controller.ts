@@ -5,15 +5,14 @@ import { RegisterDto } from "./dto/register.dto";
 import { Response } from "express";
 import { JwtService } from "@nestjs/jwt";
 import { JwtAuthGuard } from "./strategy/jwt-auth.guard";
-import { RequestContextProvider } from "../../middleware/request-context.middleware";
 
 @Controller()
 export class AuthController {
   logger:Logger;
   constructor(
     private authService: AuthService,
-    private jwtService: JwtService,
-    private requestContextProvider: RequestContextProvider) 
+    private jwtService: JwtService
+    ) 
     {this.logger = new Logger(AuthController.name);}
 
   @Post("auth/register")
