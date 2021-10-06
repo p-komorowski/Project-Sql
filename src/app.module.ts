@@ -2,10 +2,12 @@ import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AppController } from "./app.controller";
 import { config } from "./config";
-import { RequestContextMiddleware, RequestContextProvider } from "./middleware/request-context.middleware";
+import { RequestContextProvider } from "./middleware/request-context.middleware";
+import { RequestContextMiddleware } from "./middleware/request-contextProvider.middleware";
 import { AuthModule } from "./modules/auth/auth.module";
 import { AuthRepository } from "./modules/auth/repository/auth.repository";
 import { BasketModule } from "./modules/basket/basket.module";
+import { BooksController } from "./modules/books/books.controller";
 import { BooksModule } from "./modules/books/books.module";
 import { UserModule } from "./modules/user/user.module";
 
@@ -26,6 +28,6 @@ export class AppModule  implements NestModule{
   configure(consumer: MiddlewareConsumer) {
     consumer
         .apply(RequestContextMiddleware)
-        .forRoutes('*');
+        .forRoutes(BooksController);
 }
 }
