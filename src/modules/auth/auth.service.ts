@@ -1,7 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException} from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
-import { RequestContextProvider } from "../../middleware/request-context.middleware";
 import { Connection} from "typeorm";
 import { User } from "../user/entities";
 import { UsersService } from "../user/users.service";
@@ -17,7 +16,7 @@ export class AuthService {
     private userService: UsersService,
     private jwtService: JwtService,
     private readonly connection: Connection,
-    private requestContextProvider:RequestContextProvider
+   
   ) {
     this.authRepository = this.connection.getCustomRepository(AuthRepository);
   }
@@ -49,7 +48,6 @@ export class AuthService {
     const valUser = await this.validateUser(userEntity, user.password);
     const token = await this.jwtService.sign(payload);    
     const newToken = await this.addNewToken(userEntity, token);
-    const currentUser = RequestContextProvider.currentUser();
     if (valUser) 
       return token;
     else {
