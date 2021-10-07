@@ -29,7 +29,7 @@ export const config: ConfigInterface = {
   name:"test2",
   database: {
     type: "postgres",
-    host: "localhost",
+    host: "postgresContainer",
     port: 5432,
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
