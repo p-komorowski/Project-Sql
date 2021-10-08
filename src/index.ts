@@ -1,8 +1,8 @@
 import "reflect-metadata";
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
-import * as cookieParser from 'cookie-parser';
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+import { ValidationPipe } from "@nestjs/common";
+import * as cookieParser from "cookie-parser";
 import { createConnection } from "typeorm";
 import { config, entities } from "./config";
 
@@ -14,10 +14,10 @@ async function bootstrap() {
       whitelist: true,
       transform: true,
       transformOptions: { enableImplicitConversion: false },
-    }),
+    })
   );
   createConnection({
-    name: 'new',
+    name: "new",
     type: "postgres",
     host: config.database.host,
     port: 5432,
@@ -26,9 +26,11 @@ async function bootstrap() {
     database: config.database.database,
     entities: entities,
     synchronize: true,
-    }).then(connection => {
-    connection.runMigrations();
-    }).catch(error => console.log(error));
-    await app.listen(3000);
+  })
+    .then((connection) => {
+      connection.runMigrations();
+    })
+    .catch((error) => console.log(error));
+  await app.listen(3000);
 }
 bootstrap();

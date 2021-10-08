@@ -6,12 +6,12 @@ export class BasketBooskDto {
   @Expose()
   id: string = uuid();
 
-  @Expose({ name: "basket_id"})
+  @Expose({ name: "basket_id" })
   basketId: string = uuid();
 
   @Expose()
   IBSN: string;
 
   @Expose()
-  quantity: number
+  quantity: number;
 }

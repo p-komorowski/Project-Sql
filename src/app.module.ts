@@ -18,16 +18,12 @@ import { UserModule } from "./modules/user/user.module";
     UserModule,
     BooksModule,
     BasketModule,
-
   ],
   controllers: [AppController],
   providers: [AuthRepository, RequestContextProvider],
 })
-
-export class AppModule  implements NestModule{
+export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-        .apply(RequestContextMiddleware)
-        .forRoutes(BooksController);
-}
+    consumer.apply(RequestContextMiddleware).forRoutes(BooksController);
+  }
 }

@@ -1,7 +1,7 @@
-import {  UnauthorizedException } from "@nestjs/common";
-import { Request, Response,  } from "express";
+import { UnauthorizedException } from "@nestjs/common";
+import { Request, Response } from "express";
 import { User } from "src/modules/user/entities";
-import { getNamespace} from "cls-hooked";
+import { getNamespace } from "cls-hooked";
 import { v4 as uuid } from "uuid";
 
 export class RequestContextProvider {
@@ -31,6 +31,3 @@ export class RequestContextProvider {
     }
   }
 }
-
-
-

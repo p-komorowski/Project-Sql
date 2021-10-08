@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 
 @Entity()
@@ -14,8 +14,4 @@ export class OrderBooks {
 
   @Column()
   quantity: number;
-
-  
 }
-
-

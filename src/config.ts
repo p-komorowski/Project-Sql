@@ -6,7 +6,6 @@ import { OrderBooks } from "./modules/order/dto/order_books.dto";
 import { Order } from "./modules/order/entity/order.entity";
 import { Basket } from "./modules/basket/entities/basket.entity";
 
-
 interface ConfigDBInterface {
   type: any;
   host: string;
@@ -21,12 +20,12 @@ interface ConfigDBInterface {
 interface ConfigInterface {
   jwtKey: string;
   database: ConfigDBInterface;
-  name:string;
+  name: string;
 }
 
 export const config: ConfigInterface = {
   jwtKey: process.env.JWT_SECRET,
-  name:"test2",
+  name: "test2",
   database: {
     type: "postgres",
     host: "postgresContainer",
@@ -37,10 +36,6 @@ export const config: ConfigInterface = {
     autoLoadEntities: true,
     synchronize: false,
   },
-  
 };
 
-/*
- * config: miejsce w ktorym odczytujesz zmienne srodowsikowe z .env i stale property uzywane w projekcie
- * autoLoadEntity pozwala na automatyczny odczyt encji w danym module */
-export const entities = [User, Books, Token, ContactDetails, BasketBooks,OrderBooks,Order,Basket];
+export const entities = [ User, Books, Token, ContactDetails, BasketBooks, OrderBooks, Order, Basket ];

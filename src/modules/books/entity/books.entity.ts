@@ -1,7 +1,6 @@
 import { Basket } from "../..//basket/entities/basket.entity";
 import { OrderBooks } from "../..//order/dto/order_books.dto";
-import { Review } from "../..//review/dto/review.dto";
-import { Entity, Column, PrimaryColumn, ManyToOne, OneToMany, ManyToMany } from "typeorm";
+import { Entity, Column, PrimaryColumn, ManyToOne, ManyToMany } from "typeorm";
 
 @Entity()
 export class Books {
@@ -25,6 +24,4 @@ export class Books {
 
   @ManyToOne(() => OrderBooks, (orderBooks) => orderBooks.id)
   orderBooks: OrderBooks[];
-
-
 }

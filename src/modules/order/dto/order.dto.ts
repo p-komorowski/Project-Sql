@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity } from "typeorm";
 import { v4 as uuid } from "uuid";
 
 @Entity()
@@ -8,7 +8,4 @@ export class OrderBooks {
 
   @Column({ name: "user_id" })
   userId: string = uuid();
-  
 }
-
-

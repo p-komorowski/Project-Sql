@@ -30,7 +30,7 @@ import { RequestContextProvider } from "../../middleware/request-context.middlew
     JwtStrategy,
     AuthRepository,
     AuthStrategy,
-    RequestContextProvider
+    RequestContextProvider,
   ],
   exports: [AuthService, JwtStrategy],
 })

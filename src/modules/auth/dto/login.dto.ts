@@ -10,5 +10,5 @@ export class LoginDto {
 
   @Expose()
   @IsString()
-  password: string
+  password: string;
 }

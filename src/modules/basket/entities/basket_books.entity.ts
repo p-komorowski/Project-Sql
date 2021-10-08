@@ -3,7 +3,6 @@ import { Entity, Column, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Basket } from "./basket.entity";
 
-
 @Entity()
 export class BasketBooks {
   @PrimaryColumn()
