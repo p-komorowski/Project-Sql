@@ -1,13 +1,15 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { BooksService } from "../book/book.service";
+import { BooksRepository } from "../book/repository/books.repository";
 import { BasketController } from "./basket.controller";
 import { BasketService } from "./basket.service";
-import { BasketBooks } from "./entities/basket_books.entity";
+import { BasketBooks } from "./entities/basket_book.entity";
 import { BasketRepository } from "./repository/basket.repository";
 
 @Module({
   imports: [TypeOrmModule.forFeature([BasketBooks])],
-  providers: [BasketService, BasketRepository],
+  providers: [BasketService, BasketRepository,BooksRepository,BooksService],
   controllers: [BasketController],
 })
 export class BasketModule {}
