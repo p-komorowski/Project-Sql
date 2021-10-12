@@ -3,7 +3,7 @@ import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
 import { Connection } from "typeorm";
 import { User } from "../user/entities";
-import { UsersService } from "../user/users.service";
+import { UsersService } from "../user/user.service";
 import { LoginDto } from "./dto/login.dto";
 import { RegisterDto } from "./dto/register.dto";
 import { Token } from "./entity/token.entity";
@@ -29,15 +29,16 @@ export class AuthService {
     }
   }
 
-  async register(userData: RegisterDto): Promise<any> {
+  async register(userData: RegisterDto): Promise<User> {
     const userReg = await this.userService.findByEmail(userData.email);
-    if (!userReg) {
+    if (userReg) {
+      throw new BadRequestException("email already in database");
+    } else {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(userData.password, salt);
       userData.password = hashedPassword;
       const newUser = this.userService.create(userData);
-    } else {
-      throw new BadRequestException("email already in database");
+      return newUser // upewnic sie ze nie zwracał hasła
     }
   }
 
@@ -47,10 +48,11 @@ export class AuthService {
     const valUser = await this.validateUser(userEntity, user.password);
     const token = await this.jwtService.sign(payload);
     const newToken = await this.addNewToken(userEntity, token);
-    if (valUser) return token;
-    else {
+    if (!valUser) {
       throw new NotFoundException("cannot validate");
     }
+    else 
+      return token;
   }
 
   async addNewToken(user: User, jwt: string): Promise<any> {
