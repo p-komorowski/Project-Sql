@@ -22,12 +22,12 @@ export class RequestContextProvider {
   }
 
   public static currentUser(): User {
-    const thatUser: User =
+    const currentUser: User =
       RequestContextProvider.currentRequestContextProvider().req["User"];
-    if (!thatUser) {
-      throw new UnauthorizedException("undefined");
+    if (!currentUser) {
+      throw new UnauthorizedException("user not found");
     } else {
-      return thatUser;
+      return currentUser;
     }
   }
 }
