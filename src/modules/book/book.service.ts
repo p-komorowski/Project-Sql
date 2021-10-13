@@ -4,10 +4,15 @@ import { Books } from "./entity/book.entity";
 import { Connection } from "typeorm";
 import { BookDto } from "./dto/book.dto";
 import { RequestContextProvider } from "../../middleware/request-context.middleware";
+import { BasketRepository } from "../basket/repository/basket.repository";
+import { BasketBooksDto } from "../basket/dto/basket_book.dto";
+import { Basket } from "../basket/entities/basket.entity";
+import { BasketBooks } from "../basket/entities/basket_book.entity";
 
 @Injectable()
 export class BooksService {
   private booksRepository: BooksRepository;
+  private basketRepository: BasketRepository
   constructor(private readonly connection: Connection) {
     this.booksRepository = this.connection.getCustomRepository(BooksRepository);
   }
@@ -30,10 +35,7 @@ export class BooksService {
     return test
 
   }
-  async create(): Promise<Books> {
-    const book = new Books();
-    return this.booksRepository.save(book);
-  }
+  
   async deleteProduct(IBSN: string): Promise<void> {
     await this.booksRepository.delete(IBSN);
   }
