@@ -8,7 +8,7 @@ import { Review } from "../../review/dto/review.dto";
 export class Books {
   @ApiProperty({description: 'IBSN of book' })
   @PrimaryColumn()
-  IBSN: number;
+  IBSN: string;
 
   @ApiProperty({description: 'Title of book' })
   @Column({ nullable: true })
