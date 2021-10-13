@@ -4,6 +4,9 @@ import { BooksService } from "./book.service";
 import { JwtAuthGuard } from "../auth/strategy/jwt-auth.guard";
 import { BookDto } from "./dto/book.dto";
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
+import { Roles } from "../auth/decorators/role.decorator";
+import { Role } from "../auth/strategy/models/role.enum";
+import { RolesGuard } from "../auth/strategy/roles.guard";
 
 
 @ApiBearerAuth()
@@ -12,7 +15,8 @@ import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags, ApiUnauthor
 export class BooksController {
   constructor(private booksService: BooksService) {}
 
-  
+  @Roles(Role.User,Role.Moderator)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
   @ApiOperation({ summary: 'Get all products.' })
   @ApiResponse({ status: 200, description: 'Getting all products.' })
@@ -20,7 +24,8 @@ export class BooksController {
     return await this.booksService.getProducts();
   }
 
-  @UseGuards(JwtAuthGuard)
+  
+  
   @Post()
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Insert product' })
