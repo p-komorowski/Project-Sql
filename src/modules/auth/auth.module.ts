@@ -10,6 +10,7 @@ import { AuthRepository } from "./repository/auth.repository";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AuthStrategy } from "./strategy/auth.strategy";
 import { RequestContextProvider } from "../../middleware/request-context.middleware";
+import { RolesGuard } from "./strategy/roles.guard";
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { RequestContextProvider } from "../../middleware/request-context.middlew
     AuthRepository,
     AuthStrategy,
     RequestContextProvider,
+    RolesGuard
   ],
   exports: [AuthService, JwtStrategy],
 })
