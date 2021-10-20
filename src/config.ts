@@ -1,10 +1,11 @@
 import { ContactDetails, User } from "./modules/user/entities";
-import { Books } from "./modules/books/entity/books.entity";
+import { Books } from "./modules/book/entity/book.entity";
 import { Token } from "./modules/auth/entity/token.entity";
-import { BasketBooks } from "./modules/basket/entities/basket_books.entity";
+import { BasketBooks } from "./modules/basket/entities/basket_book.entity";
 import { OrderBooks } from "./modules/order/dto/order_books.dto";
 import { Order } from "./modules/order/entity/order.entity";
 import { Basket } from "./modules/basket/entities/basket.entity";
+import { Review } from "./modules/review/dto/review.dto";
 
 interface ConfigDBInterface {
   type: any;
@@ -25,10 +26,10 @@ interface ConfigInterface {
 
 export const config: ConfigInterface = {
   jwtKey: process.env.JWT_SECRET,
-  name: "test2",
+  name: "new",
   database: {
     type: "postgres",
-    host: "postgresContainer",
+    host: "localhost",
     port: 5432,
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,

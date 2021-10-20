@@ -1,10 +1,14 @@
-import { Entity, Column, PrimaryColumn, ManyToOne, ManyToMany } from "typeorm";
+import { Entity, Column, PrimaryColumn, ManyToOne, ManyToMany, JoinTable, DeepPartial } from "typeorm";
 import { User } from "../../user/entities/user.entity";
 import { v4 as uuid } from "uuid";
 import { Books } from "../../book/entity/book.entity";
+import { BasketInterface } from "../interface/basket.interface";
 
 @Entity()
 export class Basket {
+  constructor(basket: DeepPartial<BasketInterface> ){
+    Object.assign(this, basket);
+  }
   @PrimaryColumn({ name: "basket_id" })
   basketId: string = uuid();
 
@@ -15,5 +19,7 @@ export class Basket {
   user: User[];
 
   @ManyToMany(() => Books, (books) => books.IBSN)
-  books: Books[];
+  @JoinTable()
+  books:Books[];
+  
 }

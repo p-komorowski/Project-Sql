@@ -27,13 +27,15 @@ export class BooksService {
         IBSN:IBSN,
       },
     })
-    return test
+    if(!test){
+      throw new Error("cannot find book")
+    }
+    else {
+      return test
+    }
 
   }
-  async create(): Promise<Books> {
-    const book = new Books();
-    return this.booksRepository.save(book);
-  }
+  
   async deleteProduct(IBSN: string): Promise<void> {
     await this.booksRepository.delete(IBSN);
   }

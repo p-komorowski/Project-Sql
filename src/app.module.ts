@@ -3,13 +3,14 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { AppController } from "./app.controller";
 import { config } from "./config";
 import { RequestContextProvider } from "./middleware/request-context.middleware";
-import { RequestContextMiddleware } from "./middleware/request-contextProvider.middleware";
+import { RequestContextMiddleware } from "./middleware/request-context-provider.middleware";
 import { AuthModule } from "./modules/auth/auth.module";
 import { AuthRepository } from "./modules/auth/repository/auth.repository";
 import { BasketModule } from "./modules/basket/basket.module";
-import { BooksController } from "./modules/books/books.controller";
-import { BooksModule } from "./modules/books/books.module";
+import { BooksController } from "./modules/book/book.controller";
+import { BooksModule } from "./modules/book/book.module";
 import { UserModule } from "./modules/user/user.module";
+import { BasketController } from "./modules/basket/basket.controller";
 
 @Module({
   imports: [
@@ -24,6 +25,6 @@ import { UserModule } from "./modules/user/user.module";
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(RequestContextMiddleware).forRoutes(BooksController);
+    consumer.apply(RequestContextMiddleware).forRoutes(BooksController,BasketController);
   }
 }
