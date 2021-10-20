@@ -23,4 +23,5 @@ export class BasketBooks {
 
   @ManyToOne(() =>Basket, (basket) => basket.basketId)
   basket: Basket[]
+  //ibsn i basket id one to many, basket i books delete
 }
