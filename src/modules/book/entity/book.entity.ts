@@ -1,11 +1,15 @@
 import { Basket } from "../../basket/entities/basket.entity";
 import { OrderBooks } from "../../order/dto/order_books.dto";
-import { Entity, Column, PrimaryColumn, ManyToOne, ManyToMany, OneToMany, JoinColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, ManyToOne, ManyToMany, OneToMany, JoinColumn, DeepPartial, JoinTable } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
 import { Review } from "../../review/dto/review.dto";
+import { BookInterface } from "../interface/book.interface";
 
 @Entity()
 export class Books {
+  constructor(book: DeepPartial<BookInterface> ){
+    Object.assign(this, book);
+  }
   @ApiProperty({description: 'IBSN of book' })
   @PrimaryColumn()
   IBSN: string;
@@ -26,9 +30,10 @@ export class Books {
   @Column({ nullable: true })
   count: number;
 
-  @ManyToMany(() => Basket, (basket) => basket.basketId)
-  basket: Basket[];
-
+  @ManyToMany(() =>Basket)
+  @JoinTable()
+  basket:Basket[];
+  
   @ManyToOne(() => OrderBooks, (orderBooks) => orderBooks.id)
   orderBooks: OrderBooks[];
 }
