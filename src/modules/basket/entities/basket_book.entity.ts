@@ -1,30 +1,26 @@
 import { Books } from "../../book/entity/book.entity";
-import { Entity, Column, OneToMany, PrimaryColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, DeepPartial, ManyToOne } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Basket } from "./basket.entity";
 import { ApiProperty } from "@nestjs/swagger";
+import { BasketBooksInterface } from "../interface/basket_books.interface";
 
 @Entity()
 export class BasketBooks {
+  constructor(basket: DeepPartial<BasketBooksInterface> ){
+    Object.assign(this, basket);
+  }
   @PrimaryColumn()
   @ApiProperty({type: String, description: 'Id'})
   id: string = uuid();
-
-  @Column({ name: "basket_id" })
-  @ApiProperty({type: String, description: 'Basket id'})
-  basketId: string = uuid();
-
-  @Column()
-  @ApiProperty({type: String, description: 'IBSN'})
-  IBSN: string;
 
   @Column()
   @ApiProperty({type: Number, description: 'Quantity'})
   quantity: number;
 
-  @OneToMany(() => Basket, (basket) => basket.basketId)
-  basket: Basket[];
+  @ManyToOne(()=>Books, (books)=> books.IBSN)
+  books: Books[]
 
-  @OneToMany(() => Books, (books) => books.IBSN)
-  books: Books[];
+  @ManyToOne(() =>Basket, (basket) => basket.basketId)
+  basket: Basket[]
 }
