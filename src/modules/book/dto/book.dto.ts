@@ -7,25 +7,5 @@ export class BookDto {
   @Expose()
   @IsNumber()
   @ApiProperty({type: Number, description: 'IBSN'})
-  IBSN: string;
-
-  @Expose()
-  @IsString()
-  @ApiProperty({type: String, description: 'Title'})
-  title: string;
-
-  @Expose()
-  @IsNumber()
-  @ApiProperty({type: Number, description: 'Price'})
-  price: number;
-
-  @Expose()
-  @IsString()
-  @ApiProperty({type: String, description: 'Author'})
-  author: string;
-
-  @Expose()
-  @IsNumber()
-  @ApiProperty({type: Number, description: 'Count'})
-  count: number;
+  IBSN: string[];
 }

@@ -14,16 +14,16 @@ import { BasketBooks } from "./entities/basket_book.entity";
 @Controller("basket")
 export class BasketController {
   constructor(private basketService: BasketService, private bookService:BooksService) {}
-
-  @UseGuards(JwtAuthGuard)
+  
   @Post('add')
+  @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Insert product in basket' })
   @ApiResponse({status:200, description:'Product inserted in basket.'})
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
   @ApiBody({type: BasketBooks})
-  async insertProductToBasket(@Body()IBSN:BookDto) {
-    return this.basketService.insertBookInBasket(IBSN);
+  async insertProductToBasket(@Body() dto:BookDto): Promise<Basket> {
+    return this.basketService.insertBookInBasket(dto);
   }
 
   // @UseGuards(JwtAuthGuard)
@@ -36,9 +36,9 @@ export class BasketController {
   // async addProduct(@Body() productData: BasketDto): Promise<string> {
   //   return this.basketService.insertProduct(productData);
   // }
-
+  
+  @Delete("delete")
   @UseGuards(JwtAuthGuard)
-  @Delete("basket/delete")
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Delete product from basket' })
   @ApiResponse({ status: 200, description: 'Product deleted from basket.' })
@@ -48,7 +48,7 @@ export class BasketController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Delete("basket/delete/book")
+  @Delete("delete/book")
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Delete product from basket' })
   @ApiResponse({ status: 200, description: 'Product deleted from basket.' })

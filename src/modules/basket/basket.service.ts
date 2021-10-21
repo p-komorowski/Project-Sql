@@ -16,7 +16,6 @@ export class BasketService {
   constructor(
     @InjectRepository(BasketBooks)
     private readonly repository: BasketRepository,
-    private readonly booksRepository: BooksRepository,
     private readonly booksService:BooksService
   ) {}
 
@@ -33,20 +32,33 @@ export class BasketService {
   }
 
  async insertBookInBasket(dto:BookDto): Promise<any>{
-  const book = await this.booksService.getBook(dto.IBSN)
+  // 1book
+  // basket
+// basket
+const book = await this.booksService.getBook(dto.IBSN);
+
   const currentUser = RequestContextProvider.currentUser();
+
   const basket = new BasketBooks(book) 
+
+  const basketBooks = new BasketBooks({book,basket});
+
+  basketBooks.basket = basket;
+  basketBooks.books =book
+
   const savedBasket = await this.repository.save(basket.books); 
+
+
   const basket1 = new Basket({basketId:basket.id, userId:currentUser.id})
   basket1.books.push(book)
   await this.repository.update(basket1.basketId, basket1)
   return savedBasket
  }
 
- async create(addedBook: BookDto): Promise<Books> {
-  const book = new Books(addedBook);
-  return this.repository.save(book);
-}
+//  async create(addedBook: BookDto): Promise<Books> {
+//   const book = new Books(addedBook);
+//   return this.repository.save(book);
+// }
 
 
   async deleteBooks(IBSN: string): Promise<void> {

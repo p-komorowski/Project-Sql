@@ -12,9 +12,9 @@ export class BooksService {
     this.booksRepository = this.connection.getCustomRepository(BooksRepository);
   }
 
-  async insertProduct(newProduct: BookDto): Promise<Books> {
-    return this.booksRepository.save(newProduct);
-  }
+  // async insertProduct(newProduct: BookDto): Promise<Books> {
+  //   return this.booksRepository.save(newProduct);
+  // }
 
   public async getProducts(): Promise<Books[]> {
     //const currentUser = RequestContextProvider.currentUser();

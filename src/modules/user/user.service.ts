@@ -3,6 +3,8 @@ import { Connection } from "typeorm";
 import { User } from "./entities";
 import { RegisterDto } from "../auth/dto/register.dto";
 import { userRepository } from "./repository/user.repository";
+import { RequestContextProvider } from "src/middleware/request-context.middleware";
+import { OrderBooks } from "../order/dto/order_books.dto";
 
 @Injectable()
 export class UsersService {
@@ -22,6 +24,20 @@ export class UsersService {
       },
     });
   }
+
+
+  // async findOrder(orderId:string []){
+
+  //    const order = this.orderService.getAll(orderId)
+  //   const user = RequestContextProvider.currentUser();
+
+  //   // user.order=OrderBooks;
+  //   // await this.repository.update(user.id,user)
+  //   await this.repository.save({
+  //     ...user,
+  //     order:order
+  //   })
+  // }
 
   async create(newUser: RegisterDto): Promise<User> {
     const userEntity = new User(newUser);

@@ -10,10 +10,7 @@ export class BasketBooks {
   constructor(basket: DeepPartial<BasketBooksInterface> ){
     Object.assign(this, basket);
   }
-  @PrimaryColumn()
-  @ApiProperty({type: String, description: 'Id'})
-  id: string = uuid();
-
+  
   @Column()
   @ApiProperty({type: Number, description: 'Quantity'})
   quantity: number;
