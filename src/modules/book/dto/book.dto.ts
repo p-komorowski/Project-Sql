@@ -7,5 +7,5 @@ export class BookDto {
   @Expose()
   @IsNumber()
   @ApiProperty({type: Number, description: 'IBSN'})
-  IBSN: string[];
+  IBSN: string;
 }

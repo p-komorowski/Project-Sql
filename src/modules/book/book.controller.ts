@@ -20,16 +20,16 @@ export class BooksController {
     return await this.booksService.getProducts();
   }
 
-  // @UseGuards(JwtAuthGuard)
-  // @Post()
-  // @ApiBearerAuth()
-  // @ApiOperation({ summary: 'Insert product' })
-  // @ApiResponse({ status: 201, description: 'Insert product.' })
-  // @ApiUnauthorizedResponse({ description: 'User not logged in.' })
-  // @ApiBody({type: BookDto})
-  // async addProduct(@Body() productData: BookDto): Promise<Books> {
-  //   return this.booksService.insertProduct(productData);
-  // }
+  @UseGuards(JwtAuthGuard)
+  @Post()
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Insert product' })
+  @ApiResponse({ status: 201, description: 'Insert product.' })
+  @ApiUnauthorizedResponse({ description: 'User not logged in.' })
+  @ApiBody({type: BookDto})
+  async addProduct(@Body() productData: BookDto): Promise<Books> {
+    return this.booksService.insertProduct(productData);
+  }
 
   @UseGuards(JwtAuthGuard)
   @Delete("/:IBSN")

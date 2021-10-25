@@ -11,6 +11,8 @@ export class BasketBooks {
     Object.assign(this, basket);
   }
   
+  @PrimaryColumn()
+  IBSN:string
   @Column()
   @ApiProperty({type: Number, description: 'Quantity'})
   quantity: number;

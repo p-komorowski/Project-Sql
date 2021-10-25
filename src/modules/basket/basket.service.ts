@@ -9,19 +9,20 @@ import { BasketDto } from "./dto/basket.dto";
 import { Basket } from "./entities/basket.entity";
 import { BasketBooks } from "./entities/basket_book.entity";
 import { BasketRepository } from "./repository/basket.repository";
+import { BasketBooksRepository } from "./repository/basketBooks.repository";
 
 
 @Injectable()
 export class BasketService {
   constructor(
     @InjectRepository(BasketBooks)
+    @InjectRepository(Basket)
     private readonly repository: BasketRepository,
+    private readonly basketRepository: BasketBooksRepository,
     private readonly booksService:BooksService
   ) {}
 
-  // async insertProduct(newBasket: BasketDto): Promise<any> {
-  //   return this.repository.save(newBasket);
-  // }
+ 
 
   public async getProducts(): Promise<BasketBooks[]> {
     return this.repository.find();
@@ -31,37 +32,57 @@ export class BasketService {
     await this.repository.delete(basket_id);
   }
 
+
+  public async getUserBasket(userId: string): Promise <Basket[]>{
+    const basket = await this.basketRepository.find({
+      where:{
+        userId: userId
+      }
+    })
+     return basket
+   }
+
+ 
+
  async insertBookInBasket(dto:BookDto): Promise<any>{
-  // 1book
-  // basket
-// basket
-const book = await this.booksService.getBook(dto.IBSN);
+  const book = await this.booksService.getBook(dto.IBSN);
 
   const currentUser = RequestContextProvider.currentUser();
 
-  const basket = new BasketBooks(book) 
-
+  const basket = new BasketBooks(book);
+console.log(basket)
   const basketBooks = new BasketBooks({book,basket});
+console.log(basketBooks)
+  // basketBooks.basket = basket;
+  // basketBooks.books = book;
 
-  basketBooks.basket = basket;
-  basketBooks.books =book
-
-  const savedBasket = await this.repository.save(basket.books); 
-
-
-  const basket1 = new Basket({basketId:basket.id, userId:currentUser.id})
+  const savedBasket = await this.repository.save(basketBooks); 
+  console.log(savedBasket)
+  const basket1 = new Basket({basketId:basket.IBSN, userId:currentUser.id})
   basket1.books.push(book)
   await this.repository.update(basket1.basketId, basket1)
   return savedBasket
  }
 
+
+//  async createBasket(newBasket: BasketDto): Promise<any> {
+//   return this.repository.save(newBasket);
+// }
+
+ async deleteBooks(IBSN: string): Promise<void> {
+  await this.repository.delete(IBSN);
+}
 //  async create(addedBook: BookDto): Promise<Books> {
 //   const book = new Books(addedBook);
 //   return this.repository.save(book);
 // }
 
 
-  async deleteBooks(IBSN: string): Promise<void> {
-    await this.repository.delete(IBSN);
-  }
+  // async getBasket(basketId:string): Promise<Basket>{
+  //   const basket = await this.repository.findOne(basketId)
+  //   return basket
+  // }
+
+
+  
 }

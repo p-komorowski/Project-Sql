@@ -3,4 +3,6 @@ export interface BasketBooksInterface {
     basketId: string;
     IBSN: string;
     quantity: number;
+    basket:any;
+    book:any;
 }

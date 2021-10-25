@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
+import { get } from "http";
 import { JwtAuthGuard } from "../auth/strategy/jwt-auth.guard";
 import { BooksService } from "../book/book.service";
 import { BookDto } from "../book/dto/book.dto";
@@ -22,7 +23,7 @@ export class BasketController {
   @ApiResponse({status:200, description:'Product inserted in basket.'})
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
   @ApiBody({type: BasketBooks})
-  async insertProductToBasket(@Body() dto:BookDto): Promise<Basket> {
+  async insertProductToBasket(@Body() dto:BookDto): Promise<Basket[]> {
     return this.basketService.insertBookInBasket(dto);
   }
 
@@ -55,5 +56,10 @@ export class BasketController {
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
   async removeBookd(@Param("IBSN") IBSN: string) {
     await this.basketService.deleteProduct(IBSN);
+  }
+
+  @Get('test')
+  async getAllProducts(id:string): Promise<Basket[]> {
+    return await this.basketService.getUserBasket(id);
   }
 }
