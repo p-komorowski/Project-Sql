@@ -5,4 +5,4 @@ import { BasketBooks } from "../entities/basket_book.entity";
 
 
 @EntityRepository(Basket)
-export class BasketBooksRepository extends Repository<Basket> {}
+export class BasketRepository extends Repository<Basket> {}

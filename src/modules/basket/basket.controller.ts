@@ -58,8 +58,8 @@ export class BasketController {
     await this.basketService.deleteProduct(IBSN);
   }
 
-  @Get('test')
-  async getAllProducts(id:string): Promise<Basket[]> {
-    return await this.basketService.getUserBasket(id);
-  }
+  // @Get('test')
+  // async getAllProducts(id:string): Promise<Basket[]> {
+  //   return await this.basketService.getUserBasket(id);
+  // }
 }

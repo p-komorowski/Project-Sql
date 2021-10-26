@@ -27,8 +27,9 @@ export class User {
   @OneToMany(() => Token, (token) => token.id)
   token: Token[];
 
-  @OneToMany(() => Basket, (basket) => basket.basketId)
-  basket: Basket[];
+  @OneToOne(() => Basket, (basket) => basket.user,
+  {cascade:true})
+  basket: Basket;
 
   @OneToMany(() => Order, (order) => order.id)
   order: Order[];
