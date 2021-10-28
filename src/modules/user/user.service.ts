@@ -5,6 +5,7 @@ import { RegisterDto } from "../auth/dto/register.dto";
 import { userRepository } from "./repository/user.repository";
 import { RequestContextProvider } from "src/middleware/request-context.middleware";
 import { OrderBooks } from "../order/dto/order_books.dto";
+import { LoginDto } from "../auth/dto/login.dto";
 
 @Injectable()
 export class UsersService {
@@ -23,6 +24,10 @@ export class UsersService {
         email: email,
       },
     });
+  }
+
+  async findById(id: LoginDto): Promise<User> {
+    return this.repository.findOne(id);
   }
 
 

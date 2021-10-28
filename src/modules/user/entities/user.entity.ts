@@ -29,6 +29,7 @@ export class User {
 
   @OneToOne(() => Basket, (basket) => basket.user,
   {cascade:true})
+  @JoinColumn()
   basket: Basket;
 
   @OneToMany(() => Order, (order) => order.id)

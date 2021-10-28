@@ -14,9 +14,7 @@ export class BasketBooks {
   @PrimaryGeneratedColumn("uuid")
   id: string = uuid();
   
-  @Column()
-  @ApiProperty({type: Number, description: 'Quantity'})
-  quantity: number;
+ 
 
   @OneToOne(() => Books, books => books.basketBooks)
   books: Books

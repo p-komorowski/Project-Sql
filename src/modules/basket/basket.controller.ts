@@ -1,10 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
 import { get } from "http";
+import { LoginDto } from "../auth/dto/login.dto";
 import { JwtAuthGuard } from "../auth/strategy/jwt-auth.guard";
 import { BooksService } from "../book/book.service";
 import { BookDto } from "../book/dto/book.dto";
 import { Books } from "../book/entity/book.entity";
+import { User } from "../user/entities";
 import { BasketService } from "./basket.service";
 import { BasketDto } from "./dto/basket.dto";
 import { BasketBooksDto } from "./dto/basket_book.dto";
@@ -27,16 +29,17 @@ export class BasketController {
     return this.basketService.insertBookInBasket(dto);
   }
 
-  // @UseGuards(JwtAuthGuard)
-  // @Post()
-  // @ApiBearerAuth()
-  // @ApiOperation({ summary: 'Add product' })
-  // @ApiResponse({ status: 201, description: 'Product added.' })
-  // @ApiUnauthorizedResponse({ description: 'User not logged in.' })
-  // @ApiBody({type: BasketDto})
-  // async addProduct(@Body() productData: BasketDto): Promise<string> {
-  //   return this.basketService.insertProduct(productData);
-  // }
+  @UseGuards(JwtAuthGuard)
+  @Get()
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Get all baskets' })
+  @ApiResponse({ status: 201, description: 'show list of baskets' })
+  @ApiUnauthorizedResponse({ description: 'User not logged in.' })
+  @ApiBody({type: BasketDto})
+  async addProduct(): Promise<Basket[]> {
+    return await this.basketService.getBasket();
+  }
+
   
   @Delete("delete")
   @UseGuards(JwtAuthGuard)
@@ -44,22 +47,22 @@ export class BasketController {
   @ApiOperation({ summary: 'Delete product from basket' })
   @ApiResponse({ status: 200, description: 'Product deleted from basket.' })
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
-  async removeProduct(@Param("basket_id") basket_id: string) {
-    await this.basketService.deleteProduct(basket_id);
+  async removeProduct(@Param("basket_id") basket_id: BasketBooks): Promise<void> {
+    await this.basketService.deleteBasket(basket_id);
   }
 
-  @UseGuards(JwtAuthGuard)
-  @Delete("delete/book")
-  @ApiBearerAuth()
-  @ApiOperation({ summary: 'Delete product from basket' })
-  @ApiResponse({ status: 200, description: 'Product deleted from basket.' })
-  @ApiUnauthorizedResponse({ description: 'User not logged in.' })
-  async removeBookd(@Param("IBSN") IBSN: string) {
-    await this.basketService.deleteProduct(IBSN);
-  }
-
-  // @Get('test')
-  // async getAllProducts(id:string): Promise<Basket[]> {
-  //   return await this.basketService.getUserBasket(id);
+  // @UseGuards(JwtAuthGuard)
+  // @Delete("delete/book")
+  // @ApiBearerAuth()
+  // @ApiOperation({ summary: 'Delete product from basket' })
+  // @ApiResponse({ status: 200, description: 'Product deleted from basket.' })
+  // @ApiUnauthorizedResponse({ description: 'User not logged in.' })
+  // async removeBookd(@Param("IBSN") IBSN: string) {
+  //   await this.basketService.deleteBasket(IBSN);
   // }
+
+  @Get('test')
+  async getAllProducts(id:LoginDto): Promise<User> {
+    return await this.basketService.getUser(id);
+  }
 }
