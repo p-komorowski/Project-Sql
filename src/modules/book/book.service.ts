@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { BooksRepository } from "./repository/books.repository";
 import { Books } from "./entity/book.entity";
 import { Connection } from "typeorm";
@@ -28,7 +28,7 @@ export class BooksService {
       },
     })
     if(!test){
-      throw new Error("cannot find book")
+      throw new UnauthorizedException("cannot find book")
     }
     else {
       return test
