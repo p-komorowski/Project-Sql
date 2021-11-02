@@ -7,6 +7,10 @@ import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags, ApiUnauthor
 import { ReviewDto } from "../review/dto/review.dto";
 import { Review } from "../review/entity/review.entity";
 import { BookPriceDto } from "./dto/bookPrice.dto";
+import { Roles } from "../auth/decorators/role.decorator";
+import { Role } from "../auth/strategy/models/role.enum";
+import { RolesGuard } from "../auth/strategy/roles.guard";
+
 
 @ApiBearerAuth()
 @ApiTags("Books")
@@ -14,6 +18,8 @@ import { BookPriceDto } from "./dto/bookPrice.dto";
 export class BooksController {
   constructor(private booksService: BooksService) {}
 
+  @Roles(Role.User,Role.Moderator)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
   @ApiOperation({ summary: "Get all products." })
   @ApiResponse({ status: 200, description: "Getting all products." })
@@ -21,7 +27,8 @@ export class BooksController {
     return await this.booksService.getProducts();
   }
 
-  @UseGuards(JwtAuthGuard)
+  
+  
   @Post()
   @ApiBearerAuth()
   @ApiOperation({ summary: "Insert product" })

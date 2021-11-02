@@ -3,8 +3,9 @@ import { ContactDetails } from "./contact-details.entity";
 import { Token } from "../../auth/entity/token.entity";
 import { v4 as uuid } from "uuid";
 import { UserInterface } from "../interface/user.interface";
-import { Basket } from "../..//basket/entities/basket.entity";
-import { Order } from "../..//order/entity/order.entity";
+import { Basket } from "../../basket/entities/basket.entity";
+import { Order } from "../../order/entity/order.entity";
+import { Role } from "../../auth/strategy/models/role.enum";
 
 @Entity("customer")
 export class Customer {
@@ -23,6 +24,9 @@ export class Customer {
 
   @Column()
   password: string;
+
+  @Column({type:'enum', enum:Role, default: Role.User})
+  role:Role;
 
   @OneToMany(() => Token, (token) => token.id)
   token: Token[];
