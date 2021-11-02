@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, NotFoundException } from "@nestjs/comm
 import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
 import { Connection } from "typeorm";
-import { User } from "../user/entities";
+import { Customer } from "../user/entities";
 import { UsersService } from "../user/user.service";
 import { LoginDto } from "./dto/login.dto";
 import { RegisterDto } from "./dto/register.dto";
@@ -20,7 +20,7 @@ export class AuthService {
     this.authRepository = this.connection.getCustomRepository(AuthRepository);
   }
 
-  async validateUser(user: User, pass: string): Promise<any> {
+  async validateUser(user: Customer, pass: string): Promise<any> {
     if (user && (await bcrypt.compare(pass, user.password))) {
       const { password, ...result } = user;
       return result;
@@ -29,7 +29,7 @@ export class AuthService {
     }
   }
 
-  async register(userData: RegisterDto): Promise<User> {
+  async register(userData: RegisterDto): Promise<Customer> {
     const userReg = await this.userService.findByEmail(userData.email);
     if (userReg) {
       throw new BadRequestException("email already in database");
@@ -55,7 +55,7 @@ export class AuthService {
       return token;
   }
 
-  async addNewToken(user: User, jwt: string): Promise<any> {
+  async addNewToken(user: Customer, jwt: string): Promise<any> {
     const newTime = new Date();
     const time = new Date(newTime.getTime() + 60000 * 10);
     const addedToken = new Token({
