@@ -1,28 +1,22 @@
-import { Entity, Column, PrimaryColumn, ManyToOne, ManyToMany, JoinTable, DeepPartial, OneToOne, OneToMany, JoinColumn } from "typeorm";
-import { User } from "../../user/entities/user.entity";
+import { Entity, PrimaryColumn, ManyToOne, JoinTable, OneToOne, OneToMany } from "typeorm";
+import { Customer } from "../../user/entities/user.entity";
 import { v4 as uuid } from "uuid";
-import { Books } from "../../book/entity/book.entity";
-import { BasketInterface } from "../interface/basket.interface";
-import { BasketBooks } from "./basket_book.entity";
-import { join } from "path";
+import { BasketBook } from "./basket_book.entity";
+import { Order } from "../../order/entity/order.entity";
 
 @Entity()
 export class Basket {
-  push() {
-    throw new Error("Method not implemented.");
-  }
-  // constructor(basket: DeepPartial<BasketInterface> ){
-  //   Object.assign(this, basket);
-  // }
-
-
   @PrimaryColumn()
   id: string = uuid();
 
-  @OneToOne(() => User, (user) => user.basket)
-  user: User;
+  @OneToOne(() => Customer, (customer) => customer.basket)
+  customer: Customer;
 
-  @OneToMany(() => BasketBooks, (basketBooks) => basketBooks.basket)
+  @OneToMany(() => BasketBook, (basketBooks) => basketBooks.basket)
   @JoinTable()
-  basketBooks:BasketBooks[];
+  basketBooks:BasketBook[];
+
+  @OneToOne(() => Order, (order) => order.basket)
+  order: Order;
+
 }
