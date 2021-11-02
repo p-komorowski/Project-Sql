@@ -7,10 +7,6 @@ import { createConnection } from "typeorm";
 import { config, entities } from "./config";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
-
-
-
-
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const swagger = new DocumentBuilder()
