@@ -1,12 +1,11 @@
-import { ContactDetails, User } from "./modules/user/entities";
-import { Books } from "./modules/book/entity/book.entity";
+import { ContactDetails, Customer } from "./modules/user/entities";
+import { Book } from "./modules/book/entity/book.entity";
 import { Token } from "./modules/auth/entity/token.entity";
-import { BasketBooks } from "./modules/basket/entities/basket_book.entity";
+import { BasketBook } from "./modules/basket/entities/basket_book.entity";
 import { OrderBooks } from "./modules/order/dto/order_books.dto";
 import { Order } from "./modules/order/entity/order.entity";
 import { Basket } from "./modules/basket/entities/basket.entity";
-import { Review } from "./modules/review/dto/review.dto";
-
+import { Review } from "./modules/review/entity/review.entity";
 interface ConfigDBInterface {
   type: any;
   host: string;
@@ -35,8 +34,8 @@ export const config: ConfigInterface = {
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,
     autoLoadEntities: true,
-    synchronize: false,
+    synchronize: true,
   },
 };
 
-export const entities = [ User, Books, Token, ContactDetails, BasketBooks, OrderBooks, Order, Basket ];
+export const entities = [ Customer, Book, Token, ContactDetails, BasketBook, OrderBooks, Order, Basket, Review];
