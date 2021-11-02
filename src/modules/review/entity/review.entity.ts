@@ -1,19 +1,15 @@
-import { Books } from "src/modules/books/entity/books.entity";
-import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, ManyToOne } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Book } from "../../book/entity/book.entity";
 
 @Entity()
 export class Review {
-  @PrimaryColumn({ type: uuid })
+  @PrimaryColumn()
   id: string = uuid();
 
   @Column()
-  review: string = uuid();
+  review: string;
 
-  @Column()
-  IBSN: string;
-
-  @ManyToOne(() => Books, (books) => books.IBSN)
-  @JoinColumn()
-  books: Books;
+  @ManyToOne(() => Book, (book) => book.review)
+  book: Book;
 }
