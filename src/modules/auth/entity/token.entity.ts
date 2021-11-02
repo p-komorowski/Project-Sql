@@ -1,4 +1,4 @@
-import { User } from "../../user/entities";
+import { Customer } from "../../user/entities";
 import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn, DeepPartial } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { TokenInterface } from "../interface/token.interface";
@@ -12,9 +12,9 @@ export class Token {
   @PrimaryColumn()
   id: string = uuid();
 
-  @ManyToOne(() => User, (user) => user.id)
+  @ManyToOne(() => Customer, (user) => user.id)
   @JoinColumn({ name: "user_id" })
-  user: User;
+  user: Customer;
 
   @Column()
   token: string;
