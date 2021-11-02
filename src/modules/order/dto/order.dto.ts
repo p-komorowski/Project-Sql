@@ -2,7 +2,7 @@ import { Column, Entity } from "typeorm";
 import { v4 as uuid } from "uuid";
 
 @Entity()
-export class OrderBooks {
+export class OrderBooksDto {
   @Column({ name: "order_id" })
   orderId: string = uuid();
 
