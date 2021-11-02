@@ -65,6 +65,7 @@ export class AuthService {
       user: user,
     });
     this.authRepository.create(addedToken);
+    
     return this.authRepository.save(addedToken);
   }
 }
