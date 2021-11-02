@@ -11,20 +11,18 @@ import { BooksController } from "./modules/book/book.controller";
 import { BooksModule } from "./modules/book/book.module";
 import { UserModule } from "./modules/user/user.module";
 import { BasketController } from "./modules/basket/basket.controller";
+import { OrderModule } from "./modules/order/order.module";
+import { OrderController } from "./modules/order/order.controller";
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot(config.database),
-    AuthModule,
-    UserModule,
-    BooksModule,
-    BasketModule,
-  ],
+  imports: [ TypeOrmModule.forRoot(config.database), AuthModule, UserModule, BooksModule, BasketModule, OrderModule ],
   controllers: [AppController],
   providers: [AuthRepository, RequestContextProvider],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(RequestContextMiddleware).forRoutes(BooksController,BasketController);
+    consumer
+      .apply(RequestContextMiddleware)
+      .forRoutes(BooksController, BasketController, OrderController);
   }
 }
