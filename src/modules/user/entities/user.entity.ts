@@ -6,10 +6,10 @@ import { UserInterface } from "../interface/user.interface";
 import { Basket } from "../..//basket/entities/basket.entity";
 import { Order } from "../..//order/entity/order.entity";
 
-@Entity("user")
-export class User {
-  constructor(user: DeepPartial<UserInterface>) {
-    Object.assign(this, user);
+@Entity("customer")
+export class Customer {
+  constructor(customer: DeepPartial<UserInterface>) {
+    Object.assign(this, customer);
   }
 
   @PrimaryGeneratedColumn("uuid")
@@ -27,15 +27,15 @@ export class User {
   @OneToMany(() => Token, (token) => token.id)
   token: Token[];
 
-  @OneToOne(() => Basket, (basket) => basket.user,
-  {cascade:true})
+  @OneToOne(() => Basket, (basket) => basket.customer, { cascade: true })
   @JoinColumn()
   basket: Basket;
 
-  @OneToMany(() => Order, (order) => order.id)
+  @OneToOne(() => Order, (order) => order.id)
   order: Order[];
 
   @OneToOne(() => ContactDetails)
   @JoinColumn()
   contactDetails: ContactDetails[];
+  
 }
