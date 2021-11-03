@@ -12,4 +12,5 @@ export class Review {
 
   @ManyToOne(() => Book, (book) => book.review)
   book: Book;
+  
 }
