@@ -38,7 +38,7 @@ async function bootstrap() {
     password: config.database.password,
     database: config.database.database,
     entities: entities,
-    synchronize: true,
+    synchronize: false,
   })
     .then((connection) => {
       connection.runMigrations();
