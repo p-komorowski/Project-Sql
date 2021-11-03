@@ -5,21 +5,27 @@ import { Order } from "./entity/order.entity";
 import { OrderRepository } from "./repository/order.repository";
 import { Customer } from "../../modules/user/entities/user.entity";
 import { RequestContextProvider } from "../../middleware/request-context.middleware";
+import { UserRepository } from "../user/repository/user.repository";
 
 @Injectable()
 export class OrderService {
   private orderRepository: OrderRepository;
+  private userRepository: UserRepository
   constructor(private readonly connection: Connection, private basketService: BasketService) {
     this.orderRepository = this.connection.getCustomRepository(OrderRepository);
+    this.userRepository = this.connection.getCustomRepository(UserRepository);
+
   }
 
   async findUsersOrder(user: Customer): Promise<Order> {
-    return await this.orderRepository.findOne({
-      where: {
-        user: user,
-      },
-      relations: ["basket"],
-    });
+    const usr =  await this.userRepository.findOne({
+        where: {
+          id: user.id
+        },
+        relations: ["order"]
+      }
+    );
+    return usr.order;
   }
 
   async createOrder(): Promise<Order> {
@@ -34,9 +40,13 @@ export class OrderService {
     }
     const newOrder = await this.orderRepository.create({
       basket: basket,
-      user: [currentUser],
+      user: currentUser,
     });
 
     return await this.orderRepository.save(newOrder);
+  }
+
+  async getAllOrders(): Promise<Order[]>{
+   return await this.orderRepository.find()
   }
 }
