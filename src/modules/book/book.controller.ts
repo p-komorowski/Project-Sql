@@ -18,18 +18,17 @@ import { RolesGuard } from "../auth/strategy/roles.guard";
 export class BooksController {
   constructor(private booksService: BooksService) {}
 
-  @Roles(Role.User,Role.Moderator)
-  @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
+  @Roles(Role.User)
   @ApiOperation({ summary: "Get all products." })
   @ApiResponse({ status: 200, description: "Getting all products." })
   async getAllProducts(): Promise<Book[]> {
     return await this.booksService.getProducts();
   }
 
-  
-  
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Post()
+  @Roles(Role.Moderator)
   @ApiBearerAuth()
   @ApiOperation({ summary: "Insert product" })
   @ApiResponse({ status: 201, description: "Insert product." })
@@ -39,8 +38,9 @@ export class BooksController {
     return this.booksService.insertProduct(productData);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Delete("/:IBSN")
+  @Roles(Role.Moderator)
   @ApiBearerAuth()
   @ApiOperation({ summary: "Delete product" })
   @ApiResponse({ status: 200, description: "Product deleted." })
@@ -48,8 +48,10 @@ export class BooksController {
   async removeProduct(@Param("IBSN") IBSN: string): Promise<void> {
     await this.booksService.deleteProduct(IBSN);
   }
-  @UseGuards(JwtAuthGuard)
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Patch("price/:IBSN")
+  @Roles(Role.Moderator)
   @ApiBearerAuth()
   @ApiOperation({ summary: "Change price of book" })
   @ApiResponse({ status: 200, description: "Price Changed." })
@@ -67,8 +69,9 @@ export class BooksController {
     return await this.booksService.addReviewToBook(reviewDto);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Delete("review/:id")
+  @Roles(Role.Moderator)
   @ApiBearerAuth()
   @ApiOperation({ summary: "Delete review for book" })
   @ApiResponse({ status: 200, description: "Review deleted." })
