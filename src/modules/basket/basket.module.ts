@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { BooksService } from "../book/book.service";
 import { Book } from "../book/entity/book.entity";
-import { BooksRepository } from "../book/repository/books.repository";
+import { BooksRepository } from "../book/repository/book.repository";
 import { OrderService } from "../order/order.service";
 import { OrderRepository } from "../order/repository/order.repository";
 import { UserRepository } from "../user/repository/user.repository";
