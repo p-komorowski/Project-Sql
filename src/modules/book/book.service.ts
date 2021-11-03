@@ -1,5 +1,5 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
-import { BooksRepository } from "./repository/books.repository";
+import { BooksRepository } from "./repository/book.repository";
 import { Book } from "./entity/book.entity";
 import { Connection } from "typeorm";
 import { BookDto } from "./dto/book.dto";
