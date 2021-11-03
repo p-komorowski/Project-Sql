@@ -1,5 +1,5 @@
 import { Customer } from "../../user/entities";
-import { Entity, PrimaryColumn,ManyToOne, JoinColumn, OneToMany, OneToOne } from "typeorm";
+import { Entity, PrimaryColumn, JoinColumn, OneToOne } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Basket } from "../../basket/entities/basket.entity";
 
@@ -12,6 +12,7 @@ export class Order {
   @JoinColumn()
   basket: Basket;
 
-  @OneToOne(() => Customer, (user) => user.id)
-  user: Customer[];
+  @OneToOne(() => Customer, (user) => user.order)
+  user: Customer;
+
 }
