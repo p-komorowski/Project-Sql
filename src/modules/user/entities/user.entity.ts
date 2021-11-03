@@ -5,7 +5,6 @@ import { v4 as uuid } from "uuid";
 import { UserInterface } from "../interface/user.interface";
 import { Basket } from "../../basket/entities/basket.entity";
 import { Order } from "../../order/entity/order.entity";
-import { Role } from "../../auth/strategy/models/role.enum";
 
 @Entity("customer")
 export class Customer {
@@ -25,8 +24,8 @@ export class Customer {
   @Column()
   password: string;
 
-  @Column({type:'enum', enum:Role, default: Role.User})
-  role:Role;
+  @Column({nullable:true})
+  role:string;
 
   @OneToMany(() => Token, (token) => token.id)
   token: Token[];
@@ -35,10 +34,11 @@ export class Customer {
   @JoinColumn()
   basket: Basket;
 
-  @OneToOne(() => Order, (order) => order.id)
-  order: Order[];
+  @OneToOne(() => Order, (order) => order.user)
+  @JoinColumn()
+  order: Order;
 
-  @OneToOne(() => ContactDetails)
+  @OneToOne(() => ContactDetails, )
   @JoinColumn()
   contactDetails: ContactDetails[];
   
