@@ -1,6 +1,9 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from "@nestjs/common";
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
+import { Roles } from "../auth/decorators/role.decorator";
 import { JwtAuthGuard } from "../auth/strategy/jwt-auth.guard";
+import { Role } from "../auth/strategy/models/role.enum";
+import { RolesGuard } from "../auth/strategy/roles.guard";
 import { BooksService } from "../book/book.service";
 import { BookDto } from "../book/dto/book.dto";
 import { BasketService } from "./basket.service";
@@ -14,8 +17,9 @@ import { BasketBook } from "./entities/basket_book.entity";
 export class BasketController {
   constructor(private basketService: BasketService, private bookService:BooksService) {}
   
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Post('add')
-  @UseGuards(JwtAuthGuard)
+  @Roles(Role.User)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Insert product in basket' })
   @ApiResponse({status:200, description:'Product inserted in basket.'})
@@ -25,8 +29,9 @@ export class BasketController {
     return this.basketService.insertBookInBasket(dto);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
+  @Roles(Role.Moderator)
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Get all baskets' })
   @ApiResponse({ status: 201, description: 'show list of baskets' })
@@ -38,8 +43,9 @@ export class BasketController {
 
   
   @Delete("/:IBSN")
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @ApiBearerAuth()
+  @Roles(Role.User)
   @ApiOperation({ summary: 'Delete product from basket' })
   @ApiResponse({ status: 200, description: 'Product deleted from basket.' })
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
@@ -48,8 +54,9 @@ export class BasketController {
   }
 
   @Patch(":IBSN")
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @ApiBearerAuth()
+  @Roles(Role.Moderator)
   @ApiOperation({ summary: 'Update count of book in user basket' })
   @ApiResponse({ status: 200, description: 'Count of book changed' })
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
@@ -58,8 +65,9 @@ export class BasketController {
   };
 
   @Get('books')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @ApiBearerAuth()
+  @Roles(Role.User, Role.Moderator)
   @ApiOperation({ summary: 'Show all book in user basket' })
   @ApiResponse({ status: 200, description: 'show list' })
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
