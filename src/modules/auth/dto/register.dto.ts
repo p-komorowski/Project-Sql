@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Exclude, Expose } from "class-transformer";
 import { IsEmail, IsString } from "class-validator";
+import { Role } from "../strategy/models/role.enum";
 
 @Exclude()
 export class RegisterDto {
@@ -18,4 +19,9 @@ export class RegisterDto {
   @IsString()
   @ApiProperty({type: String, description: 'name'})
   name: string;
+
+  @Expose()
+  @IsString()
+  role: Role[];
+  
 }

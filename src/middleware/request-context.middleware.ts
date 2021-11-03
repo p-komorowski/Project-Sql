@@ -1,6 +1,6 @@
 import { UnauthorizedException } from "@nestjs/common";
 import { Request, Response } from "express";
-import { User } from "src/modules/user/entities";
+import { Customer } from "src/modules/user/entities";
 import { getNamespace } from "cls-hooked";
 import { v4 as uuid } from "uuid";
 
@@ -21,8 +21,8 @@ export class RequestContextProvider {
     return null;
   }
 
-  public static currentUser(): User {
-    const currentUser: User =
+  public static currentUser(): Customer {
+    const currentUser: Customer =
       RequestContextProvider.currentRequestContextProvider().req["User"];
     if (!currentUser) {
       throw new UnauthorizedException("user not found");

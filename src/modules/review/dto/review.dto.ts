@@ -1,12 +1,8 @@
 import { Exclude, Expose } from "class-transformer";
-import { IsNumber, IsString } from "class-validator";
+import { IsString } from "class-validator";
 
 @Exclude()
-export class Review {
-  @Expose()
-  @IsNumber()
-  id: number;
-
+export class ReviewDto {
   @Expose()
   @IsString()
   review: string;
@@ -14,4 +10,5 @@ export class Review {
   @Expose()
   @IsString()
   IBSN: string;
+  
 }

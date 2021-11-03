@@ -1,4 +1,4 @@
-import { Books } from "../../books/entity/books.entity";
+import { Book } from "../../book/entity/book.entity";
 import { Entity, Column, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Order } from "./order.entity";
@@ -17,9 +17,10 @@ export class BasketBooks {
   @Column()
   quantity: number;
 
-  @OneToMany(() => Books, (books) => books.IBSN)
-  books: Books[];
+  @OneToMany(() => Book, (book) => book.IBSN)
+  book: Book[];
 
   @OneToMany(() => Order, (order) => order.id)
   order: Order[];
+  
 }

@@ -1,55 +1,143 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { RequestContextProvider } from "../../middleware/request-context.middleware";
+import { LoginDto } from "../auth/dto/login.dto";
 import { BooksService } from "../book/book.service";
 import { BookDto } from "../book/dto/book.dto";
-import { Books } from "../book/entity/book.entity";
-import { BooksRepository } from "../book/repository/books.repository";
-import { BasketDto } from "./dto/basket.dto";
+import { Customer } from "../user/entities";
+import { UserRepository } from "../user/repository/user.repository";
+import { UsersService } from "../user/user.service";
+import { BasketBookDto } from "./dto/basket_book.dto";
 import { Basket } from "./entities/basket.entity";
-import { BasketBooks } from "./entities/basket_book.entity";
-import { BasketRepository } from "./repository/basket.repository";
-
+import { BasketBook } from "./entities/basket_book.entity";
+import { BasketBooksRepository } from "./repository/basket.repository";
+import { BasketRepository } from "./repository/basketBooks.repository";
 
 @Injectable()
 export class BasketService {
   constructor(
-    @InjectRepository(BasketBooks)
-    private readonly repository: BasketRepository,
-    private readonly booksRepository: BooksRepository,
-    private readonly booksService:BooksService
+    @InjectRepository(Basket)
+    private readonly basketRepository: BasketRepository,
+    @InjectRepository(BasketBook)
+    private readonly basketBooksRepository: BasketBooksRepository,
+    @InjectRepository(UserRepository)
+    private readonly userRepository: UserRepository,
+    private readonly booksService: BooksService,
+    private readonly userService: UsersService
   ) {}
 
-  // async insertProduct(newBasket: BasketDto): Promise<any> {
-  //   return this.repository.save(newBasket);
-  // }
-
-  public async getProducts(): Promise<BasketBooks[]> {
-    return this.repository.find();
+  public async getBasket(): Promise<Basket[]> {
+    return this.basketRepository.find();
   }
 
-  async deleteProduct(basket_id: string): Promise<void> {
-    await this.repository.delete(basket_id);
+  async deleteBookFromBasket(IBSN: string): Promise<void> {
+    const currentUser = RequestContextProvider.currentUser();
+    const userBasket = await this.getBasketForUser(currentUser);
+    if (!userBasket) {
+      throw new UnauthorizedException(
+        "cannot delete because user did not have a basket"
+      );
+    }
+    const basketBook = await this.getBasketBookForBasket(IBSN, userBasket.id);
+    if (!basketBook) {
+      throw new UnauthorizedException(
+        "cannot delete because there is no such book in user basket"
+      );
+    }
+    await this.basketBooksRepository.remove(basketBook);
   }
 
- async insertBookInBasket(dto:BookDto): Promise<any>{
-  const book = await this.booksService.getBook(dto.IBSN)
-  const currentUser = RequestContextProvider.currentUser();
-  const basket = new BasketBooks(book) 
-  const savedBasket = await this.repository.save(basket.books); 
-  const basket1 = new Basket({basketId:basket.id, userId:currentUser.id})
-  basket1.books.push(book)
-  await this.repository.update(basket1.basketId, basket1)
-  return savedBasket
- }
+  async getBasketForUser(user: Customer): Promise<Basket> {
+    const userWithRelations = await this.userRepository.findOne({
+      where: {
+        id: user.id,
+      },
+      relations: ["basket"],
+    });
+    return userWithRelations.basket;
+  }
 
- async create(addedBook: BookDto): Promise<Books> {
-  const book = new Books(addedBook);
-  return this.repository.save(book);
-}
+  async getBasketBookForBasket(
+    IBSN: string,
+    basketId: string
+  ): Promise<BasketBook> {
+    return await this.basketBooksRepository
+      .createQueryBuilder("basketBook")
+      .leftJoinAndSelect("basketBook.book", "book")
+      .where("book.IBSN = :IBSN", { IBSN: IBSN })
+      .andWhere("basketBook.basketId = :bId", { bId: basketId })
+      .getOne();
+  }
 
+  async insertBookInBasket(dto: BookDto): Promise<any> {
+    const book = await this.booksService.getBook(dto.IBSN);
+    const currentUser = RequestContextProvider.currentUser();
+    let basket = null;
+    const userWithRelations = await this.userRepository.findOne({
+      where: {
+        id: currentUser.id,
+      },
+      relations: ["basket"],
+    });
 
-  async deleteBooks(IBSN: string): Promise<void> {
-    await this.repository.delete(IBSN);
+    basket = userWithRelations.basket;
+    if (!basket) {
+      basket = new Basket();
+      basket.customer = currentUser;
+      await this.basketRepository.save(basket);
+    }
+    const basketBookWithThisBook = await this.getBasketBookForBasket(
+      book.IBSN,
+      basket.id
+    );
+    if (basketBookWithThisBook) {
+      throw new UnauthorizedException("book already in basket");
+    }
+    const basketBook = new BasketBook();
+    basketBook.book = book;
+    basketBook.count = 1;
+    basketBook.basket = basket;
+    await this.basketBooksRepository.save(basketBook);
+  }
+
+  async getUserBooks(user: Customer): Promise<BasketBook[]> {
+    const userBasket = await this.getBasketForUser(user);
+    const userBasketBooks = await this.basketBooksRepository.find({
+      relations: ["book", "basket"],
+      where: {
+        basket: userBasket,
+      },
+    });
+    return userBasketBooks;
+  }
+
+  async getUser(user: LoginDto): Promise<Customer> {
+    const user1 = await this.userService.findById(user);
+    return user1;
+  }
+
+  async getUserById(id: number): Promise<Customer> {
+    return await this.userRepository.findOne(id);
+  }
+
+  async booksInUserBasket() {
+    return this.getUserBooks(RequestContextProvider.currentUser());
+  }
+
+  async updateCountOfBookInBasket(IBSN: string, count: BasketBookDto) {
+    const currentUser = RequestContextProvider.currentUser();
+    const userBasket = await this.getBasketForUser(currentUser);
+    if (!userBasket) {
+      throw new UnauthorizedException(
+        "cannot update because user did not have a basket"
+      );
+    }
+    const basketBook = await this.getBasketBookForBasket(IBSN, userBasket.id);
+    if (!basketBook) {
+      throw new UnauthorizedException(
+        "cannot update because there is no such book in user basket"
+      );
+    }
+    await this.basketBooksRepository.update(basketBook.id, count);
   }
 }

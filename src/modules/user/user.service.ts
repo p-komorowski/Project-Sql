@@ -1,21 +1,22 @@
 import { Injectable } from "@nestjs/common";
 import { Connection } from "typeorm";
-import { User } from "./entities";
+import { Customer } from "./entities";
 import { RegisterDto } from "../auth/dto/register.dto";
-import { userRepository } from "./repository/user.repository";
+import { UserRepository } from "./repository/user.repository";
+import { LoginDto } from "../auth/dto/login.dto";
 
 @Injectable()
 export class UsersService {
-  private repository: userRepository;
+  private repository: UserRepository;
   constructor(private readonly connection: Connection) {
-    this.repository = this.connection.getCustomRepository(userRepository);
+    this.repository = this.connection.getCustomRepository(UserRepository);
   }
 
-  findAll(): Promise<User[]> {
+  findAll(): Promise<Customer[]> {
     return this.repository.find();
   }
 
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<Customer> {
     return this.repository.findOne({
       where: {
         email: email,
@@ -23,8 +24,13 @@ export class UsersService {
     });
   }
 
-  async create(newUser: RegisterDto): Promise<User> {
-    const userEntity = new User(newUser);
+  async findById(id: LoginDto): Promise<Customer> {
+    return this.repository.findOne(id);
+  }
+
+  async create(newUser: RegisterDto): Promise<Customer> {
+    const userEntity = new Customer(newUser);
     return this.repository.save(userEntity);
   }
+  
 }

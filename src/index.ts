@@ -7,10 +7,6 @@ import { createConnection } from "typeorm";
 import { config, entities } from "./config";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
-
-
-
-
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const swagger = new DocumentBuilder()
@@ -42,7 +38,7 @@ async function bootstrap() {
     password: config.database.password,
     database: config.database.database,
     entities: entities,
-    synchronize: true,
+    synchronize: false,
   })
     .then((connection) => {
       connection.runMigrations();

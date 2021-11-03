@@ -1,25 +1,18 @@
-import { User } from "../../user/entities";
-import { Entity, Column, OneToMany, PrimaryColumn, ManyToOne } from "typeorm";
+import { Customer } from "../../user/entities";
+import { Entity, PrimaryColumn, JoinColumn, OneToOne } from "typeorm";
 import { v4 as uuid } from "uuid";
-import { OrderBooks } from "../dto/order_books.dto";
+import { Basket } from "../../basket/entities/basket.entity";
 
 @Entity()
 export class Order {
   @PrimaryColumn()
   id: string = uuid();
 
-  @Column({ name: "basket_id" })
-  basketId: string = uuid();
+  @OneToOne(() => Basket, (basket) => basket.order)
+  @JoinColumn()
+  basket: Basket;
 
-  @Column()
-  IBSN: string;
+  @OneToOne(() => Customer, (user) => user.order)
+  user: Customer;
 
-  @Column()
-  quantity: number;
-
-  @ManyToOne(() => OrderBooks, (orderBooks) => orderBooks.id)
-  orderBooks: OrderBooks;
-
-  @ManyToOne(() => User, (user) => user.id)
-  user: User[];
 }

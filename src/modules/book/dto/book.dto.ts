@@ -6,26 +6,27 @@ import { IsNumber, IsString } from "class-validator";
 export class BookDto {
   @Expose()
   @IsNumber()
-  @ApiProperty({type: Number, description: 'IBSN'})
+  @ApiProperty({ type: Number, description: "IBSN" })
   IBSN: string;
 
   @Expose()
   @IsString()
-  @ApiProperty({type: String, description: 'Title'})
+  @ApiProperty({ description: "Title of book" })
   title: string;
 
   @Expose()
   @IsNumber()
-  @ApiProperty({type: Number, description: 'Price'})
+  @ApiProperty({ description: "price of book" })
   price: number;
 
   @Expose()
   @IsString()
-  @ApiProperty({type: String, description: 'Author'})
+  @ApiProperty({ description: "Name of author" })
   author: string;
 
   @Expose()
   @IsNumber()
-  @ApiProperty({type: Number, description: 'Count'})
+  @ApiProperty({ description: "count of book" })
   count: number;
+
 }
