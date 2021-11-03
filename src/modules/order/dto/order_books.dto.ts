@@ -14,4 +14,5 @@ export class OrderBooks {
 
   @Column()
   quantity: number;
+  
 }
