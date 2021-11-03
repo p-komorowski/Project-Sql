@@ -12,13 +12,12 @@ export class RequestContextMiddleware implements NestMiddleware {
       tokenHeader = req.headers["authorization"].replace("Bearer ", "");
     }
 
-    //upewnic sie ze token header nie jest pusty
     const token = await getManager().findOne(Token, {
       join: {
         alias: "token",
         leftJoinAndSelect: {
           user: "token.user",
-        }
+        },
       },
       where: { token: tokenHeader },
     });
