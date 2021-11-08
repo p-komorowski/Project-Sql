@@ -31,7 +31,7 @@ export class AuthController {
         const token = await this.authService.login(loginDto);
         const newTime = new Date();
         const time = new Date(
-            newTime.getTime() + 60000 * 10 * 10 + 18000000000,
+            newTime.getTime() + 60000 * 10 * 10,
         );
         response
             .cookie('access_token', token, {
