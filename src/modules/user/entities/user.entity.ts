@@ -41,4 +41,5 @@ export class Customer {
     @OneToOne(() => ContactDetails)
     @JoinColumn()
     contactDetails: ContactDetails[];
+    
 }
