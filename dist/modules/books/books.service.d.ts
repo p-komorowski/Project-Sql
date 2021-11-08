@@ -1,6 +1,6 @@
-import { Books } from "./entity/books.entity";
-import { Connection } from "typeorm";
-import { BookDto } from "./dto/books.dto";
+import { Books } from './entity/books.entity';
+import { Connection } from 'typeorm';
+import { BookDto } from './dto/books.dto';
 export declare class BooksService {
     private readonly connection;
     private booksRepository;

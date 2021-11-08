@@ -1,6 +1,6 @@
-import { Books } from "./entity/books.entity";
-import { BooksService } from "./books.service";
-import { BookDto } from "./dto/books.dto";
+import { Books } from './entity/books.entity';
+import { BooksService } from './books.service';
+import { BookDto } from './dto/books.dto';
 export declare class BooksController {
     private booksService;
     constructor(booksService: BooksService);

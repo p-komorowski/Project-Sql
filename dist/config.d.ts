@@ -1,7 +1,7 @@
-import { ContactDetails, User } from "./modules/user/entities";
-import { Books } from "./modules/books/entity/books.entity";
-import { Token } from "./modules/auth/entity/token.entity";
-import { shoppingBasket } from "./modules/basket/entity/basket.entity";
+import { ContactDetails, User } from './modules/user/entities';
+import { Books } from './modules/books/entity/books.entity';
+import { Token } from './modules/auth/entity/token.entity';
+import { shoppingBasket } from './modules/basket/entity/basket.entity';
 interface ConfigDBInterface {
     type: any;
     host: string;
@@ -17,5 +17,11 @@ interface ConfigInterface {
     database: ConfigDBInterface;
 }
 export declare const config: ConfigInterface;
-export declare const entities: (typeof ContactDetails | typeof User | typeof Token | typeof Books | typeof shoppingBasket)[];
+export declare const entities: (
+    | typeof ContactDetails
+    | typeof User
+    | typeof Token
+    | typeof Books
+    | typeof shoppingBasket
+)[];
 export {};

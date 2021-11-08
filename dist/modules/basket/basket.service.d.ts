@@ -1,6 +1,6 @@
-import { BasketDto } from "./dto/basket.dto";
-import { shoppingBasket } from "./entity/basket.entity";
-import { BasketRepository } from "./repository/basket.repository";
+import { BasketDto } from './dto/basket.dto';
+import { shoppingBasket } from './entity/basket.entity';
+import { BasketRepository } from './repository/basket.repository';
 export declare class BasketService {
     private readonly repository;
     constructor(repository: BasketRepository);

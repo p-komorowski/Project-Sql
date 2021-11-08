@@ -1,5 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
 exports.createTableBook1630926727038 = void 0;
 class createTableBook1630926727038 {
     async up(queryRunner) {

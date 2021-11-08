@@ -1,2 +1,1 @@
-export declare class BasketModule {
-}
+export declare class BasketModule {}

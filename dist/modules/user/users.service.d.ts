@@ -1,6 +1,6 @@
-import { Connection } from "typeorm";
-import { User } from "./entities";
-import { RegisterDto } from "../auth/dto/register.dto";
+import { Connection } from 'typeorm';
+import { User } from './entities';
+import { RegisterDto } from '../auth/dto/register.dto';
 export declare class UsersService {
     private readonly connection;
     private repository;
