@@ -1,4 +1,4 @@
-import { OrderBooks } from '../../order/dto/order_books.dto';
+import { OrderBooks } from '../../order/dto/order-books.dto';
 import { Entity, Column, PrimaryColumn, ManyToOne, OneToMany, JoinColumn, DeepPartial } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { BookInterface } from '../interface/book.interface';
