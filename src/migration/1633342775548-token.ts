@@ -1,8 +1,8 @@
-import { MigrationInterface, QueryRunner } from "typeorm";
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class createTableToken1633342775548 implements MigrationInterface {
-  public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`
             CREATE TABLE IF NOT EXISTS token ( 
                 id UUID,
                 user_id VARCHAR KEY REFERENCES user(id),
@@ -11,11 +11,11 @@ export class createTableToken1633342775548 implements MigrationInterface {
                 token VARCHAR
                 )
         `);
-  }
+    }
 
-  public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.query(`
         DROP TABLE token
        `);
-  }
+    }
 }
