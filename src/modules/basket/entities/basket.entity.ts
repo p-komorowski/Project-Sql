@@ -1,11 +1,4 @@
-import {
-    Entity,
-    PrimaryColumn,
-    ManyToOne,
-    JoinTable,
-    OneToOne,
-    OneToMany,
-} from 'typeorm';
+import { Entity, PrimaryColumn, JoinTable, OneToOne, OneToMany } from 'typeorm';
 import { Customer } from '../../user/entities/user.entity';
 import { v4 as uuid } from 'uuid';
 import { BasketBook } from './basket-book.entity';
