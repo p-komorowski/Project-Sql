@@ -1,8 +1,4 @@
-import {
-    BadRequestException,
-    Injectable,
-    NotFoundException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { Connection } from 'typeorm';
@@ -52,10 +48,11 @@ export class AuthService {
         const userEntity = await this.userService.findByEmail(user.email);
         const valUser = await this.validateUser(userEntity, user.password);
         const token = await this.jwtService.sign(payload);
-        const newToken = await this.addNewToken(userEntity, token);
+        await this.addNewToken(userEntity, token);
         if (!valUser) {
             throw new NotFoundException('cannot validate');
-        } else return token;
+        }
+        return token;
     }
 
     async addNewToken(user: Customer, jwt: string): Promise<any> {
@@ -67,7 +64,6 @@ export class AuthService {
             lastLogin: newTime,
             user: user,
         });
-        this.authRepository.create(addedToken);
 
         return this.authRepository.save(addedToken);
     }
