@@ -30,7 +30,8 @@ export class AuthController {
     async login(@Body() loginDto: LoginDto, @Res() response: Response) {
         const token = await this.authService.login(loginDto);
         const newTime = new Date();
-        const time = new Date(newTime.getTime() + 60000 * 10 * 10);
+        const date = +process.env.DATE_CONTROLLER
+        const time = new Date(newTime.getTime() + date);
         response
             .cookie('access_token', token, {
                 httpOnly: true,
