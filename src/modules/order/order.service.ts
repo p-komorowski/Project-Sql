@@ -4,23 +4,26 @@ import { BasketService } from '../basket/basket.service';
 import { Order } from './entity/order.entity';
 import { OrderRepository } from './repository/order.repository';
 import { RequestContextProvider } from '../../middleware/request-context.middleware';
-import { UsersService } from '../user/user.service';
+import { Customer } from '../user/entities';
+import { UserRepository } from '../user/repository/user.repository';
 
 @Injectable()
 export class OrderService {
     private orderRepository: OrderRepository;
+    private userRepository: UserRepository;
     constructor(
         private readonly connection: Connection,
         private basketService: BasketService,
-        private userService: UsersService,
     ) {
         this.orderRepository =
             this.connection.getCustomRepository(OrderRepository);
+        this.userRepository =
+            this.connection.getCustomRepository(UserRepository);
     }
 
     async createOrder(): Promise<Order> {
         const currentUser = RequestContextProvider.currentUser();
-        const order = await this.userService.findUsersOrder(currentUser);
+        const order = await this.findUsersOrder(currentUser);
         if (order) {
             throw new UnauthorizedException('order already placed');
         }
@@ -45,5 +48,16 @@ export class OrderService {
             .leftJoinAndSelect('basket.basketBooks', 'basketBooks')
             .leftJoinAndSelect('basketBooks.book', 'book')
             .getMany();
+    }
+
+    
+    async findUsersOrder(user: Customer): Promise<Order> {
+        const usr = await this.userRepository.findOne({
+            where: {
+                id: user.id,
+            },
+            relations: ['order'],
+        });
+        return usr.order;
     }
 }
