@@ -3,37 +3,24 @@ import { Connection } from 'typeorm';
 import { BasketService } from '../basket/basket.service';
 import { Order } from './entity/order.entity';
 import { OrderRepository } from './repository/order.repository';
-import { Customer } from '../../modules/user/entities/user.entity';
 import { RequestContextProvider } from '../../middleware/request-context.middleware';
-import { UserRepository } from '../user/repository/user.repository';
+import { UsersService } from '../user/user.service';
 
 @Injectable()
 export class OrderService {
     private orderRepository: OrderRepository;
-    private userRepository: UserRepository;
     constructor(
         private readonly connection: Connection,
         private basketService: BasketService,
+        private userService: UsersService,
     ) {
         this.orderRepository =
             this.connection.getCustomRepository(OrderRepository);
-        this.userRepository =
-            this.connection.getCustomRepository(UserRepository);
-    }
-
-    async findUsersOrder(user: Customer): Promise<Order> {
-        const usr = await this.userRepository.findOne({
-            where: {
-                id: user.id,
-            },
-            relations: ['order'],
-        });
-        return usr.order;
     }
 
     async createOrder(): Promise<Order> {
         const currentUser = RequestContextProvider.currentUser();
-        const order = await this.findUsersOrder(currentUser);
+        const order = await this.userService.findUsersOrder(currentUser);
         if (order) {
             throw new UnauthorizedException('order already placed');
         }
