@@ -20,11 +20,4 @@ export class AuthStrategy extends PassportStrategy(Strategy) {
     async validate(payload: any) {
         return { userEmail: payload.sub, username: payload.username };
     }
-
-    async validateUser(username: Customer, password: string): Promise<any> {
-        const user = await this.authService.validateUser(username, password);
-        if (!user) {
-            throw new UnauthorizedException();
-        } else return user;
-    }
 }
