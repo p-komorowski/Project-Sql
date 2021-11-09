@@ -12,6 +12,7 @@ import { Basket } from './entities/basket.entity';
 import { BasketBook } from './entities/basket-book.entity';
 import { BasketBooksRepository } from './repository/basket.repository';
 import { BasketRepository } from './repository/basket-books.repository';
+import { UpdateResult } from 'typeorm';
 
 @Injectable()
 export class BasketService {
@@ -96,14 +97,15 @@ export class BasketService {
         if (basketBookWithThisBook) {
             throw new UnauthorizedException('book already in basket');
         }
-        const basketBook = new BasketBook();
-        basketBook.book = book;
-        basketBook.count = 1;
-        basketBook.basket = basket;
-        await this.basketBooksRepository.save(basketBook);
+        await this.basketBooksRepository.save({
+            book: book,
+            count: 1,
+            basket: basket,
+        });
     }
 
-    async getUserBooks(user: Customer): Promise<BasketBook[]> {
+    async booksInUserBasket(): Promise<BasketBook[]> {
+        const user = RequestContextProvider.currentUser();
         const userBasket = await this.getBasketForUser(user);
         const userBasketBooks = await this.basketBooksRepository.find({
             relations: ['book', 'basket'],
@@ -123,11 +125,10 @@ export class BasketService {
         return await this.userRepository.findOne(id);
     }
 
-    async booksInUserBasket() {
-        return this.getUserBooks(RequestContextProvider.currentUser());
-    }
-
-    async updateCountOfBookInBasket(IBSN: string, count: BasketBookDto) {
+    async updateCountOfBookInBasket(
+        IBSN: string,
+        count: BasketBookDto,
+    ): Promise<BasketBook> {
         const currentUser = RequestContextProvider.currentUser();
         const userBasket = await this.getBasketForUser(currentUser);
         if (!userBasket) {
@@ -145,5 +146,6 @@ export class BasketService {
             );
         }
         await this.basketBooksRepository.update(basketBook.id, count);
+        return basketBook;
     }
 }
