@@ -26,7 +26,7 @@ export class ReviewService {
         return this.reviewRepository.remove(reviews);
     }
 
-    async addReviewToBook(dto: ReviewDto) {
+    async addReviewToBook(dto: ReviewDto): Promise <Review> {
         const book = await this.bookService.getBook(dto.IBSN);
         if (!book) {
             throw new UnauthorizedException('book does not exist');
