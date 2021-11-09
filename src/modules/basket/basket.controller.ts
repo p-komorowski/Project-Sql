@@ -7,8 +7,8 @@ import { RolesGuard } from '../auth/guards/roles.guard';
 import { BookDto } from '../book/dto/index';
 import { BasketService } from './basket.service';
 import { BasketDto, BasketBookDto } from './dto/index';
-import { Basket } from './entities/basket.entity';
-import { BasketBook } from './entities/basket-book.entity';
+import { Basket,BasketBook } from './entities/index';
+
 
 @ApiTags('Basket')
 @Controller('basket')
@@ -69,6 +69,6 @@ export class BasketController {
     @ApiResponse({ status: 200, description: 'show list' })
     @ApiUnauthorizedResponse({ description: 'User not logged in.' })
     async showBooksInBasket() {
-        return await this.basketService.booksInUserBasket();
+        return await this.basketService.getBooksInUserBasket();
     }
 }
