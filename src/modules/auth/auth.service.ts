@@ -4,8 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { Connection } from 'typeorm';
 import { Customer } from '../user/entities';
 import { UsersService } from '../user/user.service';
-import { LoginDto } from './dto/login.dto';
-import { RegisterDto } from './dto/register.dto';
+import { LoginDto,RegisterDto } from './dto/index';
 import { Token } from './entity/token.entity';
 import { AuthRepository } from './repository/auth.repository';
 
@@ -43,7 +42,7 @@ export class AuthService {
         return newUser;
     }
 
-    async login(user: LoginDto): Promise<any> {
+    async login(user: LoginDto): Promise<string> {
         const payload = { sub: user.email, pass: user.password };
         const userEntity = await this.userService.findByEmail(user.email);
         const valUser = await this.validateUser(userEntity, user.password);
@@ -57,7 +56,8 @@ export class AuthService {
 
     async addNewToken(user: Customer, jwt: string): Promise<any> {
         const newTime = new Date();
-        const time = new Date(newTime.getTime() + 60000 * 10);
+        const date = +process.env.DATE_SERVICE
+        const time = new Date(newTime.getTime() + date);
         const addedToken = new Token({
             token: jwt,
             expTime: time,
