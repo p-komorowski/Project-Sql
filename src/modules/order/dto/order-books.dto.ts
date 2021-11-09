@@ -3,15 +3,15 @@ import { v4 as uuid } from 'uuid';
 
 @Entity()
 export class OrderBooks {
-    @PrimaryColumn()
-    id: string = uuid();
+  @PrimaryColumn()
+  id: string = uuid();
 
-    @Column({ name: 'order_id' })
-    orderId: string = uuid();
+  @Column({ name: 'order_id' })
+  orderId: string = uuid();
 
-    @Column()
-    IBSN: string;
+  @Column()
+  IBSN: string;
 
-    @Column()
-    count: number;
+  @Column()
+  count: number;
 }

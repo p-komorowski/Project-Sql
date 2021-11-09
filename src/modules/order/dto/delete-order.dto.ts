@@ -3,7 +3,7 @@ import { IsArray, IsString } from 'class-validator';
 
 @Exclude()
 export class DeleteReviewDto {
-    @Expose()
-    @IsArray()
-    review_ids: string[];
+  @Expose()
+  @IsArray()
+  review_ids: string[];
 }

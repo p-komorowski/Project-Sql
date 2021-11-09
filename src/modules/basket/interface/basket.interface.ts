@@ -1,4 +1,4 @@
 export interface BasketInterface {
-    basketId: string;
-    userId: string;
+  basketId: string;
+  userId: string;
 }

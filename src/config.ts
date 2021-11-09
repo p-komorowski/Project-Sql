@@ -6,47 +6,46 @@ import { OrderBooks } from './modules/order/dto/order-books.dto';
 import { Order } from './modules/order/entity/order.entity';
 import { Basket } from './modules/basket/entities/basket.entity';
 import { Review } from './modules/review/entity/review.entity';
-import { BooksService } from './modules/book/book.service';
 interface ConfigDBInterface {
-    type: any;
-    host: string;
-    port: number;
-    password: string;
-    database: string;
-    username: string;
-    synchronize: boolean;
-    autoLoadEntities: boolean;
+  type: any;
+  host: string;
+  port: number;
+  password: string;
+  database: string;
+  username: string;
+  synchronize: boolean;
+  autoLoadEntities: boolean;
 }
 
 interface ConfigInterface {
-    jwtKey: string;
-    database: ConfigDBInterface;
-    name: string;
+  jwtKey: string;
+  database: ConfigDBInterface;
+  name: string;
 }
 
 export const config: ConfigInterface = {
-    jwtKey: process.env.JWT_SECRET,
-    name: 'new',
-    database: {
-        type: 'postgres',
-        host: 'localhost',
-        port: 5432,
-        username: process.env.DATABASE_USERNAME,
-        password: process.env.DATABASE_PASSWORD,
-        database: process.env.DATABASE_NAME,
-        autoLoadEntities: true,
-        synchronize: true,
-    },
+  jwtKey: process.env.JWT_SECRET,
+  name: 'new',
+  database: {
+    type: 'postgres',
+    host: 'localhost',
+    port: 5432,
+    username: process.env.DATABASE_USERNAME,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_NAME,
+    autoLoadEntities: true,
+    synchronize: true,
+  },
 };
 
 export const entities = [
-    Customer,
-    Book,
-    Token,
-    ContactDetails,
-    BasketBook,
-    OrderBooks,
-    Order,
-    Basket,
-    Review,
+  Customer,
+  Book,
+  Token,
+  ContactDetails,
+  BasketBook,
+  OrderBooks,
+  Order,
+  Basket,
+  Review,
 ];

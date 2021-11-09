@@ -15,26 +15,26 @@ import { OrderService } from './order.service';
 import { OrderRepository } from './repository/order.repository';
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([
-            BasketBook,
-            Basket,
-            Book,
-            BasketBooksRepository,
-            BasketRepository,
-            UserRepository,
-        ]),
-    ],
-    providers: [
-        BasketService,
-        BasketRepository,
-        BooksRepository,
-        BooksService,
-        BasketBooksRepository,
-        UsersService,
-        OrderService,
-        OrderRepository,
-    ],
-    controllers: [OrderController],
+  imports: [
+    TypeOrmModule.forFeature([
+      BasketBook,
+      Basket,
+      Book,
+      BasketBooksRepository,
+      BasketRepository,
+      UserRepository,
+    ]),
+  ],
+  providers: [
+    BasketService,
+    BasketRepository,
+    BooksRepository,
+    BooksService,
+    BasketBooksRepository,
+    UsersService,
+    OrderService,
+    OrderRepository,
+  ],
+  controllers: [OrderController],
 })
 export class OrderModule {}

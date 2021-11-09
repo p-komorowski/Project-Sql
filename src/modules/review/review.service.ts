@@ -7,36 +7,36 @@ import { ReviewRepository } from './repository/review.repository';
 
 @Injectable()
 export class ReviewService {
-    constructor(
-        private bookService: BooksService,
-        private reviewRepository: ReviewRepository,
-        private readonly connection: Connection,
-    ) {
-        this.reviewRepository =
-            this.connection.getCustomRepository(ReviewRepository);
+  constructor(
+    private bookService: BooksService,
+    private reviewRepository: ReviewRepository,
+    private readonly connection: Connection,
+  ) {
+    this.reviewRepository =
+      this.connection.getCustomRepository(ReviewRepository);
+  }
+
+  async deleteReviews(IBSN: string, review_ids: string[]): Promise<any> {
+    await this.reviewRepository
+      .createQueryBuilder('review')
+      .delete()
+      .from('review')
+      .andWhere('review.bookIBSN = :IBSN', { IBSN: IBSN })
+      .where('review.id IN (:...review)', { review: review_ids })
+      .execute();
+  }
+
+  async addReviewToBook(dto: ReviewDto): Promise<Review> {
+    const book = await this.bookService.getBook(dto.IBSN);
+    if (!book) {
+      throw new UnauthorizedException('book does not exist');
     }
 
-    async deleteReviews(IBSN: string, review_ids: string[]): Promise<Review[]> {
-        const reviews = await this.reviewRepository
-            .createQueryBuilder('review')
-            .where('review.id IN (:...review)', { review: review_ids })
-            .andWhere('review.bookIBSN = :IBSN', { IBSN: IBSN })
-            .getMany();
+    const newReview = await this.reviewRepository.create({
+      review: dto.review,
+    });
+    newReview.book = book;
 
-        return this.reviewRepository.remove(reviews);
-    }
-
-    async addReviewToBook(dto: ReviewDto): Promise <Review> {
-        const book = await this.bookService.getBook(dto.IBSN);
-        if (!book) {
-            throw new UnauthorizedException('book does not exist');
-        }
-
-        const newReview = await this.reviewRepository.create({
-            review: dto.review,
-        });
-        newReview.book = book;
-
-        return this.reviewRepository.save(newReview);
-    }
+    return this.reviewRepository.save(newReview);
+  }
 }

@@ -4,16 +4,16 @@ import { v4 as uuid } from 'uuid';
 import { Basket } from './basket.entity';
 @Entity()
 export class BasketBook {
-    @PrimaryGeneratedColumn('uuid')
-    id: string = uuid();
+  @PrimaryGeneratedColumn('uuid')
+  id: string = uuid();
 
-    @Column()
-    count: number;
+  @Column()
+  count: number;
 
-    @ManyToOne(() => Book, (book) => book.basketBook)
-    @JoinColumn()
-    book: Book;
+  @ManyToOne(() => Book, (book) => book.basketBook)
+  @JoinColumn()
+  book: Book;
 
-    @ManyToOne(() => Basket, (basket) => basket.basketBooks)
-    basket: Basket;
+  @ManyToOne(() => Basket, (basket) => basket.basketBooks)
+  basket: Basket;
 }

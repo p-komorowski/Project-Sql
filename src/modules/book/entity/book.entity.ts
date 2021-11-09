@@ -7,36 +7,36 @@ import { Review } from '../../review/entity/review.entity';
 
 @Entity()
 export class Book {
-    constructor(book: DeepPartial<BookInterface>) {
-        Object.assign(this, book);
-    }
-    @ApiProperty({ description: 'IBSN of book' })
-    @PrimaryColumn()
-    IBSN: string;
+  constructor(book: DeepPartial<BookInterface>) {
+    Object.assign(this, book);
+  }
+  @ApiProperty({ description: 'IBSN of book' })
+  @PrimaryColumn()
+  IBSN: string;
 
-    @ApiProperty({ description: 'Title of book' })
-    @Column({ nullable: true })
-    title: string;
+  @ApiProperty({ description: 'Title of book' })
+  @Column({ nullable: true })
+  title: string;
 
-    @ApiProperty({ description: 'price of book' })
-    @Column({ nullable: true, type: 'decimal', precision: 5, scale: 2 })
-    price: number;
+  @ApiProperty({ description: 'price of book' })
+  @Column({ nullable: true, type: 'decimal', precision: 5, scale: 2 })
+  price: number;
 
-    @ApiProperty({ description: 'Name of author' })
-    @Column({ nullable: true })
-    author: string;
+  @ApiProperty({ description: 'Name of author' })
+  @Column({ nullable: true })
+  author: string;
 
-    @ApiProperty({ description: 'count of book' })
-    @Column({ nullable: true })
-    count: number;
+  @ApiProperty({ description: 'count of book' })
+  @Column({ nullable: true })
+  count: number;
 
-    @OneToMany(() => BasketBook, (basketBook) => basketBook.book)
-    basketBook: BasketBook;
+  @OneToMany(() => BasketBook, (basketBook) => basketBook.book)
+  basketBook: BasketBook;
 
-    @ManyToOne(() => OrderBooks, (orderBooks) => orderBooks.id)
-    orderBooks: OrderBooks[];
+  @ManyToOne(() => OrderBooks, (orderBooks) => orderBooks.id)
+  orderBooks: OrderBooks[];
 
-    @OneToMany(() => Review, (review) => review.book)
-    @JoinColumn()
-    review: Review[];
+  @OneToMany(() => Review, (review) => review.book)
+  @JoinColumn()
+  review: Review[];
 }

@@ -17,32 +17,32 @@ import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './modules/auth/guards/roles.guard';
 
 @Module({
-    imports: [
-        TypeOrmModule.forRoot(config.database),
-        AuthModule,
-        UserModule,
-        BooksModule,
-        BasketModule,
-        OrderModule,
-    ],
-    controllers: [AppController],
-    providers: [
-        {
-            provide: APP_GUARD,
-            useClass: RolesGuard,
-        },
-        AuthRepository,
-        RequestContextProvider,
-    ],
+  imports: [
+    TypeOrmModule.forRoot(config.database),
+    AuthModule,
+    UserModule,
+    BooksModule,
+    BasketModule,
+    OrderModule,
+  ],
+  controllers: [AppController],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+    AuthRepository,
+    RequestContextProvider,
+  ],
 })
 export class AppModule implements NestModule {
-    configure(consumer: MiddlewareConsumer) {
-        consumer
-            .apply(RequestContextMiddleware)
-            .exclude(
-                { path: 'books', method: RequestMethod.GET },
-                { path: 'books/review', method: RequestMethod.POST },
-            )
-            .forRoutes(BooksController, BasketController, OrderController);
-    }
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(RequestContextMiddleware)
+      .exclude(
+        { path: 'books', method: RequestMethod.GET },
+        { path: 'books/review', method: RequestMethod.POST },
+      )
+      .forRoutes(BooksController, BasketController, OrderController);
+  }
 }

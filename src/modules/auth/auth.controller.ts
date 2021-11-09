@@ -7,37 +7,37 @@ import { ApiBody, ApiOperation, ApiResponse, ApiTags, ApiUnauthorizedResponse } 
 @ApiTags('Auth')
 @Controller()
 export class AuthController {
-    logger: Logger;
-    constructor(private authService: AuthService) {
-        this.logger = new Logger(AuthController.name);
-    }
+  logger: Logger;
+  constructor(private authService: AuthService) {
+    this.logger = new Logger(AuthController.name);
+  }
 
-    @Post('auth/register')
-    @ApiOperation({ summary: 'Register User' })
-    @ApiResponse({ status: 201, description: 'User registration.' })
-    @ApiUnauthorizedResponse({ description: 'User already exists.' })
-    @ApiBody({ type: RegisterDto })
-    async register(@Body() reqisterDto: RegisterDto) {
-        this.logger.warn('logger test warn');
-        return this.authService.register(reqisterDto);
-    }
+  @Post('auth/register')
+  @ApiOperation({ summary: 'Register User' })
+  @ApiResponse({ status: 201, description: 'User registration.' })
+  @ApiUnauthorizedResponse({ description: 'User already exists.' })
+  @ApiBody({ type: RegisterDto })
+  async register(@Body() reqisterDto: RegisterDto) {
+    this.logger.warn('logger test warn');
+    return this.authService.register(reqisterDto);
+  }
 
-    @Post('auth/login')
-    @ApiOperation({ summary: 'Log user' })
-    @ApiResponse({ status: 200, description: 'User Login.' })
-    @ApiUnauthorizedResponse({ description: 'Invalid credentials.' })
-    @ApiBody({ type: LoginDto })
-    async login(@Body() loginDto: LoginDto, @Res() response: Response) {
-        const token = await this.authService.login(loginDto);
-        const newTime = new Date();
-        const date = +process.env.DATE_CONTROLLER
-        const time = new Date(newTime.getTime() + date);
-        response
-            .cookie('access_token', token, {
-                httpOnly: true,
-                domain: 'localhost',
-                expires: time,
-            })
-            .send({ success: true });
-    }
+  @Post('auth/login')
+  @ApiOperation({ summary: 'Log user' })
+  @ApiResponse({ status: 200, description: 'User Login.' })
+  @ApiUnauthorizedResponse({ description: 'Invalid credentials.' })
+  @ApiBody({ type: LoginDto })
+  async login(@Body() loginDto: LoginDto, @Res() response: Response) {
+    const token = await this.authService.login(loginDto);
+    const newTime = new Date();
+    const date = +process.env.DATE_CONTROLLER;
+    const time = new Date(newTime.getTime() + date);
+    response
+      .cookie('access_token', token, {
+        httpOnly: true,
+        domain: 'localhost',
+        expires: time,
+      })
+      .send({ success: true });
+  }
 }

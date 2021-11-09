@@ -13,27 +13,27 @@ import { UsersService } from '../user/user.service';
 import { RolesGuard } from './guards/roles.guard';
 
 @Module({
-    imports: [
-        TypeOrmModule,
-        AuthModule,
-        UserModule,
-        PassportModule,
-        RequestContextProvider,
-        JwtModule.register({
-            secret: process.env.JWT_SECRET,
-            signOptions: { expiresIn: '600s' },
-        }),
-    ],
-    controllers: [AuthController],
-    providers: [
-        UsersService,
-        AuthService,
-        JwtStrategy,
-        AuthRepository,
-        AuthStrategy,
-        RequestContextProvider,
-        RolesGuard,
-    ],
-    exports: [AuthService, JwtStrategy],
+  imports: [
+    TypeOrmModule,
+    AuthModule,
+    UserModule,
+    PassportModule,
+    RequestContextProvider,
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '600s' },
+    }),
+  ],
+  controllers: [AuthController],
+  providers: [
+    UsersService,
+    AuthService,
+    JwtStrategy,
+    AuthRepository,
+    AuthStrategy,
+    RequestContextProvider,
+    RolesGuard,
+  ],
+  exports: [AuthService, JwtStrategy],
 })
 export class AuthModule {}

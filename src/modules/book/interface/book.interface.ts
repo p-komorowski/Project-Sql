@@ -1,7 +1,7 @@
 export interface BookInterface {
-    IBSN: string;
-    title: string;
-    price: number;
-    author: string;
-    count: number;
+  IBSN: string;
+  title: string;
+  price: number;
+  author: string;
+  count: number;
 }
