@@ -8,11 +8,9 @@ import { Customer } from '../user/entities';
 import { UserRepository } from '../user/repository/user.repository';
 import { UsersService } from '../user/user.service';
 import { BasketBookDto } from './dto/basket-book.dto';
-import { Basket } from './entities/basket.entity';
-import { BasketBook } from './entities/basket-book.entity';
+import { BasketBook,Basket } from './entities/index';
 import { BasketBooksRepository } from './repository/basket.repository';
 import { BasketRepository } from './repository/basket-books.repository';
-import { UpdateResult } from 'typeorm';
 
 @Injectable()
 export class BasketService {
@@ -104,7 +102,7 @@ export class BasketService {
         });
     }
 
-    async booksInUserBasket(): Promise<BasketBook[]> {
+    async getBooksInUserBasket(): Promise<BasketBook[]> {
         const user = RequestContextProvider.currentUser();
         const userBasket = await this.getBasketForUser(user);
         const userBasketBooks = await this.basketBooksRepository.find({
@@ -122,7 +120,7 @@ export class BasketService {
     }
 
     async getUserById(id: number): Promise<Customer> {
-        return await this.userRepository.findOne(id);
+        return this.userRepository.findOne(id);
     }
 
     async updateCountOfBookInBasket(
