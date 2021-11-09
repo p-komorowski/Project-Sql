@@ -4,7 +4,6 @@ import { Roles } from '../auth/decorators/role.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { Role } from '../user/enum/role.enum';
 import { RolesGuard } from '../auth/guards/roles.guard';
-import { BooksService } from '../book/book.service';
 import { BookDto } from '../book/dto/index';
 import { BasketService } from './basket.service';
 import { BasketDto, BasketBookDto } from './dto/index';
@@ -58,10 +57,7 @@ export class BasketController {
     @ApiOperation({ summary: 'Update count of book in user basket' })
     @ApiResponse({ status: 200, description: 'Count of book changed' })
     @ApiUnauthorizedResponse({ description: 'User not logged in.' })
-    async updateCountOfBookInBasket(
-        @Param('IBSN') IBSN: string,
-        @Body() count: BasketBookDto,
-    ) {
+    async updateCountOfBookInBasket(@Param('IBSN') IBSN: string, @Body() count: BasketBookDto ): Promise<BasketBook> {
         return await this.basketService.updateCountOfBookInBasket(IBSN, count);
     }
 
