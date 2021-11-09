@@ -4,6 +4,7 @@ import { Customer } from './entities';
 import { RegisterDto } from '../auth/dto/register.dto';
 import { UserRepository } from './repository/user.repository';
 import { LoginDto } from '../auth/dto/login.dto';
+import { Order } from '../order/entity';
 
 @Injectable()
 export class UsersService {
@@ -31,5 +32,15 @@ export class UsersService {
     async create(newUser: RegisterDto): Promise<Customer> {
         const userEntity = new Customer(newUser);
         return this.repository.save(userEntity);
+    }
+
+    async findUsersOrder(user: Customer): Promise<Order> {
+        const usr = await this.repository.findOne({
+            where: {
+                id: user.id,
+            },
+            relations: ['order'],
+        });
+        return usr.order;
     }
 }
