@@ -3,16 +3,16 @@ import { BooksRepository } from './repository/book.repository';
 import { Book } from './entity/book.entity';
 import { Connection } from 'typeorm';
 import { BookDto } from './dto/book.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class BooksService {
   logger: Logger;
-  private booksRepository: BooksRepository;
-  constructor(private readonly connection: Connection) {
-    this.booksRepository = this.connection.getCustomRepository(BooksRepository);
+  constructor(
+  @InjectRepository(Book)
+   private readonly booksRepository: BooksRepository ) {
     this.logger = new Logger(BooksService.name);
-  }
-
+   }
   async insertProduct(newProduct: BookDto): Promise<Book> {
     return this.booksRepository.save(newProduct);
   }

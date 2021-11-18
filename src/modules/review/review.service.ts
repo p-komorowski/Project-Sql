@@ -1,4 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { BooksService } from '../book/book.service';
 import { ReviewDto } from './dto/review.dto';
@@ -9,12 +10,9 @@ import { ReviewRepository } from './repository/review.repository';
 export class ReviewService {
   constructor(
     private bookService: BooksService,
-    private reviewRepository: ReviewRepository,
-    private readonly connection: Connection,
-  ) {
-    this.reviewRepository =
-      this.connection.getCustomRepository(ReviewRepository);
-  }
+    @InjectRepository(Review)
+    private readonly reviewRepository: ReviewRepository,
+  ) {}
 
   async deleteReviews(IBSN: string, review_ids: string[]): Promise<any> {
     await this.reviewRepository

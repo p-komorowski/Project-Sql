@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { Basket } from '../entities/basket.entity';
+import { BasketBook } from '../entities/basket-book.entity';
 
-@EntityRepository(Basket)
-export class BasketRepository extends Repository<Basket> {}
+@EntityRepository(BasketBook)
+export class BasketBooksRepository extends Repository<BasketBook> {}

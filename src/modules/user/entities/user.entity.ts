@@ -37,8 +37,4 @@ export class Customer {
   @OneToOne(() => Order, (order) => order.user)
   @JoinColumn()
   order: Order;
-
-  @OneToOne(() => ContactDetails)
-  @JoinColumn()
-  contactDetails: ContactDetails[];
 }

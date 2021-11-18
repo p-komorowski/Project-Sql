@@ -1,16 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { Connection } from 'typeorm';
 import { Customer } from './entities';
 import { RegisterDto } from '../auth/dto/register.dto';
 import { UserRepository } from './repository/user.repository';
 import { LoginDto } from '../auth/dto/login.dto';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UsersService {
-  private repository: UserRepository;
-  constructor(private readonly connection: Connection) {
-    this.repository = this.connection.getCustomRepository(UserRepository);
-  }
+  constructor(
+    @InjectRepository(Customer)
+  private readonly repository: UserRepository) {}
 
   findAll(): Promise<Customer[]> {
     return this.repository.find();

@@ -6,18 +6,17 @@ import { OrderRepository } from './repository/order.repository';
 import { RequestContextProvider } from '../../middleware/request-context.middleware';
 import { Customer } from '../user/entities';
 import { UserRepository } from '../user/repository/user.repository';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class OrderService {
-  private orderRepository: OrderRepository;
-  private userRepository: UserRepository;
   constructor(
-    private readonly connection: Connection,
+    @InjectRepository(Order)
+    private readonly orderRepository: OrderRepository,
+    @InjectRepository(Customer)
+    private readonly userRepository: UserRepository,
     private basketService: BasketService,
-  ) {
-    this.orderRepository = this.connection.getCustomRepository(OrderRepository);
-    this.userRepository = this.connection.getCustomRepository(UserRepository);
-  }
+  ) {}
 
   async createOrder(): Promise<Order> {
     const currentUser = RequestContextProvider.currentUser();

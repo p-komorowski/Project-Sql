@@ -9,8 +9,9 @@ import { UserRepository } from '../user/repository/user.repository';
 import { UsersService } from '../user/user.service';
 import { BasketBookDto } from './dto/basket-book.dto';
 import { BasketBook, Basket } from './entities/index';
-import { BasketBooksRepository } from './repository/basket.repository';
-import { BasketRepository } from './repository/basket-books.repository';
+import { BasketBooksRepository } from './repository/basket-books.repository';
+import { BasketRepository } from './repository/basket.repository';
+
 
 @Injectable()
 export class BasketService {
@@ -19,7 +20,7 @@ export class BasketService {
     private readonly basketRepository: BasketRepository,
     @InjectRepository(BasketBook)
     private readonly basketBooksRepository: BasketBooksRepository,
-    @InjectRepository(UserRepository)
+    @InjectRepository(Customer)
     private readonly userRepository: UserRepository,
     private readonly booksService: BooksService,
     private readonly userService: UsersService,
@@ -43,7 +44,9 @@ export class BasketService {
         'cannot delete because there is no such book in user basket',
       );
     }
-    await this.basketBooksRepository.remove(basketBook);
+
+  await this.basketBooksRepository.remove(basketBook);
+    
   }
 
   async getBasketForUser(user: Customer): Promise<Basket> {
@@ -70,6 +73,7 @@ export class BasketService {
 
   async insertBookInBasket(dto: BookDto): Promise<any> {
     const book = await this.booksService.getBook(dto.IBSN);
+    
     const currentUser = RequestContextProvider.currentUser();
     let basket = null;
     const userWithRelations = await this.userRepository.findOne({
@@ -78,7 +82,7 @@ export class BasketService {
       },
       relations: ['basket'],
     });
-
+   
     basket = userWithRelations.basket;
     if (!basket) {
       basket = new Basket();
@@ -89,10 +93,11 @@ export class BasketService {
       book.IBSN,
       basket.id,
     );
+
     if (basketBookWithThisBook) {
       throw new UnauthorizedException('book already in basket');
     }
-    await this.basketBooksRepository.save({
+    return await this.basketBooksRepository.save({
       book: book,
       count: 1,
       basket: basket,
@@ -137,7 +142,9 @@ export class BasketService {
         'cannot update because there is no such book in user basket',
       );
     }
-    await this.basketBooksRepository.update(basketBook.id, count);
-    return basketBook;
+    
+    basketBook.count = count.count;
+    return await this.basketBooksRepository.save(basketBook);
   }
+ 
 }

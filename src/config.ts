@@ -42,7 +42,6 @@ export const entities = [
   Customer,
   Book,
   Token,
-  ContactDetails,
   BasketBook,
   OrderBooks,
   Order,

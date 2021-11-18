@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
-import { Connection } from 'typeorm';
 import { Customer } from '../user/entities';
 import { UsersService } from '../user/user.service';
 import { LoginDto, RegisterDto } from './dto/index';
@@ -10,14 +10,12 @@ import { AuthRepository } from './repository/auth.repository';
 
 @Injectable()
 export class AuthService {
-  private authRepository: AuthRepository;
   constructor(
     private userService: UsersService,
     private jwtService: JwtService,
-    private readonly connection: Connection,
-  ) {
-    this.authRepository = this.connection.getCustomRepository(AuthRepository);
-  }
+    @InjectRepository(Token)
+    private readonly authRepository: AuthRepository
+  ) {}
 
   async validateUser(user: Customer, pass: string): Promise<any> {
     if (user && (await bcrypt.compare(pass, user.password))) {
