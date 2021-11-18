@@ -6,7 +6,7 @@ import { BooksService } from '../../modules/book/book.service';
 import { UsersService } from '../../modules/user/user.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Basket, BasketBook } from '../../modules/basket/entities';
-import { basketBookRepositoryMockFactory, MockType, repositoryMockFactory, userRepositoryMockFactory } from './mock/basket-repostiory.stub';
+import { basketBookRepositoryStubFactory, MockType, bookRepositoryStubFactory, userRepositoryStubFactory, basketRepositoryStubFactory } from '../stub/basket-repostiory.stub';
 import { Book } from '../../modules/book/entity/book.entity';
 import { BasketController } from '../../modules/basket/basket.controller';
 import { JwtService } from '@nestjs/jwt';
@@ -15,7 +15,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt } from 'passport-jwt';
 import { RolesGuard } from '../../modules/auth/guards/roles.guard';
 import { Customer } from '../../modules/user/entities';
-import { basketBooksModelMock, newUserModelMock } from './mock/basket.mock';
+import { basketBooksModelMock, newUserModelMock } from '../mock/index';
 import { RequestContextProvider } from '../../middleware/request-context.middleware';
 import { JwtAuthGuard } from '../../modules/auth/guards/jwt-auth.guard';
 import { BasketBooksRepository } from 'src/modules/basket/repository/basket-books.repository';
@@ -38,7 +38,6 @@ describe('Basket', () => {
   let basketBookRepository: MockType<BasketBooksRepository>;
 
   beforeAll(async () => {
-    jest.mock('../../middleware/request-context.middleware');
     RequestContextProvider.currentUser = jest
       .fn()
       .mockReturnValue(newUserModelMock);
@@ -60,19 +59,19 @@ describe('Basket', () => {
         },
         {
           provide: getRepositoryToken(Basket),
-          useFactory: repositoryMockFactory,
+          useFactory: basketRepositoryStubFactory,
         },
         {
           provide: getRepositoryToken(BasketBook),
-          useFactory: basketBookRepositoryMockFactory,
+          useFactory: basketBookRepositoryStubFactory,
         },
         {
           provide: getRepositoryToken(Customer),
-          useFactory: userRepositoryMockFactory,
+          useFactory: userRepositoryStubFactory,
         },
         {
           provide: getRepositoryToken(Book),
-          useFactory: repositoryMockFactory,
+          useFactory: bookRepositoryStubFactory,
         },
       ],
     })

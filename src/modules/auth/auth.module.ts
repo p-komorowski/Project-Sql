@@ -12,7 +12,6 @@ import { RolesGuard } from './guards/roles.guard';
 import { UserRepository } from '../user/repository/user.repository';
 import { entities } from '../../config';
 
-
 @Module({
   imports: [
     TypeOrmModule.forFeature(entities),
@@ -21,8 +20,6 @@ import { entities } from '../../config';
       signOptions: { expiresIn: '600s' },
     }),
     AuthRepository,
-  
-    
   ],
   controllers: [AuthController],
   providers: [

@@ -5,5 +5,6 @@ import { IsArray, IsString } from 'class-validator';
 export class DeleteReviewDto {
   @Expose()
   @IsArray()
-  review_ids: string[];
+  @IsString({ each: true })
+  reviewIds: string[];
 }

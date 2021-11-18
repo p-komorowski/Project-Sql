@@ -1,7 +1,6 @@
-import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { BooksRepository } from './repository/book.repository';
 import { Book } from './entity/book.entity';
-import { Connection } from 'typeorm';
 import { BookDto } from './dto/book.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -9,10 +8,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class BooksService {
   logger: Logger;
   constructor(
-  @InjectRepository(Book)
-   private readonly booksRepository: BooksRepository ) {
+    @InjectRepository(Book)
+    private readonly booksRepository: BooksRepository,
+  ) {
     this.logger = new Logger(BooksService.name);
-   }
+  }
   async insertProduct(newProduct: BookDto): Promise<Book> {
     return this.booksRepository.save(newProduct);
   }
@@ -21,7 +21,7 @@ export class BooksService {
     return this.booksRepository.find({
       relations: ['review'],
       take: take,
-      skip: 2 * (page - 1),
+      skip: take * (page - 1),
     });
   }
 
@@ -42,11 +42,10 @@ export class BooksService {
   async changePriceOfBook(IBSN: string, price: number) {
     const book = await this.getBook(IBSN);
     if (!book) {
-      throw new UnauthorizedException('book does not exist');
+      throw new NotFoundException('book does not exist');
     }
-    book.price = price;
 
-    return this.booksRepository.save(book);
+    return this.booksRepository.save({ ...book, price: price });
   }
 
   async deleteProduct(IBSN: string): Promise<void> {

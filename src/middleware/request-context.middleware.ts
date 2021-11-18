@@ -8,14 +8,10 @@ export class RequestContextProvider {
   constructor(req: Request, res: Response) {
     this.res = res;
     this.req = req;
-
   }
   public static uuid = uuid();
   req: Request;
   res: Response;
-  
-
-
 
   public static currentRequestContextProvider(): RequestContextProvider {
     const session = getNamespace(RequestContextProvider.uuid);
@@ -26,7 +22,6 @@ export class RequestContextProvider {
   }
 
   public static currentUser(): Customer {
-
     const currentUser: Customer =
       RequestContextProvider.currentRequestContextProvider().req['User'];
     if (!currentUser) {

@@ -11,7 +11,7 @@ export class RequestContextMiddleware implements NestMiddleware {
     if (req.headers['authorization']) {
       tokenHeader = req.headers['authorization'].replace('Bearer ', '');
     }
-    
+
     const token = await getManager().findOne(Token, {
       join: {
         alias: 'token',

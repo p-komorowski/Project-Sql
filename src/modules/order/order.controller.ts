@@ -16,18 +16,18 @@ export class OrderController {
   @Post()
   @Roles(Role.User)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Create order for logged yser' })
+  @ApiOperation({ summary: 'Create order for logged user' })
   @ApiResponse({ status: 200, description: 'Order created.' })
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
   async addBasketToOrder() {
-    await this.orderService.createOrder();
+   return this.orderService.createOrder();
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get()
   @Roles(Role.Moderator)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Show list of places orders' })
+  @ApiOperation({ summary: 'Show list of placed orders' })
   @ApiResponse({ status: 200, description: 'Order list shown' })
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
   async getAllOrders(): Promise<Order[]> {

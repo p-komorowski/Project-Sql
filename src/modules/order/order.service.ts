@@ -1,7 +1,6 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { Connection } from 'typeorm';
+import { BadRequestException,Injectable,NotFoundException } from '@nestjs/common';
 import { BasketService } from '../basket/basket.service';
-import { Order } from './entity/order.entity';
+import { Order } from './entity';
 import { OrderRepository } from './repository/order.repository';
 import { RequestContextProvider } from '../../middleware/request-context.middleware';
 import { Customer } from '../user/entities';
@@ -22,11 +21,11 @@ export class OrderService {
     const currentUser = RequestContextProvider.currentUser();
     const order = await this.findUsersOrder(currentUser);
     if (order) {
-      throw new UnauthorizedException('order already placed');
+      throw new BadRequestException('order already placed');
     }
     const basket = await this.basketService.getBasketForUser(currentUser);
     if (!basket) {
-      throw new UnauthorizedException('user basket doesnt exists');
+      throw new NotFoundException('user basket doesnt exists');
     }
     const newOrder = await this.orderRepository.create({
       basket: basket,

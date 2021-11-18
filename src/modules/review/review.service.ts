@@ -1,6 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Connection } from 'typeorm';
 import { BooksService } from '../book/book.service';
 import { ReviewDto } from './dto/review.dto';
 import { Review } from './entity/review.entity';

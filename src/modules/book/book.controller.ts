@@ -5,7 +5,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { ReviewDto } from '../review/dto/review.dto';
 import { Review } from '../review/entity/review.entity';
-import { BookPriceDto, BookDto } from './dto/index';
+import { BookPriceDto, BookDto } from './dto';
 import { Roles } from '../auth/decorators/role.decorator';
 import { Role } from '../user/enum/role.enum';
 import { RolesGuard } from '../auth/guards/roles.guard';
@@ -24,7 +24,11 @@ export class BooksController {
   @Get()
   @ApiOperation({ summary: 'Get all products.' })
   @ApiResponse({ status: 200, description: 'Getting all products.' })
-  async getAllProducts( @Query('page') page: number, @Query('take') take: number ): Promise<Book[]> {
+  async getAllProducts(
+    @Query('page')
+    page: number,
+    @Query('take') take: number,
+  ): Promise<Book[]> {
     return this.booksService.getProducts(page, take);
   }
 
@@ -36,7 +40,9 @@ export class BooksController {
   @ApiResponse({ status: 201, description: 'Insert product.' })
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
   @ApiBody({ type: BookDto })
-  async addProduct(@Body() productData: BookDto): Promise<Book> {
+  async addProduct(
+    @Body() productData: BookDto)
+    : Promise<Book> {
     return this.booksService.insertProduct(productData);
   }
 
@@ -47,7 +53,9 @@ export class BooksController {
   @ApiOperation({ summary: 'Delete product' })
   @ApiResponse({ status: 200, description: 'Product deleted.' })
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
-  async removeProduct(@Param('IBSN') IBSN: string): Promise<void> {
+  async removeProduct(
+    @Param('IBSN') IBSN: string)
+    : Promise<void> {
     await this.booksService.deleteProduct(IBSN);
   }
 
@@ -58,7 +66,10 @@ export class BooksController {
   @ApiOperation({ summary: 'Change price of book' })
   @ApiResponse({ status: 200, description: 'Price Changed.' })
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
-  async changePriceOfBook( @Param('IBSN') IBSN: string, @Body() price: BookPriceDto ): Promise<Book> {
+  async changePriceOfBook(
+    @Param('IBSN') IBSN: string,
+    @Body() price: BookPriceDto,
+  ): Promise<Book> {
     return this.booksService.changePriceOfBook(IBSN, price.price);
   }
 
@@ -67,7 +78,9 @@ export class BooksController {
   @ApiOperation({ summary: 'Place review for book' })
   @ApiResponse({ status: 200, description: 'Review placed.' })
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
-  async addReviewToBook(@Body() reviewDto: ReviewDto): Promise<Review> {
+  async addReviewToBook(
+    @Body() reviewDto: ReviewDto)
+    : Promise<Review> {
     return this.reviewService.addReviewToBook(reviewDto);
   }
 
@@ -78,7 +91,10 @@ export class BooksController {
   @ApiOperation({ summary: 'Delete review for book' })
   @ApiResponse({ status: 200, description: 'Review deleted.' })
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
-  async removeReviewForBook( @Param('IBSN') IBSN: string, @Body() reviewDto: DeleteReviewDto ): Promise<Review[]> {
-    return this.reviewService.deleteReviews(IBSN, reviewDto.review_ids);
+  async removeReviewForBook(
+    @Param('IBSN') IBSN: string,
+    @Body() reviewDto: DeleteReviewDto,
+  ): Promise<Review[]> {
+    return this.reviewService.deleteReviews(IBSN, reviewDto.reviewIds);
   }
 }

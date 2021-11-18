@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { Customer } from '../user/entities';
 import { UsersService } from '../user/user.service';
-import { LoginDto, RegisterDto } from './dto/index';
+import { LoginDto, RegisterDto } from './dto';
 import { Token } from './entity/token.entity';
 import { AuthRepository } from './repository/auth.repository';
 
@@ -14,7 +14,7 @@ export class AuthService {
     private userService: UsersService,
     private jwtService: JwtService,
     @InjectRepository(Token)
-    private readonly authRepository: AuthRepository
+    private readonly authRepository: AuthRepository,
   ) {}
 
   async validateUser(user: Customer, pass: string): Promise<any> {
@@ -36,7 +36,10 @@ export class AuthService {
     userData.password = hashedPassword;
     const newUser = await this.userService.create(userData);
     newUser.password = undefined;
-    return newUser;
+    return {
+      ...newUser,
+      password: undefined,
+    };
   }
 
   async login(user: LoginDto): Promise<string> {
@@ -46,7 +49,7 @@ export class AuthService {
     const token = await this.jwtService.sign(payload);
     await this.addNewToken(userEntity, token);
     if (!valUser) {
-      throw new NotFoundException('cannot validate');
+      throw new BadRequestException('cannot validate');
     }
     return token;
   }

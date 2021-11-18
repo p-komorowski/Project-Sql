@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { Customer } from './entities';
-import { RegisterDto } from '../auth/dto/register.dto';
+import { RegisterDto, LoginDto } from '../auth/dto/index';
 import { UserRepository } from './repository/user.repository';
-import { LoginDto } from '../auth/dto/login.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(Customer)
-  private readonly repository: UserRepository) {}
+    private readonly repository: UserRepository,
+  ) {}
 
   findAll(): Promise<Customer[]> {
     return this.repository.find();

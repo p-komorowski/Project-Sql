@@ -1,10 +1,10 @@
-import { ContactDetails, Customer } from './modules/user/entities';
+import { Customer } from './modules/user/entities';
 import { Book } from './modules/book/entity/book.entity';
 import { Token } from './modules/auth/entity/token.entity';
 import { BasketBook } from './modules/basket/entities/basket-book.entity';
 import { OrderBooks } from './modules/order/dto/order-books.dto';
 import { Order } from './modules/order/entity/order.entity';
-import { Basket } from './modules/basket/entities/basket.entity';
+import { Basket } from './modules/basket/entities';
 import { Review } from './modules/review/entity/review.entity';
 interface ConfigDBInterface {
   type: any;
@@ -28,8 +28,8 @@ export const config: ConfigInterface = {
   name: 'new',
   database: {
     type: 'postgres',
-    host: 'localhost',
-    port: 5432,
+    host: process.env.DATABASE_HOST,
+    port: +process.env.DATABASE_PORT,
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_NAME,

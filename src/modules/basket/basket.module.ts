@@ -7,15 +7,8 @@ import { BasketService } from './basket.service';
 
 import { entities } from '../../config';
 @Module({
-  imports: [
-    TypeOrmModule.forFeature(entities),
-    
-  ],
-  providers: [
-    BooksService,
-    UsersService,
-    BasketService
-  ],
+  imports: [TypeOrmModule.forFeature(entities)],
+  providers: [BooksService, UsersService, BasketService],
   controllers: [BasketController],
 })
 export class BasketModule {}

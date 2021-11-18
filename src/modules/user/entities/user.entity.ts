@@ -1,5 +1,4 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, DeepPartial, JoinColumn } from 'typeorm';
-import { ContactDetails } from './contact-details.entity';
 import { Token } from '../../auth/entity/token.entity';
 import { v4 as uuid } from 'uuid';
 import { UserInterface } from '../interface/user.interface';
