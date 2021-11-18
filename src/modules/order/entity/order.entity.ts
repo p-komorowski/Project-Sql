@@ -5,13 +5,13 @@ import { Basket } from '../../basket/entities/basket.entity';
 
 @Entity()
 export class Order {
-    @PrimaryColumn()
-    id: string = uuid();
+  @PrimaryColumn()
+  id: string = uuid();
 
-    @OneToOne(() => Basket, (basket) => basket.order)
-    @JoinColumn()
-    basket: Basket;
+  @OneToOne(() => Basket, (basket) => basket.order)
+  @JoinColumn()
+  basket: Basket;
 
-    @OneToOne(() => Customer, (user) => user.order)
-    user: Customer;
+  @OneToOne(() => Customer, (user) => user.order)
+  user: Customer;
 }

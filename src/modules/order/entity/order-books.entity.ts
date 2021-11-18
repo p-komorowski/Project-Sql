@@ -5,21 +5,21 @@ import { Order } from './order.entity';
 
 @Entity()
 export class BasketBooks {
-    @PrimaryColumn()
-    id: string = uuid();
+  @PrimaryColumn()
+  id: string = uuid();
 
-    @Column({ name: 'basket_id' })
-    basketId: string = uuid();
+  @Column({ name: 'basket_id' })
+  basketId: string = uuid();
 
-    @Column()
-    IBSN: string;
+  @Column()
+  IBSN: string;
 
-    @Column()
-    quantity: number;
+  @Column()
+  quantity: number;
 
-    @OneToMany(() => Book, (book) => book.IBSN)
-    book: Book[];
+  @OneToMany(() => Book, (book) => book.IBSN)
+  book: Book[];
 
-    @OneToMany(() => Order, (order) => order.id)
-    order: Order[];
+  @OneToMany(() => Order, (order) => order.id)
+  order: Order[];
 }

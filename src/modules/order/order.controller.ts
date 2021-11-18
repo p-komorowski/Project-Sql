@@ -10,27 +10,27 @@ import { OrderService } from './order.service';
 @ApiTags('Order')
 @Controller('order')
 export class OrderController {
-    constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService) {}
 
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @Post()
-    @Roles(Role.User)
-    @ApiBearerAuth()
-    @ApiOperation({ summary: 'Create order for logged yser' })
-    @ApiResponse({ status: 200, description: 'Order created.' })
-    @ApiUnauthorizedResponse({ description: 'User not logged in.' })
-    async addBasketToOrder() {
-        await this.orderService.createOrder();
-    }
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Post()
+  @Roles(Role.User)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Create order for logged user' })
+  @ApiResponse({ status: 200, description: 'Order created.' })
+  @ApiUnauthorizedResponse({ description: 'User not logged in.' })
+  async addBasketToOrder() {
+   return this.orderService.createOrder();
+  }
 
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @Get()
-    @Roles(Role.Moderator)
-    @ApiBearerAuth()
-    @ApiOperation({ summary: 'Show list of places orders' })
-    @ApiResponse({ status: 200, description: 'Order list shown' })
-    @ApiUnauthorizedResponse({ description: 'User not logged in.' })
-    async getAllOrders(): Promise<Order[]> {
-        return this.orderService.getAllOrders();
-    }
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get()
+  @Roles(Role.Moderator)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Show list of placed orders' })
+  @ApiResponse({ status: 200, description: 'Order list shown' })
+  @ApiUnauthorizedResponse({ description: 'User not logged in.' })
+  async getAllOrders(): Promise<Order[]> {
+    return this.orderService.getAllOrders();
+  }
 }

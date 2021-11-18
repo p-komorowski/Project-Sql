@@ -1,0 +1,35 @@
+@startuml
+skinparam shadowing false
+left to right direction
+
+actor User as u
+actor Moderator as m
+actor NonLogged as nl
+
+package Order {
+  usecase "Place" as place
+  usecase "List all" as listOrders
+}
+
+package Book {
+  usecase "Remove Review" as rmRev
+  usecase "Add review" as addRev
+  usecase "Get all books" as getAll
+}
+
+package Basket {
+  usecase "Add Book" as addBook
+  usecase "Change amount" as chCont
+}
+
+u --> place
+u --> addBook
+u --> chCont
+
+m --> listOrders
+m --> rmRev
+
+nl --> addRev
+nl --> getAll
+
+@enduml

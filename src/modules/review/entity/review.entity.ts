@@ -4,12 +4,12 @@ import { Book } from '../../book/entity/book.entity';
 
 @Entity()
 export class Review {
-    @PrimaryColumn()
-    id: string = uuid();
+  @PrimaryColumn()
+  id: string = uuid();
 
-    @Column()
-    review: string;
+  @Column()
+  review: string;
 
-    @ManyToOne(() => Book, (book) => book.review)
-    book: Book;
+  @ManyToOne(() => Book, (book) => book.review)
+  book: Book;
 }

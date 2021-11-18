@@ -5,23 +5,23 @@ import { TokenInterface } from '../interface/token.interface';
 
 @Entity()
 export class Token {
-    constructor(token: DeepPartial<TokenInterface>) {
-        Object.assign(this, token);
-    }
+  constructor(token: DeepPartial<TokenInterface>) {
+    Object.assign(this, token);
+  }
 
-    @PrimaryColumn()
-    id: string = uuid();
+  @PrimaryColumn()
+  id: string = uuid();
 
-    @ManyToOne(() => Customer, (user) => user.id)
-    @JoinColumn({ name: 'user_id' })
-    user: Customer;
+  @ManyToOne(() => Customer, (user) => user.id)
+  @JoinColumn({ name: 'user_id' })
+  user: Customer;
 
-    @Column()
-    token: string;
+  @Column()
+  token: string;
 
-    @Column({ name: 'exp_time' })
-    expTime: Date;
+  @Column({ name: 'exp_time' })
+  expTime: Date;
 
-    @Column({ name: 'last_login' })
-    lastLogin: Date;
+  @Column({ name: 'last_login' })
+  lastLogin: Date;
 }

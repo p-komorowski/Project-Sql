@@ -1,38 +1,38 @@
 version: '3.7'
 
 services:
-    main:
-        container_name: main
-        build:
-            context: .
-            target: development
-        volumes:
-            - .:/usr/src/app
-            - /usr/src/app/node_modules
-        ports:
-            - 3000:3000
-        command: npm start
-        env_file:
-            - .env
-        networks:
-            - webnet
-        depends_on:
-            - postgres
-    postgres:
-        container_name: postgresContainer
-        image: postgres:12
-        networks:
-            - webnet
-        environment:
-            POSTGRES_PASSWORD: Haslo!234
-            POSTGRES_USER: postgres
-            POSTGRES_DB: Project2
-            PG_DATA: /var/lib/postgresql/data
-        ports:
-            - 5432:5432
-        volumes:
-            - pgdata:/var/lib/postgresql/data
+  main:
+    container_name: main
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
+    command: npm start
+    env_file:
+      - .env
+    networks:
+      - webnet
+    depends_on:
+      - postgres
+  postgres:
+    container_name: postgresContainer
+    image: postgres:12
+    networks:
+      - webnet
+    environment:
+      POSTGRES_PASSWORD: Haslo!234
+      POSTGRES_USER: postgres
+      POSTGRES_DB: Project
+      PG_DATA: /var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 networks:
-    webnet:
+  webnet:
 volumes:
-    pgdata:
+  pgdata:
