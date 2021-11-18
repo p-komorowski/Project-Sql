@@ -1,0 +1,101 @@
+@startuml db
+skinparam dpi 100
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+
+entity "User" as usr {
+  *Id : uuid <<generated>>
+  *email: string
+  *Name: string
+  *Password: string
+  *Role: string
+  *Token: string
+  --
+  *BasketId: <<FK>>
+  *OrderId: <<FK>>
+}
+
+entity "Basket" as basket {
+  *Id : uuid <<generated>>
+  --
+  *CustomerId: <<FK>>
+  *BasketBooksiD: <<FK>>
+  *OrderId: <<FK>>
+}
+
+entity "BasketBook" as bb {
+  *Id : number <<generated>>
+  *Count : number
+  --
+  *BookId: number<<FK>>;
+  *BasketId: number<<FK>>
+}
+
+entity "Book" as book {
+  *IBSN : number <<generated>>
+  *Title: string
+  *Price: number
+  *Author: string
+  *Count: number
+  --
+  *BaketBookId: <<FK>>
+  *OrderBooksId: <<FK>>
+  *ReviewId: <<FK>>
+}
+
+entity "Review" as rev {
+  *Id : uuid <<generated>>
+  *Review: string
+  --
+  *BookId: <<FK>>
+}
+
+entity "Order" as order {
+  *Id : number <<generated>>
+  --
+  *BasketId: <<FK>>
+  *UserID: <<FK>>
+}
+
+entity "OrderBook" as orderB {
+  *Id : number <<generated>>
+  *BasketId: string
+  *IBSN: string
+  *Quantity: number
+  --
+  *BookId: <<FK>>
+  *OrderId: <<FK>
+}
+
+entity "Token" as token {
+  *Id : number <<generated>>
+  *Token: string
+  *ExpTime: date
+  *LastLogin: date
+}
+
+
+' Zero or One	|o--
+' Exactly One	||--
+' Zero or Many	}o--
+' One or Many	}|--
+
+usr |o--o| basket
+basket |o--|{ bb
+book |o--|{ bb
+
+rev }|--|{ book
+
+order |o--|{ orderB
+order |o--o| basket
+order |o--o| usr
+
+orderB |o--|{ book
+
+usr |o--|{ token
+
+
+
+
+@enduml

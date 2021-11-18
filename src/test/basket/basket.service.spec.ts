@@ -12,8 +12,8 @@ import { RequestContextProvider } from '../../middleware/request-context.middlew
 import { BookDto } from '../../modules/book/dto';
 import { basketBooksModelMock, basketModelMock, BookModelMock, newBookModelMock, newUserModelMock, newUserWithoutBasketModelMock } from '../mock';
 import { BadRequestException, UnauthorizedException } from '@nestjs/common';
-import { basketBookRepositoryStubFactory, basketRepositoryStubFactory, bookRepositoryStubFactory, MockType, userRepositoryStubFactory } from '../stub/basket-repostiory.stub';
-import { UserRepository } from 'src/modules/user/repository/user.repository';
+import { basketBookRepositoryStubFactory, basketRepositoryStubFactory, bookRepositoryStubFactory, MockType, userRepositoryStubFactory } from '../stub/';
+import { UserRepository } from '../../modules/user/repository/user.repository';
 
 describe('BasketService', () => {
   let service: BasketService;
@@ -86,13 +86,13 @@ describe('BasketService', () => {
   });
 
   it('should get basket for current user', async () => {
-    const foo = await service.getBasketForUser(newUserModelMock);
-    expect(foo).toEqual(basketModelMock);
+    const result = await service.getBasketForUser(newUserModelMock);
+    expect(result).toEqual(basketModelMock);
   });
 
   it('should get basketBook for basket', async () => {
-    const foo = await service.getBasketBookForBasket('1', '1');
-    expect(foo).toEqual(basketBooksModelMock);
+    const result = await service.getBasketBookForBasket('1', '1');
+    expect(result).toEqual(basketBooksModelMock);
   });
   describe('insert', () => {
     it('should insert Book into Basket', async () => {
@@ -104,9 +104,9 @@ describe('BasketService', () => {
           getOne: jest.fn().mockReturnValue(null),
         })),
       );
-      const foo = await service.insertBookInBasket(newBookModelMock as BookDto);
+      const result = await service.insertBookInBasket(newBookModelMock as BookDto);
 
-      expect(foo).toEqual(basketBooksModelMock);
+      expect(result).toEqual(basketBooksModelMock);
     });
 
     it('should throw BadRequestException if book is already in basket', async () => {
@@ -118,7 +118,7 @@ describe('BasketService', () => {
       await expect(promise).rejects.toThrow(BadRequestException);
     });
 
-    it('should call basketRepository one when basket does not exist', async () => {
+    it('should call basketRepository once when basket does not exist', async () => {
       userRepository.findOne.mockImplementation(
         jest.fn().mockReturnValue(newUserWithoutBasketModelMock),
       );
@@ -153,29 +153,29 @@ describe('BasketService', () => {
 
   describe('find', () => {
     it('should find books in user basket', async () => {
-      const foo = await service.getBooksInUserBasket();
-      expect(foo).toEqual([basketModelMock]);
+      const result = await service.getBooksInUserBasket();
+      expect(result).toEqual([basketModelMock]);
     });
 
     it('should find user', async () => {
-      const foo = await service.getUser(newUserModelMock);
-      expect(foo).toEqual(newUserModelMock);
+      const result = await service.getUser(newUserModelMock);
+      expect(result).toEqual(newUserModelMock);
     });
 
     it('should find user by id', async () => {
-      const foo = await service.getUserById(1);
-      expect(foo).toEqual(newUserModelMock);
+      const result = await service.getUserById(1);
+      expect(result).toEqual(newUserModelMock);
     });
   });
 
   describe('count', () => {
     it('update count of book in user basket', async () => {
-      const foo = await service.updateCountOfBookInBasket('1', {
+      const result = await service.updateCountOfBookInBasket('1', {
         id: '1',
         count: 3,
         IBSN: '1',
       });
-      expect(foo).toEqual({ id: '1', count: 3 });
+      expect(result).toEqual({ id: '1', count: 3 });
     });
 
     it('should throw BadRequest when user did not have basket', async () => {

@@ -22,7 +22,7 @@ export class BooksController {
   ) {}
 
   @Get()
-  @ApiOperation({ summary: 'Get all products.' })
+  @ApiOperation({ summary: 'Get all products.'})
   @ApiResponse({ status: 200, description: 'Getting all products.' })
   async getAllProducts(
     @Query('page')
@@ -94,7 +94,7 @@ export class BooksController {
   async removeReviewForBook(
     @Param('IBSN') IBSN: string,
     @Body() reviewDto: DeleteReviewDto,
-  ): Promise<Review[]> {
+  ): Promise<void> {
     return this.reviewService.deleteReviews(IBSN, reviewDto.reviewIds);
   }
 }

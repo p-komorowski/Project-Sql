@@ -13,7 +13,7 @@ export class ReviewService {
     private readonly reviewRepository: ReviewRepository,
   ) {}
 
-  async deleteReviews(IBSN: string, review_ids: string[]): Promise<any> {
+  async deleteReviews(IBSN: string, review_ids: string[]): Promise<void> {
     await this.reviewRepository
       .createQueryBuilder('review')
       .delete()
@@ -34,6 +34,9 @@ export class ReviewService {
     });
     newReview.book = book;
 
-    return this.reviewRepository.save(newReview);
+    return this.reviewRepository.save({
+      ...newReview,
+      book
+      });
   }
 }

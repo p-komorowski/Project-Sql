@@ -1,14 +1,14 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { RequestContextProvider } from '../../middleware/request-context.middleware';
-import { LoginDto } from '../auth/dto/login.dto';
+import { LoginDto } from '../auth/dto/index';
 import { BooksService } from '../book/book.service';
-import { BookDto } from '../book/dto/book.dto';
+import { BookDto } from '../book/dto/index';
 import { Customer } from '../user/entities';
 import { UserRepository } from '../user/repository/user.repository';
 import { UsersService } from '../user/user.service';
-import { BasketBookDto } from './dto/basket-book.dto';
-import { BasketBook, Basket } from './entities/index';
+import { BasketBookDto } from './dto/index';
+import { BasketBook, Basket } from './entities';
 import { BasketBooksRepository } from './repository/basket-books.repository';
 import { BasketRepository } from './repository/basket.repository';
 
@@ -116,8 +116,7 @@ export class BasketService {
   }
 
   async getUser(user: LoginDto): Promise<Customer> {
-    const user1 = await this.userService.findById(user);
-    return user1;
+     return await this.userService.findById(user);
   }
 
   async getUserById(id: number): Promise<Customer> {
@@ -143,6 +142,6 @@ export class BasketService {
     }
 
     basketBook.count = count.count;
-    return await this.basketBooksRepository.save(basketBook);
+    return this.basketBooksRepository.save(basketBook);
   }
 }

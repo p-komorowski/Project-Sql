@@ -67,7 +67,7 @@ export class BasketController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @ApiBearerAuth()
   @Roles(Role.User)
-  @ApiOperation({ summary: 'Show all book in user basket' })
+  @ApiOperation({ summary: 'Show all books in user basket' })
   @ApiResponse({ status: 200, description: 'show list' })
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
   async showBooksInBasket(): Promise<BasketBook[]> {

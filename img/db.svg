@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="705.2083px" preserveAspectRatio="none" style="width:640px;height:705px;background:#FFFFFF;" version="1.1" viewBox="0 0 640 705" width="640.625px" zoomAndPan="magnify"><defs/><g><!--MD5=[060038576528f0c4b2c15310f760dccd]
+class usr--><rect codeLine="6" fill="#FEFECE" height="158.1055" id="usr" style="stroke:#A80036;stroke-width:1.5625;" width="132.2917" x="436.4583" y="156.25"/><text fill="#000000" font-family="sans-serif" font-size="12.5" lengthAdjust="spacing" textLength="28.125" x="488.5417" y="174.4344">User</text><line style="stroke:#A80036;stroke-width:1.5625;" x1="437.5" x2="567.7083" y1="182.3893" y2="182.3893"/><ellipse cx="447.9167" cy="193.8477" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="105.2083" x="457.2917" y="198.4507">Id : uuid «generated»</text><ellipse cx="447.9167" cy="208.2601" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="59.375" x="457.2917" y="212.8632">email: string</text><ellipse cx="447.9167" cy="222.6725" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="457.2917" y="227.2756">Name: string</text><ellipse cx="447.9167" cy="237.085" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="86.4583" x="457.2917" y="241.688">Password: string</text><ellipse cx="447.9167" cy="251.4974" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="56.25" x="457.2917" y="256.1005">Role: string</text><ellipse cx="447.9167" cy="265.9098" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="457.2917" y="270.5129">Token: string</text><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="437.5" x2="567.7083" y1="277.1973" y2="277.1973"/><ellipse cx="447.9167" cy="288.6556" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="75" x="457.2917" y="293.2587">BasketId: «FK»</text><ellipse cx="447.9167" cy="303.068" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="69.7917" x="457.2917" y="307.6711">OrderId: «FK»</text><!--MD5=[e2c501cb7263949ac69b8daf5f9d6c3e]
+class basket--><rect codeLine="18" fill="#FEFECE" height="100.4557" id="basket" style="stroke:#A80036;stroke-width:1.5625;" width="134.375" x="313.5417" y="406.25"/><text fill="#000000" font-family="sans-serif" font-size="12.5" lengthAdjust="spacing" textLength="39.5833" x="360.9375" y="424.4344">Basket</text><line style="stroke:#A80036;stroke-width:1.5625;" x1="314.5833" x2="446.875" y1="432.3893" y2="432.3893"/><ellipse cx="325" cy="443.8477" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="105.2083" x="334.375" y="448.4507">Id : uuid «generated»</text><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="314.5833" x2="446.875" y1="455.1351" y2="455.1351"/><ellipse cx="325" cy="466.5934" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="88.5417" x="334.375" y="471.1965">CustomerId: «FK»</text><ellipse cx="325" cy="481.0059" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="107.2917" x="334.375" y="485.6089">BasketBooksiD: «FK»</text><ellipse cx="325" cy="495.4183" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="69.7917" x="334.375" y="500.0214">OrderId: «FK»</text><!--MD5=[01435b38e31d51f396829940ef8f050c]
+class bb--><rect codeLine="26" fill="#FEFECE" height="100.4557" id="bb" style="stroke:#A80036;stroke-width:1.5625;" width="148.9583" x="212.5" y="597.9167"/><text fill="#000000" font-family="sans-serif" font-size="12.5" lengthAdjust="spacing" textLength="68.75" x="252.6042" y="616.1011">BasketBook</text><line style="stroke:#A80036;stroke-width:1.5625;" x1="213.5417" x2="360.4167" y1="624.056" y2="624.056"/><ellipse cx="223.9583" cy="635.5143" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="121.875" x="233.3333" y="640.1174">Id : number «generated»</text><ellipse cx="223.9583" cy="649.9268" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="76.0417" x="233.3333" y="654.5298">Count : number</text><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="213.5417" x2="360.4167" y1="661.2142" y2="661.2142"/><ellipse cx="223.9583" cy="672.6725" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="106.25" x="233.3333" y="677.2756">BookId: number«FK»;</text><ellipse cx="223.9583" cy="687.085" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="112.5" x="233.3333" y="691.688">BasketId: number«FK»</text><!--MD5=[1c6857ac495ee2749ec0cda40d744d56]
+class book--><rect codeLine="34" fill="#FEFECE" height="158.1055" id="book" style="stroke:#A80036;stroke-width:1.5625;" width="164.5833" x="111.9792" y="377.0833"/><text fill="#000000" font-family="sans-serif" font-size="12.5" lengthAdjust="spacing" textLength="29.1667" x="179.6875" y="395.2677">Book</text><line style="stroke:#A80036;stroke-width:1.5625;" x1="113.0208" x2="275.5208" y1="403.2227" y2="403.2227"/><ellipse cx="123.4375" cy="414.681" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="137.5" x="132.8125" y="419.2841">IBSN : number «generated»</text><ellipse cx="123.4375" cy="429.0934" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="54.1667" x="132.8125" y="433.6965">Title: string</text><ellipse cx="123.4375" cy="443.5059" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="68.75" x="132.8125" y="448.1089">Price: number</text><ellipse cx="123.4375" cy="457.9183" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="68.75" x="132.8125" y="462.5214">Author: string</text><ellipse cx="123.4375" cy="472.3307" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="72.9167" x="132.8125" y="476.9338">Count: number</text><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="113.0208" x2="275.5208" y1="483.6182" y2="483.6182"/><ellipse cx="123.4375" cy="495.0765" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="93.75" x="132.8125" y="499.6796">BaketBookId: «FK»</text><ellipse cx="123.4375" cy="509.4889" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="101.0417" x="132.8125" y="514.092">OrderBooksId: «FK»</text><ellipse cx="123.4375" cy="523.9014" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="79.1667" x="132.8125" y="528.5044">ReviewId: «FK»</text><!--MD5=[1ebeca9e36bfc66d1115f431eca4252b]
+class rev--><rect codeLine="46" fill="#FEFECE" height="86.0433" id="rev" style="stroke:#A80036;stroke-width:1.5625;" width="132.2917" x="7.2917" y="192.1875"/><text fill="#000000" font-family="sans-serif" font-size="12.5" lengthAdjust="spacing" textLength="41.6667" x="52.6042" y="210.3719">Review</text><line style="stroke:#A80036;stroke-width:1.5625;" x1="8.3333" x2="138.5417" y1="218.3268" y2="218.3268"/><ellipse cx="18.75" cy="229.7852" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="105.2083" x="28.125" y="234.3882">Id : uuid «generated»</text><ellipse cx="18.75" cy="244.1976" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="72.9167" x="28.125" y="248.8007">Review: string</text><ellipse cx="18.75" cy="258.61" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="65.625" x="28.125" y="263.2131">BookId: «FK»</text><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="8.3333" x2="138.5417" y1="269.8975" y2="269.8975"/><!--MD5=[a5d022e75c0065b9d5401ddae886f23d]
+class order--><rect codeLine="53" fill="#FEFECE" height="86.0433" id="order" style="stroke:#A80036;stroke-width:1.5625;" width="148.9583" x="306.25" y="7.2917"/><text fill="#000000" font-family="sans-serif" font-size="12.5" lengthAdjust="spacing" textLength="32.2917" x="364.5833" y="25.4761">Order</text><line style="stroke:#A80036;stroke-width:1.5625;" x1="307.2917" x2="454.1667" y1="33.431" y2="33.431"/><ellipse cx="317.7083" cy="44.8893" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="121.875" x="327.0833" y="49.4924">Id : number «generated»</text><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="307.2917" x2="454.1667" y1="56.1768" y2="56.1768"/><ellipse cx="317.7083" cy="67.6351" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="75" x="327.0833" y="72.2382">BasketId: «FK»</text><ellipse cx="317.7083" cy="82.0475" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="65.625" x="327.0833" y="86.6506">UserID: «FK»</text><!--MD5=[ba23cd8f7eb8885a9f4f76c4fe74dc45]
+class orderB--><rect codeLine="60" fill="#FEFECE" height="129.2806" id="orderB" style="stroke:#A80036;stroke-width:1.5625;" width="148.9583" x="176.0417" y="170.8333"/><text fill="#000000" font-family="sans-serif" font-size="12.5" lengthAdjust="spacing" textLength="61.4583" x="219.7917" y="189.0177">OrderBook</text><line style="stroke:#A80036;stroke-width:1.5625;" x1="177.0833" x2="323.9583" y1="196.9727" y2="196.9727"/><ellipse cx="187.5" cy="208.431" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="121.875" x="196.875" y="213.0341">Id : number «generated»</text><ellipse cx="187.5" cy="222.8434" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="77.0833" x="196.875" y="227.4465">BasketId: string</text><ellipse cx="187.5" cy="237.2559" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="58.3333" x="196.875" y="241.8589">IBSN: string</text><ellipse cx="187.5" cy="251.6683" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="85.4167" x="196.875" y="256.2714">Quantity: number</text><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="177.0833" x2="323.9583" y1="262.9557" y2="262.9557"/><ellipse cx="187.5" cy="274.4141" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="65.625" x="196.875" y="279.0171">BookId: «FK»</text><ellipse cx="187.5" cy="288.8265" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="76.0417" x="196.875" y="293.4296">OrderId: &lt;&lt;FK&gt;</text><!--MD5=[606c0e9a527600b962089599cf14ab26]
+class token--><rect codeLine="70" fill="#FEFECE" height="100.4557" id="token" style="stroke:#A80036;stroke-width:1.5625;" width="148.9583" x="484.375" y="406.25"/><text fill="#000000" font-family="sans-serif" font-size="12.5" lengthAdjust="spacing" textLength="35.4167" x="541.1458" y="424.4344">Token</text><line style="stroke:#A80036;stroke-width:1.5625;" x1="485.4167" x2="632.2917" y1="432.3893" y2="432.3893"/><ellipse cx="495.8333" cy="443.8477" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="121.875" x="505.2083" y="448.4507">Id : number «generated»</text><ellipse cx="495.8333" cy="458.2601" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="505.2083" y="462.8632">Token: string</text><ellipse cx="495.8333" cy="472.6725" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="69.7917" x="505.2083" y="477.2756">ExpTime: date</text><ellipse cx="495.8333" cy="487.085" fill="#000000" rx="3.125" ry="3.125" style="stroke:#000000;stroke-width:1.0416666666666667;"/><text fill="#000000" font-family="sans-serif" font-size="11.4583" lengthAdjust="spacing" textLength="77.0833" x="505.2083" y="491.688">LastLogin: date</text><line style="stroke:#A80036;stroke-width:1.5625;" x1="485.4167" x2="632.2917" y1="498.3724" y2="498.3724"/><!--MD5=[a208d743d978aa3265bc55008f83d4d7]
+link usr to basket--><path codeLine="83" d="M442.1875,323.1667 C442.1875,323.1667 442.1875,397.6979 442.1875,397.6979 " fill="none" id="usr-basket" style="stroke:#A80036;stroke-width:1.0416666666666667;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="442.1875" x2="442.1875" y1="394.5729" y2="406.0313"/><ellipse cx="442.1875" cy="394.5729" rx="4.1667" ry="4.1667" style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;" x1="446.3542" x2="438.0208" y1="401.8646" y2="401.8646"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;" x1="442.1875" x2="442.1875" y1="326.2917" y2="314.8333"/><ellipse cx="442.1875" cy="326.2917" rx="4.1667" ry="4.1667" style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;" x1="438.0208" x2="446.3542" y1="319" y2="319"/><!--MD5=[0a43439fb00c504c40857fb5edb5b9e3]
+link basket to bb--><path codeLine="84" d="M337.5,514.9375 C337.5,514.9375 337.5,589.5625 337.5,589.5625 " fill="none" id="basket-bb" style="stroke:#A80036;stroke-width:1.0416666666666667;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="337.5" x2="343.75" y1="589.5625" y2="597.8958"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="337.5" x2="331.25" y1="589.5625" y2="597.8958"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="337.5" x2="337.5" y1="589.5625" y2="597.8958"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="341.6667" x2="333.3333" y1="587.4792" y2="587.4792"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="337.5" x2="337.5" y1="518.0625" y2="506.6042"/><ellipse cx="337.5" cy="518.0625" rx="4.1667" ry="4.1667" style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;" x1="333.3333" x2="341.6667" y1="510.7708" y2="510.7708"/><!--MD5=[230ad113fd29cc20e4ad61b385e1f8e0]
+link book to bb--><path codeLine="85" d="M244.5313,543.9271 C244.5313,543.9271 244.5313,589.3542 244.5313,589.3542 " fill="none" id="book-bb" style="stroke:#A80036;stroke-width:1.0416666666666667;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="244.5313" x2="250.7813" y1="589.3542" y2="597.6875"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="244.5313" x2="238.2813" y1="589.3542" y2="597.6875"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="244.5313" x2="244.5313" y1="589.3542" y2="597.6875"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="248.6979" x2="240.3646" y1="587.2708" y2="587.2708"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="244.5313" x2="244.5313" y1="547.0521" y2="535.5938"/><ellipse cx="244.5313" cy="547.0521" rx="4.1667" ry="4.1667" style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;" x1="240.3646" x2="248.6979" y1="539.7604" y2="539.7604"/><!--MD5=[7cadafa2a1d328206fa7f80521078c91]
+link rev to book--><path codeLine="87" d="M125.7813,287.1146 C125.7813,287.1146 125.7813,368.4479 125.7813,368.4479 " fill="none" id="rev-book" style="stroke:#A80036;stroke-width:1.0416666666666667;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="125.7813" x2="132.0313" y1="368.4479" y2="376.7813"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="125.7813" x2="119.5313" y1="368.4479" y2="376.7813"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="125.7813" x2="125.7813" y1="368.4479" y2="376.7813"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="129.9479" x2="121.6146" y1="366.3646" y2="366.3646"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="125.7813" x2="119.5313" y1="287.1146" y2="278.7813"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="125.7813" x2="132.0313" y1="287.1146" y2="278.7813"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="125.7813" x2="125.7813" y1="287.1146" y2="278.7813"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="121.6146" x2="129.9479" y1="289.1979" y2="289.1979"/><!--MD5=[23dd389be0bc18f320baefb736d948e2]
+link order to orderB--><path codeLine="89" d="M315.625,102.2083 C315.625,102.2083 315.625,162.2604 315.625,162.2604 " fill="none" id="order-orderB" style="stroke:#A80036;stroke-width:1.0416666666666667;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="315.625" x2="321.875" y1="162.2604" y2="170.5938"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="315.625" x2="309.375" y1="162.2604" y2="170.5938"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="315.625" x2="315.625" y1="162.2604" y2="170.5938"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="319.7917" x2="311.4583" y1="160.1771" y2="160.1771"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="315.625" x2="315.625" y1="105.3333" y2="93.875"/><ellipse cx="315.625" cy="105.3333" rx="4.1667" ry="4.1667" style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;" x1="311.4583" x2="319.7917" y1="98.0417" y2="98.0417"/><!--MD5=[536b5f2f8921158e9af447044d307ce4]
+link order to basket--><path codeLine="90" d="M380.7292,102.2708 C380.7292,102.2708 380.7292,397.875 380.7292,397.875 " fill="none" id="order-basket" style="stroke:#A80036;stroke-width:1.0416666666666667;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="380.7292" x2="380.7292" y1="394.75" y2="406.2083"/><ellipse cx="380.7292" cy="394.75" rx="4.1667" ry="4.1667" style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;" x1="384.8958" x2="376.5625" y1="402.0417" y2="402.0417"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;" x1="380.7292" x2="380.7292" y1="105.3958" y2="93.9375"/><ellipse cx="380.7292" cy="105.3958" rx="4.1667" ry="4.1667" style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;" x1="376.5625" x2="384.8958" y1="98.1042" y2="98.1042"/><!--MD5=[eca3c48d4868e7e4155b6e02d5a56478]
+link order to usr--><path codeLine="91" d="M445.8333,102.2083 C445.8333,102.2083 445.8333,147.75 445.8333,147.75 " fill="none" id="order-usr" style="stroke:#A80036;stroke-width:1.0416666666666667;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="445.8333" x2="445.8333" y1="144.625" y2="156.0833"/><ellipse cx="445.8333" cy="144.625" rx="4.1667" ry="4.1667" style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;" x1="450" x2="441.6667" y1="151.9167" y2="151.9167"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;" x1="445.8333" x2="445.8333" y1="105.3333" y2="93.875"/><ellipse cx="445.8333" cy="105.3333" rx="4.1667" ry="4.1667" style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;" x1="441.6667" x2="450" y1="98.0417" y2="98.0417"/><!--MD5=[939dc704b8b3a9d706c3c5d63e56b7c3]
+link orderB to book--><path codeLine="93" d="M226.3021,308.5104 C226.3021,308.5104 226.3021,368.6667 226.3021,368.6667 " fill="none" id="orderB-book" style="stroke:#A80036;stroke-width:1.0416666666666667;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="226.3021" x2="232.5521" y1="368.6667" y2="377"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="226.3021" x2="220.0521" y1="368.6667" y2="377"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="226.3021" x2="226.3021" y1="368.6667" y2="377"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="230.4688" x2="222.1354" y1="366.5833" y2="366.5833"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="226.3021" x2="226.3021" y1="311.6354" y2="300.1771"/><ellipse cx="226.3021" cy="311.6354" rx="4.1667" ry="4.1667" style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;" x1="222.1354" x2="230.4688" y1="304.3438" y2="304.3438"/><!--MD5=[f525f78db990315c2be5e6ecb9138162]
+link usr to token--><path codeLine="95" d="M526.5625,323.1667 C526.5625,323.1667 526.5625,397.6979 526.5625,397.6979 " fill="none" id="usr-token" style="stroke:#A80036;stroke-width:1.0416666666666667;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="526.5625" x2="532.8125" y1="397.6979" y2="406.0313"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="526.5625" x2="520.3125" y1="397.6979" y2="406.0313"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="526.5625" x2="526.5625" y1="397.6979" y2="406.0313"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="530.7292" x2="522.3958" y1="395.6146" y2="395.6146"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;" x1="526.5625" x2="526.5625" y1="326.2917" y2="314.8333"/><ellipse cx="526.5625" cy="326.2917" rx="4.1667" ry="4.1667" style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0416666666666667;fill:none;" x1="522.3958" x2="530.7292" y1="319" y2="319"/><!--MD5=[95813853282b7515e14fb3a6d308fb41]
+@startuml db
+skinparam dpi 100
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+
+entity "User" as usr {
+  *Id : uuid <<generated>>
+  *email: string
+  *Name: string
+  *Password: string
+  *Role: string
+  *Token: string
+  - -
+  *BasketId: <<FK>>
+  *OrderId: <<FK>>
+}
+
+entity "Basket" as basket {
+  *Id : uuid <<generated>>
+  - -
+  *CustomerId: <<FK>>
+  *BasketBooksiD: <<FK>>
+  *OrderId: <<FK>>
+}
+
+entity "BasketBook" as bb {
+  *Id : number <<generated>>
+  *Count : number
+  - -
+  *BookId: number<<FK>>;
+  *BasketId: number<<FK>>
+}
+
+entity "Book" as book {
+  *IBSN : number <<generated>>
+  *Title: string
+  *Price: number
+  *Author: string
+  *Count: number
+  - -
+  *BaketBookId: <<FK>>
+  *OrderBooksId: <<FK>>
+  *ReviewId: <<FK>>
+}
+
+entity "Review" as rev {
+  *Id : uuid <<generated>>
+  *Review: string
+  *BookId: <<FK>>
+  - -
+}
+
+entity "Order" as order {
+  *Id : number <<generated>>
+  - -
+  *BasketId: <<FK>>
+  *UserID: <<FK>>
+}
+
+entity "OrderBook" as orderB {
+  *Id : number <<generated>>
+  *BasketId: string
+  *IBSN: string
+  *Quantity: number
+  - -
+  *BookId: <<FK>>
+  *OrderId: <<FK>
+}
+
+entity "Token" as token {
+  *Id : number <<generated>>
+  *Token: string
+  *ExpTime: date
+  *LastLogin: date
+}
+
+
+' Zero or One	|o- -
+' Exactly One	||- -
+' Zero or Many	}o- -
+' One or Many	}|- -
+
+usr |o- -o| basket
+basket |o- -|{ bb
+book |o- -|{ bb
+
+rev }|- -|{ book
+
+order |o- -|{ orderB
+order |o- -o| basket
+order |o- -o| usr
+
+orderB |o- -|{ book
+
+usr |o- -|{ token
+
+
+
+
+@enduml
+
+@startuml db
+skinparam dpi 100
+hide circle
+skinparam linetype ortho
+skinparam shadowing false
+
+entity "User" as usr {
+  *Id : uuid <<generated>>
+  *email: string
+  *Name: string
+  *Password: string
+  *Role: string
+  *Token: string
+  - -
+  *BasketId: <<FK>>
+  *OrderId: <<FK>>
+}
+
+entity "Basket" as basket {
+  *Id : uuid <<generated>>
+  - -
+  *CustomerId: <<FK>>
+  *BasketBooksiD: <<FK>>
+  *OrderId: <<FK>>
+}
+
+entity "BasketBook" as bb {
+  *Id : number <<generated>>
+  *Count : number
+  - -
+  *BookId: number<<FK>>;
+  *BasketId: number<<FK>>
+}
+
+entity "Book" as book {
+  *IBSN : number <<generated>>
+  *Title: string
+  *Price: number
+  *Author: string
+  *Count: number
+  - -
+  *BaketBookId: <<FK>>
+  *OrderBooksId: <<FK>>
+  *ReviewId: <<FK>>
+}
+
+entity "Review" as rev {
+  *Id : uuid <<generated>>
+  *Review: string
+  *BookId: <<FK>>
+  - -
+}
+
+entity "Order" as order {
+  *Id : number <<generated>>
+  - -
+  *BasketId: <<FK>>
+  *UserID: <<FK>>
+}
+
+entity "OrderBook" as orderB {
+  *Id : number <<generated>>
+  *BasketId: string
+  *IBSN: string
+  *Quantity: number
+  - -
+  *BookId: <<FK>>
+  *OrderId: <<FK>
+}
+
+entity "Token" as token {
+  *Id : number <<generated>>
+  *Token: string
+  *ExpTime: date
+  *LastLogin: date
+}
+
+
+
+usr |o- -o| basket
+basket |o- -|{ bb
+book |o- -|{ bb
+
+rev }|- -|{ book
+
+order |o- -|{ orderB
+order |o- -o| basket
+order |o- -o| usr
+
+orderB |o- -|{ book
+
+usr |o- -|{ token
+
+
+
+
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 14:40:07 CEST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1250
+Language: pl
+Country: PL
+--></g></svg>

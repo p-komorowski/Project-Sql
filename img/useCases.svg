@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="586px" preserveAspectRatio="none" style="width:322px;height:586px;background:#FFFFFF;" version="1.1" viewBox="0 0 322 586" width="322px" zoomAndPan="magnify"><defs/><g><!--MD5=[4523f918a499262345e8d765b0fe948b]
+cluster Order--><polygon fill="#FFFFFF" points="158,184,205,184,212,207.6094,270,207.6094,270,334,158,334,158,184" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="158" x2="212" y1="207.6094" y2="207.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="41" x="162" y="200.5332">Order</text><!--MD5=[0d45b23b700a447abd583c185bd8f1e2]
+cluster Book--><polygon fill="#FFFFFF" points="123,358,165,358,172,381.6094,305,381.6094,305,579,123,579,123,358" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="123" x2="172" y1="381.6094" y2="381.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="36" x="127" y="374.5332">Book</text><!--MD5=[c742c62c3ff97a8b7fc57e99a640f73a]
+cluster Basket--><polygon fill="#FFFFFF" points="123,6,177,6,184,29.6094,305,29.6094,305,160,123,160,123,6" style="stroke:#000000;stroke-width:1.5;"/><line style="stroke:#000000;stroke-width:1.5;" x1="123" x2="184" y1="29.6094" y2="29.6094"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="48" x="127" y="22.5332">Basket</text><ellipse cx="214.234" cy="235.9517" fill="#FEFECE" rx="36.234" ry="15.4517" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="35" x="196.734" y="239.6802">Place</text><ellipse cx="213.7696" cy="301.9517" fill="#FEFECE" rx="39.7696" ry="15.4517" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="40" x="193.7696" y="305.6802">List all</text><ellipse cx="213.8525" cy="411.8705" fill="#FEFECE" rx="74.8525" ry="17.3705" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="101" x="160.3525" y="416.3871">Remove Review</text><ellipse cx="213.9074" cy="480.0891" fill="#FEFECE" rx="60.9074" ry="15.5891" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="69" x="176.4074" y="484.6057">Add review</text><ellipse cx="213.9277" cy="547.0855" fill="#FEFECE" rx="68.4277" ry="16.0855" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="83" x="169.4277" y="551.6021">Get all books</text><ellipse cx="213.9968" cy="58.0429" fill="#FEFECE" rx="54.9968" ry="15.5429" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="61" x="180.4968" y="62.5595">Add Book</text><ellipse cx="213.8525" cy="125.8705" fill="#FEFECE" rx="74.8525" ry="17.3705" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="101" x="160.3525" y="130.3871">Change amount</text><!--MD5=[7d46d6cd919e02e6168a09ad91eae8b4]
+entity u--><ellipse cx="42.5" cy="95.5" fill="#FEFECE" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M42.5,103.5 L42.5,130.5 M29.5,111.5 L55.5,111.5 M42.5,130.5 L29.5,145.5 M42.5,130.5 L55.5,145.5 " fill="none" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="29" x="28" y="162.5332">User</text><!--MD5=[c617d1e94391e02d80a02faf38d11fae]
+entity m--><ellipse cx="42.5" cy="353.5" fill="#FEFECE" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M42.5,361.5 L42.5,388.5 M29.5,369.5 L55.5,369.5 M42.5,388.5 L29.5,403.5 M42.5,388.5 L55.5,403.5 " fill="none" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="65" x="10" y="420.5332">Moderator</text><!--MD5=[606c57efacac03fa346f32d168606655]
+entity nl--><ellipse cx="42.5" cy="478.5" fill="#FEFECE" rx="8" ry="8" style="stroke:#A80036;stroke-width:1.5;"/><path d="M42.5,486.5 L42.5,513.5 M29.5,494.5 L55.5,494.5 M42.5,513.5 L29.5,528.5 M42.5,513.5 L55.5,528.5 " fill="none" style="stroke:#A80036;stroke-width:1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="73" x="6" y="545.5332">NonLogged</text><!--MD5=[89a93a7fd2f392fa85975f056f5f6592]
+link u to place--><path d="M57.08,134.82 C85.77,153.43 152.85,196.96 188.96,220.4 " fill="none" id="u-to-place" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="193.21,223.15,187.8222,214.9055,189.0106,220.4361,183.48,221.6245,193.21,223.15" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[9000e91e8d62425df782cf8f19275a86]
+link u to addBook--><path d="M57.23,118.61 C71.45,111.12 94.42,99.46 115,91 C133.06,83.58 153.47,76.5 170.96,70.82 " fill="none" id="u-to-addBook" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="175.82,69.26,166.025,68.2317,171.0639,70.8025,168.493,75.8414,175.82,69.26" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[33456fa97c103d91ef56173c6def6603]
+link u to chCont--><path d="M57.08,126 C74.02,126 104.32,126 133.74,126 " fill="none" id="u-to-chCont" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="138.84,126,129.84,122,133.84,126,129.84,130,138.84,126" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[29a7ae1b31df684209a0972cd78c4046]
+link m to listOrders--><path d="M75.38,368.58 C106.42,353.56 153.22,330.92 183.44,316.3 " fill="none" id="m-to-listOrders" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="188.14,314.02,178.2968,314.3541,183.6425,316.2045,181.792,321.5502,188.14,314.02" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[1df3329053c9795a4cd5037d6b733a63]
+link m to rmRev--><path d="M75.38,389.27 C95.62,392.61 122.54,397.06 147.21,401.13 " fill="none" id="m-to-rmRev" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="152.44,402,144.2099,396.5903,147.5065,401.1873,142.9095,404.4839,152.44,402" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[da081e478da7ab86c1fc513b72eb7371]
+link nl to addRev--><path d="M79.03,502.92 C101.88,499.01 132.02,493.86 157.93,489.42 " fill="none" id="nl-to-addRev" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="163.05,488.55,153.5045,486.1243,158.1215,489.3928,154.8531,494.0099,163.05,488.55" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[590551916c7a3214aa14f0e3c3e2f9bc]
+link nl to getAll--><path d="M79.03,516.97 C102.15,522.15 132.74,529.01 158.85,534.86 " fill="none" id="nl-to-getAll" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="164.01,536.02,156.1121,530.1359,159.1328,534.9187,154.35,537.9394,164.01,536.02" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[04592d06c143a9be2d2b398df751fcf2]
+@startuml
+skinparam shadowing false
+left to right direction
+
+actor User as u
+actor Moderator as m
+actor NonLogged as nl
+
+package Order {
+  usecase "Place" as place
+  usecase "List all" as listOrders
+}
+
+package Book {
+  usecase "Remove Review" as rmRev
+  usecase "Add review" as addRev
+  usecase "Get all books" as getAll
+}
+
+package Basket {
+  usecase "Add Book" as addBook
+  usecase "Change amount" as chCont
+}
+
+u - -> place
+u - -> addBook
+u - -> chCont
+
+m - -> listOrders
+m - -> rmRev
+
+nl - -> addRev
+nl - -> getAll
+
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 14:40:07 CEST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1250
+Language: pl
+Country: PL
+--></g></svg>

@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Res, Logger } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LoginDto, RegisterDto } from './dto/index';
+import { LoginDto, RegisterDto } from './dto';
 import { Response } from 'express';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 
@@ -21,6 +21,8 @@ export class AuthController {
     this.logger.warn('logger test warn');
     return this.authService.register(reqisterDto);
   }
+
+
 
   @Post('auth/login')
   @ApiOperation({ summary: 'Log user' })

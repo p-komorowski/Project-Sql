@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Customer } from './entities';
-import { RegisterDto, LoginDto } from '../auth/dto/index';
+import { RegisterDto, LoginDto } from '../auth/dto';
 import { UserRepository } from './repository/user.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -10,10 +10,6 @@ export class UsersService {
     @InjectRepository(Customer)
     private readonly repository: UserRepository,
   ) {}
-
-  findAll(): Promise<Customer[]> {
-    return this.repository.find();
-  }
 
   async findByEmail(email: string): Promise<Customer> {
     return this.repository.findOne({
