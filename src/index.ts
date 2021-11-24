@@ -33,9 +33,9 @@ async function bootstrap() {
   );
   createConnection({
     name: 'new',
-    type: 'postgres',
-    host: config.database.host,
-    port: 5432,
+    type: 'mysql',
+    host: 'config.database.host',
+    port: config.database.port,
     username: config.database.username,
     password: config.database.password,
     database: config.database.database,

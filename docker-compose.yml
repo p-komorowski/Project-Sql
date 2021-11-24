@@ -26,7 +26,7 @@ services:
     environment:
       POSTGRES_PASSWORD: Haslo!234
       POSTGRES_USER: postgres
-      POSTGRES_DB: Project
+      POSTGRES_DB: Project2
       PG_DATA: /var/lib/postgresql/data
     ports:
       - 5432:5432
@@ -34,5 +34,6 @@ services:
       - pgdata:/var/lib/postgresql/data
 networks:
   webnet:
+    driver: bridge
 volumes:
   pgdata:
