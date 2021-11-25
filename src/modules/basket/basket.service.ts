@@ -1,9 +1,11 @@
-import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { plainToClass } from 'class-transformer';
 import { RequestContextProvider } from '../../middleware/request-context.middleware';
 import { LoginDto } from '../auth/dto/index';
 import { BooksService } from '../book/book.service';
 import { BookDto } from '../book/dto/index';
+import { UserResponseDto } from '../user/dto/user-response.dto';
 import { Customer } from '../user/entities';
 import { UserRepository } from '../user/repository/user.repository';
 import { UsersService } from '../user/user.service';
@@ -33,13 +35,13 @@ export class BasketService {
     const currentUser = RequestContextProvider.currentUser();
     const userBasket = await this.getBasketForUser(currentUser);
     if (!userBasket) {
-      throw new UnauthorizedException(
+      throw new BadRequestException(
         'cannot delete because user did not have a basket',
       );
     }
     const basketBook = await this.getBasketBookForBasket(IBSN, userBasket.id);
     if (!basketBook) {
-      throw new UnauthorizedException(
+      throw new BadRequestException(
         'cannot delete because there is no such book in user basket',
       );
     }
@@ -80,8 +82,7 @@ export class BasketService {
       },
       relations: ['basket'],
     });
-    
-   
+
     let basket = userWithRelations.basket;
     if (!basket) {
       basket = new Basket();
@@ -115,8 +116,9 @@ export class BasketService {
     return userBasketBooks;
   }
 
-  async getUser(user: LoginDto): Promise<Customer> {
-     return await this.userService.findById(user);
+  async getUser(user: LoginDto): Promise<UserResponseDto> {
+    const result = await this.userService.findById(user);
+    return plainToClass(UserResponseDto, result);
   }
 
   async getUserById(id: number): Promise<Customer> {
@@ -126,7 +128,7 @@ export class BasketService {
   async updateCountOfBookInBasket(
     IBSN: string,
     count: BasketBookDto,
-  ): Promise<BasketBook> { 
+  ): Promise<BasketBook> {
     const currentUser = RequestContextProvider.currentUser();
     const userBasket = await this.getBasketForUser(currentUser);
     if (!userBasket) {

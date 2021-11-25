@@ -36,7 +36,7 @@ export class ReviewService {
 
     return this.reviewRepository.save({
       ...newReview,
-      book
-      });
+      book,
+    });
   }
 }

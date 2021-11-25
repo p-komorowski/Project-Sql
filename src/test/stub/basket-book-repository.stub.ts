@@ -1,11 +1,6 @@
-import {
-  basketBooksModelMock,
-  basketModelMock,
-  newUserModelMock,
-} from '../mock';
+import { basketBooksModelMock, basketModelMock, newUserModelMock } from '../mock';
 import { Repository } from 'typeorm';
 import { MockType } from '.';
-
 
 // @ts-ignore
 export const basketBookRepositoryStubFactory: () => MockType<Repository<any>> =

@@ -20,7 +20,7 @@ async function bootstrap() {
     )
     .build();
   const document = SwaggerModule.createDocument(app, swagger);
-  fs.writeFileSync("./swagger-spec.json", JSON.stringify(document));
+  fs.writeFileSync('./swagger-spec.json', JSON.stringify(document));
 
   SwaggerModule.setup('api', app, document);
   app.use(cookieParser());
@@ -40,12 +40,13 @@ async function bootstrap() {
     password: config.database.password,
     database: config.database.database,
     entities: entities,
-    synchronize: false,
+    synchronize: true,
   })
     .then((connection) => {
       connection.runMigrations();
     })
     .catch((error) => console.log(error));
+
   await app.listen(3000);
 }
 bootstrap();

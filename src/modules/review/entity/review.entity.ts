@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryColumn, ManyToOne } from 'typeorm';
 import { v4 as uuid } from 'uuid';
-import { Book } from '../../book/entity/book.entity';
+import { Book } from '../../book/entities/book.entity';
 
 @Entity()
 export class Review {

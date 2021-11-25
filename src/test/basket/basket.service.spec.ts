@@ -7,7 +7,7 @@ import { Basket, BasketBook } from '../../modules/basket/entities';
 import { BooksService } from '../../modules/book/book.service';
 import { UsersService } from '../../modules/user/user.service';
 import { Customer } from '../../modules/user/entities';
-import { Book } from '../../modules/book/entity/book.entity';
+import { Book } from '../../modules/book/entities/book.entity';
 import { RequestContextProvider } from '../../middleware/request-context.middleware';
 import { BookDto } from '../../modules/book/dto';
 import { basketBooksModelMock, basketModelMock, BookModelMock, newBookModelMock, newUserModelMock, newUserWithoutBasketModelMock } from '../mock';
@@ -104,7 +104,9 @@ describe('BasketService', () => {
           getOne: jest.fn().mockReturnValue(null),
         })),
       );
-      const result = await service.insertBookInBasket(newBookModelMock as BookDto);
+      const result = await service.insertBookInBasket(
+        newBookModelMock as BookDto,
+      );
 
       expect(result).toEqual(basketBooksModelMock);
     });

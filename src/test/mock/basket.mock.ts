@@ -9,7 +9,6 @@ export const basketBooksModelMock: BasketBook = {
   count: 1,
 } as BasketBook;
 
-
 export const newBasketBooksModelMock: BasketBook = {
   id: '2',
   count: 1,

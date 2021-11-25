@@ -1,11 +1,12 @@
 import { Customer } from './modules/user/entities';
-import { Book } from './modules/book/entity/book.entity';
+import { Book } from './modules/book/entities/book.entity';
 import { Token } from './modules/auth/entity/token.entity';
 import { BasketBook } from './modules/basket/entities/basket-book.entity';
 import { OrderBooks } from './modules/order/dto/order-books.dto';
 import { Order } from './modules/order/entity/order.entity';
 import { Basket } from './modules/basket/entities';
 import { Review } from './modules/review/entity/review.entity';
+import { PriceHistory } from './modules/book/entities/price-history.entity';
 interface ConfigDBInterface {
   type: any;
   host: string;
@@ -47,4 +48,5 @@ export const entities = [
   Order,
   Basket,
   Review,
+  PriceHistory,
 ];

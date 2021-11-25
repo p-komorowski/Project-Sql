@@ -7,7 +7,7 @@ import { UsersService } from '../../modules/user/user.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Basket, BasketBook } from '../../modules/basket/entities';
 import { basketBookRepositoryStubFactory, MockType, bookRepositoryStubFactory, userRepositoryStubFactory, basketRepositoryStubFactory } from '../stub';
-import { Book } from '../../modules/book/entity/book.entity';
+import { Book } from '../../modules/book/entities/book.entity';
 import { BasketController } from '../../modules/basket/basket.controller';
 import { JwtService } from '@nestjs/jwt';
 import { Strategy } from 'passport-jwt-mock';

@@ -6,9 +6,15 @@ import { BasketController } from './basket.controller';
 import { BasketService } from './basket.service';
 
 import { entities } from '../../config';
+import { PriceHistoryRepository } from '../book/repository/price-history.repostiory';
 @Module({
   imports: [TypeOrmModule.forFeature(entities)],
-  providers: [BooksService, UsersService, BasketService],
+  providers: [
+    BooksService,
+    UsersService,
+    BasketService,
+    PriceHistoryRepository,
+  ],
   controllers: [BasketController],
 })
 export class BasketModule {}

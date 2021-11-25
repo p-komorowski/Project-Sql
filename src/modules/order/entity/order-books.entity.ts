@@ -1,4 +1,4 @@
-import { Book } from '../../book/entity/book.entity';
+import { Book } from '../../book/entities/book.entity';
 import { Entity, Column, OneToMany, PrimaryColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { Order } from './order.entity';

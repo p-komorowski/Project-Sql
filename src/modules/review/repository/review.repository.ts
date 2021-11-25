@@ -1,4 +1,4 @@
-import { UnauthorizedException } from '@nestjs/common';
+import { BadRequestException } from '@nestjs/common';
 import { BooksService } from 'src/modules/book/book.service';
 import { EntityRepository, Repository } from 'typeorm';
 import { ReviewDto } from '../dto/review.dto';
@@ -10,7 +10,7 @@ export class ReviewRepository extends Repository<Review> {
   async addReviewToBook(dto: ReviewDto) {
     const book = await this.bookService.getBook(dto.IBSN);
     if (!book) {
-      throw new UnauthorizedException('book does not exist');
+      throw new BadRequestException('book does not exist');
     }
 
     const newReview = await this.create({

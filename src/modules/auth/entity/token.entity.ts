@@ -1,5 +1,12 @@
 import { Customer } from '../../user/entities';
-import { Entity, Column, PrimaryColumn, ManyToOne, JoinColumn, DeepPartial } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  ManyToOne,
+  JoinColumn,
+  DeepPartial,
+} from 'typeorm';
 import { v4 as uuid } from 'uuid';
 import { TokenInterface } from '../interface/token.interface';
 

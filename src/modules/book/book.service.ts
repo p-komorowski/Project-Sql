@@ -1,8 +1,9 @@
-import { Injectable, Logger, NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { BooksRepository } from './repository/book.repository';
-import { Book } from './entity/book.entity';
-import { BookDto } from './dto/book.dto';
+import { BadRequestException, Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { BooksRepository, PriceHistoryRepository } from './repository/index';
+import { Book, PriceHistory } from './entities';
+import { BookDto, BookResponseDto } from './dto';
 import { InjectRepository } from '@nestjs/typeorm';
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class BooksService {
@@ -10,6 +11,8 @@ export class BooksService {
   constructor(
     @InjectRepository(Book)
     private readonly booksRepository: BooksRepository,
+    @InjectRepository(PriceHistory)
+    private readonly priceHistoryRepostiory: PriceHistoryRepository,
   ) {
     this.logger = new Logger(BooksService.name);
   }
@@ -17,12 +20,17 @@ export class BooksService {
     return this.booksRepository.save(newProduct);
   }
 
-  public async getProducts(page: number = 1, take: number): Promise<Book[]> {
-    return this.booksRepository.find({
-      relations: ['review'],
+  public async getProducts(
+    page: number = 1,
+    take: number,
+  ): Promise<BookResponseDto[]> {
+    const result = await this.booksRepository.find({
+      relations: ['review', 'priceHistory'],
       take: take,
       skip: take * (page - 1),
     });
+
+    return plainToClass(BookResponseDto, result);
   }
 
   public async getBook(IBSN: string): Promise<Book> {
@@ -34,7 +42,7 @@ export class BooksService {
       },
     });
     if (!book) {
-      throw new UnauthorizedException('cannot find book');
+      throw new BadRequestException('cannot find book');
     }
     return book;
   }
@@ -45,6 +53,16 @@ export class BooksService {
       throw new NotFoundException('book does not exist');
     }
 
+    if (book.price == price) {
+      throw new BadRequestException('cannot update when price is the same');
+    }
+
+    this.priceHistoryRepostiory.save({
+      IBSN: IBSN,
+      previousPrice: book.price,
+      currentPrice: price,
+      book: book,
+    });
     return this.booksRepository.save({ ...book, price: price });
   }
 

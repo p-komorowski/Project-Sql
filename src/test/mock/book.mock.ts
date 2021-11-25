@@ -1,4 +1,4 @@
-import { Book } from '../../modules/book/entity/book.entity';
+import { Book } from '../../modules/book/entities/book.entity';
 
 export const BookModelMock: Book = {
   IBSN: '1',
@@ -15,5 +15,3 @@ export const newBookModelMock: Book = {
   price: 1.99,
   count: 1,
 } as Book;
-
-

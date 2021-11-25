@@ -4,8 +4,8 @@ import { Roles } from '../auth/decorators/role.decorator';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { Role } from '../user/enum/role.enum';
 import { RolesGuard } from '../auth/guards/roles.guard';
-import { Order } from './entity/order.entity';
 import { OrderService } from './order.service';
+import { OrderResponseDto } from './dto/order-response.dto';
 
 @ApiTags('Order')
 @Controller('order')
@@ -20,7 +20,7 @@ export class OrderController {
   @ApiResponse({ status: 200, description: 'Order created.' })
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
   async addBasketToOrder() {
-   return this.orderService.createOrder();
+    return this.orderService.createOrder();
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -30,7 +30,7 @@ export class OrderController {
   @ApiOperation({ summary: 'Show list of placed orders' })
   @ApiResponse({ status: 200, description: 'Order list shown' })
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
-  async getAllOrders(): Promise<Order[]> {
+  async getAllOrders(): Promise<OrderResponseDto[]> {
     return this.orderService.getAllOrders();
   }
 }

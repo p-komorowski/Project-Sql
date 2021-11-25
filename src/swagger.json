@@ -1,4 +1,4 @@
- {
+{
   "swaggerDoc": {
     "openapi": "3.0.0",
     "paths": {
@@ -25,9 +25,7 @@
               "description": "User already exists."
             }
           },
-          "tags": [
-            "Auth"
-          ]
+          "tags": ["Auth"]
         }
       },
       "/auth/login": {
@@ -53,9 +51,7 @@
               "description": "Invalid credentials."
             }
           },
-          "tags": [
-            "Auth"
-          ]
+          "tags": ["Auth"]
         }
       },
       "/books": {
@@ -85,9 +81,7 @@
               "description": "Getting all products."
             }
           },
-          "tags": [
-            "Books"
-          ],
+          "tags": ["Books"],
           "security": [
             {
               "bearer": []
@@ -116,9 +110,7 @@
               "description": "User not logged in."
             }
           },
-          "tags": [
-            "Books"
-          ],
+          "tags": ["Books"],
           "security": [
             {
               "bearer": []
@@ -151,9 +143,7 @@
               "description": "User not logged in."
             }
           },
-          "tags": [
-            "Books"
-          ],
+          "tags": ["Books"],
           "security": [
             {
               "bearer": []
@@ -196,9 +186,7 @@
               "description": "User not logged in."
             }
           },
-          "tags": [
-            "Books"
-          ],
+          "tags": ["Books"],
           "security": [
             {
               "bearer": []
@@ -232,9 +220,7 @@
               "description": "User not logged in."
             }
           },
-          "tags": [
-            "Books"
-          ],
+          "tags": ["Books"],
           "security": [
             {
               "bearer": []
@@ -277,9 +263,7 @@
               "description": "User not logged in."
             }
           },
-          "tags": [
-            "Books"
-          ],
+          "tags": ["Books"],
           "security": [
             {
               "bearer": []
@@ -313,9 +297,7 @@
               "description": "User not logged in."
             }
           },
-          "tags": [
-            "Basket"
-          ],
+          "tags": ["Basket"],
           "security": [
             {
               "bearer": []
@@ -346,9 +328,7 @@
               "description": "User not logged in."
             }
           },
-          "tags": [
-            "Basket"
-          ],
+          "tags": ["Basket"],
           "security": [
             {
               "bearer": []
@@ -378,9 +358,7 @@
               "description": "User not logged in."
             }
           },
-          "tags": [
-            "Basket"
-          ],
+          "tags": ["Basket"],
           "security": [
             {
               "bearer": []
@@ -418,9 +396,7 @@
               "description": "User not logged in."
             }
           },
-          "tags": [
-            "Basket"
-          ],
+          "tags": ["Basket"],
           "security": [
             {
               "bearer": []
@@ -441,9 +417,7 @@
               "description": "User not logged in."
             }
           },
-          "tags": [
-            "Basket"
-          ],
+          "tags": ["Basket"],
           "security": [
             {
               "bearer": []
@@ -464,9 +438,7 @@
               "description": "User not logged in."
             }
           },
-          "tags": [
-            "Order"
-          ],
+          "tags": ["Order"],
           "security": [
             {
               "bearer": []
@@ -485,9 +457,7 @@
               "description": "User not logged in."
             }
           },
-          "tags": [
-            "Order"
-          ],
+          "tags": ["Order"],
           "security": [
             {
               "bearer": []
@@ -534,11 +504,7 @@
               "description": "name"
             }
           },
-          "required": [
-            "email",
-            "password",
-            "name"
-          ]
+          "required": ["email", "password", "name"]
         },
         "LoginDto": {
           "type": "object",
@@ -552,10 +518,7 @@
               "description": "password"
             }
           },
-          "required": [
-            "email",
-            "password"
-          ]
+          "required": ["email", "password"]
         },
         "BookDto": {
           "type": "object",
@@ -581,13 +544,7 @@
               "description": "count of book"
             }
           },
-          "required": [
-            "IBSN",
-            "title",
-            "price",
-            "author",
-            "count"
-          ]
+          "required": ["IBSN", "title", "price", "author", "count"]
         },
         "BookPriceDto": {
           "type": "object",
@@ -597,9 +554,7 @@
               "description": "price of book"
             }
           },
-          "required": [
-            "price"
-          ]
+          "required": ["price"]
         },
         "ReviewDto": {
           "type": "object",
@@ -627,10 +582,7 @@
               "nullable": false
             }
           },
-          "required": [
-            "basketId",
-            "userId"
-          ]
+          "required": ["basketId", "userId"]
         },
         "BasketBookDto": {
           "type": "object",
@@ -644,10 +596,7 @@
               "description": "Count"
             }
           },
-          "required": [
-            "id",
-            "count"
-          ]
+          "required": ["id", "count"]
         }
       }
     }

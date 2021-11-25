@@ -1,4 +1,4 @@
-import { BadRequestException,Injectable,NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { BasketService } from '../basket/basket.service';
 import { Order } from './entity';
 import { OrderRepository } from './repository/order.repository';
@@ -6,6 +6,8 @@ import { RequestContextProvider } from '../../middleware/request-context.middlew
 import { Customer } from '../user/entities';
 import { UserRepository } from '../user/repository/user.repository';
 import { InjectRepository } from '@nestjs/typeorm';
+import { plainToClass } from 'class-transformer';
+import { OrderResponseDto } from './dto/order-response.dto';
 
 @Injectable()
 export class OrderService {
@@ -35,8 +37,8 @@ export class OrderService {
     return this.orderRepository.save(newOrder);
   }
 
-  async getAllOrders(): Promise<Order[]> {
-    return this.orderRepository
+  async getAllOrders(): Promise<OrderResponseDto[]> {
+    const result = await this.orderRepository
       .createQueryBuilder('order')
       .leftJoin('order.user', 'user')
       .addSelect(['user.name', 'user.email'])
@@ -44,6 +46,8 @@ export class OrderService {
       .leftJoinAndSelect('basket.basketBooks', 'basketBooks')
       .leftJoinAndSelect('basketBooks.book', 'book')
       .getMany();
+
+    return plainToClass(OrderResponseDto, result);
   }
 
   async findUsersOrder(user: Customer): Promise<Order> {

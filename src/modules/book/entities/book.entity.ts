@@ -1,9 +1,18 @@
 import { OrderBooks } from '../../order/dto/order-books.dto';
-import { Entity, Column, PrimaryColumn, ManyToOne, OneToMany, JoinColumn, DeepPartial } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  ManyToOne,
+  OneToMany,
+  JoinColumn,
+  DeepPartial,
+} from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { BookInterface } from '../interface/book.interface';
 import { BasketBook } from '../../basket/entities/basket-book.entity';
 import { Review } from '../../review/entity/review.entity';
+import { PriceHistory } from './price-history.entity';
 
 @Entity()
 export class Book {
@@ -39,4 +48,7 @@ export class Book {
   @OneToMany(() => Review, (review) => review.book)
   @JoinColumn()
   review: Review[];
+
+  @OneToMany(() => PriceHistory, (priceHistory) => priceHistory.book)
+  priceHistory: PriceHistory;
 }

@@ -10,6 +10,7 @@ import { OrderRepository } from './repository/order.repository';
 import { BasketBooksRepository } from '../basket/repository/basket-books.repository';
 import { BasketRepository } from '../basket/repository/basket.repository';
 import { entities } from '../../config';
+import { PriceHistoryRepository } from '../book/repository/price-history.repostiory';
 @Module({
   imports: [TypeOrmModule.forFeature(entities)],
   providers: [
@@ -21,6 +22,7 @@ import { entities } from '../../config';
     UsersService,
     OrderService,
     OrderRepository,
+    PriceHistoryRepository,
   ],
   controllers: [OrderController],
 })
