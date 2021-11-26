@@ -6,10 +6,10 @@ import { BasketBookResponseDto } from './basket-book-response.dto';
 export class BasketResponseDto {
   @Expose({ name: 'id' })
   @ApiProperty({ type: String, description: 'Basket ID' })
-  BasketID: string;
+  basketId: string;
 
   @Expose({ name: 'basketBooks' })
   @ApiProperty({ type: BasketBookResponseDto, description: 'Basket Book' })
   @Type(() => BasketBookResponseDto)
-  BooksInBasket: BasketBookResponseDto;
+  booksInBasket: BasketBookResponseDto;
 }

@@ -5,5 +5,5 @@ import { Exclude, Expose } from 'class-transformer';
 export class UserResponseDto {
   @Expose({ name: 'id' })
   @ApiProperty()
-  UserID: string;
+  userId: string;
 }

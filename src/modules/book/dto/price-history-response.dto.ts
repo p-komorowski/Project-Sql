@@ -5,17 +5,17 @@ import { Exclude, Expose } from 'class-transformer';
 export class PriceHistoryResponseDto {
   @Expose({ name: 'id' })
   @ApiProperty({ type: String, description: 'ID of review' })
-  IdOfPriceHistory: string;
+  idOfPriceHistory: string;
 
   @Expose({ name: 'previousPrice' })
   @ApiProperty({ type: String, description: 'previous price of book' })
-  PreviousPriceOfBook: number;
+  previousPriceOfBook: number;
 
   @Expose({ name: 'currentPrice' })
   @ApiProperty({ type: String, description: 'current price of book' })
-  CurrentPriceOfBook: number;
+  currentPriceOfBook: number;
 
   @Expose({ name: 'date' })
   @ApiProperty({ type: String, description: 'date of changes' })
-  DateOfChanges: Date;
+  dateOfChanges: Date;
 }

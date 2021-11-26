@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude, Expose, Type } from 'class-transformer';
-import { ReviewResponseDto } from '../../../modules/review/dto/review-response.dto';
-import { PriceHistoryResponseDto } from './price-history-response.dto';
+import { ReviewResponseDto } from '../../../modules/review/dto';
+import { PriceHistoryResponseDto } from './index';
 
 @Exclude()
 export class BookResponseDto {
@@ -11,27 +11,27 @@ export class BookResponseDto {
 
   @Expose({ name: 'title' })
   @ApiProperty({ type: String, description: 'Title of book' })
-  Title: string;
+  title: string;
 
   @Expose({ name: 'price' })
   @ApiProperty({ type: Number, description: 'Number of book' })
-  Price: number;
+  price: number;
 
   @Expose({ name: 'author' })
   @ApiProperty({ type: String, description: 'Author of book' })
-  Author: string;
+  author: string;
 
   @Expose({ name: 'count' })
   @ApiProperty({ type: Number, description: 'Count of book' })
-  Count: number;
+  count: number;
 
   @Expose({ name: 'review' })
   @ApiProperty({ type: ReviewResponseDto, description: 'Review response' })
   @Type(() => ReviewResponseDto)
-  BookReview: ReviewResponseDto;
+  bookReview: ReviewResponseDto;
 
   @Expose({ name: 'priceHistory' })
   @ApiProperty({ type: PriceHistoryResponseDto, description: 'Price history response' })
   @Type(() => PriceHistoryResponseDto)
-  PriceHistory: PriceHistoryResponseDto;
+  priceHistory: PriceHistoryResponseDto;
 }

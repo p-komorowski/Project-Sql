@@ -6,9 +6,9 @@ export class createTableCustomer1633342785021 implements MigrationInterface {
             CREATE TABLE IF NOT EXISTS "price_history" ( 
                 id UUID,
                 IBSN VARCHAR NOT NULL,
+                previous_price DECIMAL NOT NULL,
                 current_price DECIMAL NOT NULL,
-                changed_price DECIMAL NOT NULL,
-                date TIMESTAMP NOT NULL
+                date TIMESTAMP NOT NULL DEFAULT NOW()
                 )
         `);
   }

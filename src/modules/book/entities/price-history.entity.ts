@@ -1,11 +1,4 @@
-import {
-  Entity,
-  Column,
-  DeepPartial,
-  CreateDateColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Entity, Column, DeepPartial, CreateDateColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { v4 as uuid } from 'uuid';
 import { Book } from './book.entity';

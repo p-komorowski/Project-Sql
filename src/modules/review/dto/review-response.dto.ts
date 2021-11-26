@@ -5,9 +5,9 @@ import { Exclude, Expose } from 'class-transformer';
 export class ReviewResponseDto {
   @Expose({ name: 'id' })
   @ApiProperty({ type: String, description: 'ID of review' })
-  ReviewID: string;
+  reviewId: string;
 
   @Expose({ name: 'review' })
   @ApiProperty({ type: String, description: 'Review of book' })
-  Review: string;
+  review: string;
 }
