@@ -47,7 +47,7 @@ export class BooksService {
     return book;
   }
 
-  async changePriceOfBook(IBSN: string, price: number) {
+  async changePriceOfBook(IBSN: string, price: number): Promise<Book> {
     const book = await this.getBook(IBSN);
     if (!book) {
       throw new NotFoundException('book does not exist');
@@ -57,7 +57,7 @@ export class BooksService {
       throw new BadRequestException('cannot update when price is the same');
     }
 
-    this.priceHistoryRepostiory.save({
+   await this.priceHistoryRepostiory.save({
       IBSN: IBSN,
       previousPrice: book.price,
       currentPrice: price,
