@@ -97,7 +97,7 @@ export class BasketService {
     if (basketBookWithThisBook) {
       throw new BadRequestException('book already in basket');
     }
-    return await this.basketBooksRepository.save({
+    return this.basketBooksRepository.save({
       book: book,
       count: 1,
       basket: basket,
