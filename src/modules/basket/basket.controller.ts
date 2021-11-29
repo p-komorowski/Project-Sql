@@ -35,7 +35,7 @@ export class BasketController {
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
   @ApiBody({ type: BasketDto })
   async addProduct(): Promise<Basket[]> {
-    return await this.basketService.getBasket();
+    return this.basketService.getBasket();
   }
 
   @Delete('/:IBSN')
@@ -60,7 +60,7 @@ export class BasketController {
     @Param('IBSN') IBSN: string,
     @Body() count: BasketBookDto,
   ): Promise<BasketBook> {
-    return await this.basketService.updateCountOfBookInBasket(IBSN, count);
+    return this.basketService.updateCountOfBookInBasket(IBSN, count);
   }
 
   @Get('books')
@@ -71,6 +71,6 @@ export class BasketController {
   @ApiResponse({ status: 200, description: 'show list' })
   @ApiUnauthorizedResponse({ description: 'User not logged in.' })
   async showBooksInBasket(): Promise<BasketBook[]> {
-    return await this.basketService.getBooksInUserBasket();
+    return this.basketService.getBooksInUserBasket();
   }
 }
