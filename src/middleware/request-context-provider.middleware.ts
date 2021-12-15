@@ -1,4 +1,4 @@
-import { NestMiddleware } from '@nestjs/common';
+import { BadRequestException, NestMiddleware } from '@nestjs/common';
 import { Response, NextFunction } from 'express';
 import { Token } from '../modules/auth/entity/token.entity';
 import { getManager } from 'typeorm';
@@ -10,8 +10,10 @@ export class RequestContextMiddleware implements NestMiddleware {
     let tokenHeader: string;
     if (req.headers['authorization']) {
       tokenHeader = req.headers['authorization'].replace('Bearer ', '');
+    } else if (req.cookies['access_token']) {
+      tokenHeader = req.cookies['access_token'];
     }
-
+    const origin = req.headers['origin'];
     const token = await getManager().findOne(Token, {
       join: {
         alias: 'token',
@@ -21,7 +23,9 @@ export class RequestContextMiddleware implements NestMiddleware {
       },
       where: { token: tokenHeader },
     });
-
+    if (!token) {
+      throw new BadRequestException('cannot find token');
+    }
     req['User'] = token.user;
     const requestContext = new RequestContextProvider(req, res);
     const session =
@@ -29,6 +33,8 @@ export class RequestContextMiddleware implements NestMiddleware {
       createNamespace(RequestContextProvider.uuid);
     session.run(async () => {
       session.set(RequestContextProvider.name, requestContext);
+      res.setHeader('Access-Control-Allow-Origin', origin);
+      res.setHeader('Access-Control-Allow-Credentials', 'true');
       next();
     });
   }

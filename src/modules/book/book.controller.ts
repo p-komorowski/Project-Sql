@@ -21,8 +21,10 @@ export class BooksController {
     private booksService: BooksService,
     private reviewService: ReviewService,
   ) {}
-
-  @Get()
+  
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get('/history')
+  @Roles(Role.Moderator)
   @ApiOperation({ summary: 'Get all products.' })
   @ApiResponse({ status: 200, description: 'Getting all products.' })
   async getAllProducts(
@@ -31,6 +33,18 @@ export class BooksController {
     @Query('take') take: number,
   ): Promise<BookResponseDto[]> {
     return this.booksService.getProducts(page, take);
+  }
+
+  
+  @Get()
+  @ApiOperation({ summary: 'Get all products.' })
+  @ApiResponse({ status: 200, description: 'Getting all products.' })
+  async getAllProductsWithNoHistory(
+    @Query('page')
+    page: number,
+    @Query('take') take: number,
+  ): Promise<BookResponseDto[]> {
+    return this.booksService.getProductsWithNoHistory(page, take);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)

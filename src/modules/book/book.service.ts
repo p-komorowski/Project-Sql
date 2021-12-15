@@ -33,6 +33,22 @@ export class BooksService {
     return plainToClass(BookResponseDto, result);
   }
 
+
+  public async getProductsWithNoHistory(
+    page: number = 1,
+    take: number,
+  ): Promise<BookResponseDto[]> {
+    const result = await this.booksRepository.find({
+      relations: ['review'],
+      take: take,
+      skip: take * (page - 1),
+    });
+
+    return plainToClass(BookResponseDto, result);
+  }
+
+  
+
   public async getBook(IBSN: string): Promise<Book> {
     this.logger.debug(`[getBook] start fetching for a book with id: ${IBSN}`);
     const book = await this.booksRepository.findOne({

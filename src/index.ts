@@ -7,8 +7,10 @@ import { createConnection } from 'typeorm';
 import { config, entities } from './config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as fs from 'fs';
+
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
+  app.enableCors();
   const swagger = new DocumentBuilder()
     .setTitle('Project-sql')
     .setDescription('The Project-sql API description')
@@ -46,7 +48,6 @@ async function bootstrap() {
       connection.runMigrations();
     })
     .catch((error) => console.log(error));
-
-  await app.listen(3000);
+  await app.listen(4000);
 }
 bootstrap();
