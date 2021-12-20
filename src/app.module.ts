@@ -24,6 +24,7 @@ import { RolesGuard } from './modules/auth/guards/roles.guard';
     BooksModule,
     BasketModule,
     OrderModule,
+    
   ],
   controllers: [AppController],
   providers: [

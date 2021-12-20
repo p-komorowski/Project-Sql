@@ -16,8 +16,10 @@ import { entities } from '../../config';
   imports: [
     TypeOrmModule.forFeature(entities),
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '600s' },
+      publicKey: process.env.PUBLIC_KEY,
+      privateKey: process.env.PRIVATE_KEY,
+      //secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '6s' , algorithm: 'RS256'},
     }),
     AuthRepository,
   ],

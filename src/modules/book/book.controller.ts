@@ -1,8 +1,25 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { Book } from './entities/book.entity';
 import { BooksService } from './book.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { ReviewDto } from '../review/dto/review.dto';
 import { Review } from '../review/entity/review.entity';
 import { BookPriceDto, BookDto, BookResponseDto } from './dto';
@@ -12,7 +29,6 @@ import { RolesGuard } from '../auth/guards/roles.guard';
 import { DeleteReviewDto } from '../order/dto/delete-order.dto';
 import { ReviewService } from '../review/review.service';
 
-
 @ApiBearerAuth()
 @ApiTags('Books')
 @Controller('books')
@@ -21,7 +37,7 @@ export class BooksController {
     private booksService: BooksService,
     private reviewService: ReviewService,
   ) {}
-  
+
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get('/history')
   @Roles(Role.Moderator)
@@ -35,7 +51,6 @@ export class BooksController {
     return this.booksService.getProducts(page, take);
   }
 
-  
   @Get()
   @ApiOperation({ summary: 'Get all products.' })
   @ApiResponse({ status: 200, description: 'Getting all products.' })

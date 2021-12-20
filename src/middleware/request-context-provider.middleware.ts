@@ -5,7 +5,6 @@ import { getManager } from 'typeorm';
 import { getNamespace, createNamespace } from 'cls-hooked';
 import { RequestContextProvider } from './request-context.middleware';
 import jwtDecode from 'jwt-decode';
-
 export class RequestContextMiddleware implements NestMiddleware {
   async use(req: any, res: Response, next: NextFunction) {
     let tokenHeader: string;
@@ -15,8 +14,11 @@ export class RequestContextMiddleware implements NestMiddleware {
       tokenHeader = req.cookies['access_token'];
     }
 
-    const decoded = jwtDecode(tokenHeader)
-    console.log(decoded)
+    // const decode = jwtDecode(tokenHeader)
+    // console.log(decode)
+
+    console.log(tokenHeader)
+    
     const origin = req.headers['origin'];
     const token = await getManager().findOne(Token, {
       join: {
